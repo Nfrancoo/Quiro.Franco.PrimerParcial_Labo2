@@ -1,4 +1,6 @@
-﻿namespace PrimerParcial
+﻿using System.Text;
+
+namespace PrimerParcial
 {
     public abstract class JugadoresSeleccion
     {
@@ -38,14 +40,44 @@
 
         public virtual void Concentrarse()
         {
-            Console.WriteLine($"{nombre} {apellido} se está concentrando.");
-            
+            Console.WriteLine($"{this.nombre} {this.apellido} se está concentrando.");
         }
 
         public virtual void Viajar()
         {
-            Console.WriteLine($"{nombre} {apellido} está viajando con el equipo.");
-            
+            Console.WriteLine($"{this.nombre} {this.apellido} está viajando con el equipo.");
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"Nombre: {this.nombre}, Apellido: {this.apellido}, Edad: {this.edad}, País: {this.paises}");
+            return sb.ToString();
+        }
+
+        public override bool Equals(object obj)
+        {
+            bool returno = false;
+            if (obj is JugadoresSeleccion)
+            {
+                returno = this == (JugadoresSeleccion)obj;
+            }
+            return returno;
+        }
+
+        public static bool operator ==(JugadoresSeleccion a, JugadoresSeleccion b)
+        {
+            if (ReferenceEquals(a, b))
+                return true;
+            if (a is null || b is null)
+                return false;
+
+            return a.Equals(b);
+        }
+
+        public static bool operator !=(JugadoresSeleccion a, JugadoresSeleccion b)
+        {
+            return !(a == b);
         }
     }
 }

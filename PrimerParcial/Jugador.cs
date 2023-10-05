@@ -13,6 +13,13 @@ namespace PrimerParcial
         private String demarcacion;
         private EPosicion posicion;
 
+        public Jugador(int edad, string nombre, string apellido, EPaises pais, int dorsal, string demarcacion, EPosicion posicion)
+        : base(edad, nombre, apellido, pais)
+        {
+            this.dorsal = dorsal;
+            this.demarcacion = demarcacion;
+            this.posicion = posicion;
+        }
         public override List<JugadoresSeleccion> Jugadores
         {
             get
@@ -20,5 +27,24 @@ namespace PrimerParcial
                 return this.jugadores;
             }
         }
+        public int Dorsal
+        {
+            get { return dorsal; }
+            set { dorsal = value; }
+        }
+
+        public string Demarcacion
+        {
+            get { return demarcacion; }
+            set { demarcacion = value; }
+        }
+
+        public EPosicion Posicion
+        {
+            get { return posicion; }
+            set { posicion = value; }
+        }
+
+
     }
 }
