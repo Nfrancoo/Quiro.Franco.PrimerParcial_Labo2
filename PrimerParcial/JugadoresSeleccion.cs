@@ -7,6 +7,7 @@
         public string apellido;
         public EPaises paises;
 
+        public abstract List<JugadoresSeleccion> Jugadores { get; }
         public JugadoresSeleccion()
         {
             this.edad = 0;
@@ -33,8 +34,6 @@
         {
             this.paises = paises;
         }
-
-        public abstract void RealizarAccionEquipo();
 
 
         public virtual void Concentrarse()
