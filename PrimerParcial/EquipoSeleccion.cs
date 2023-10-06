@@ -2,50 +2,52 @@
 
 namespace PrimerParcial
 {
-    public abstract class JugadoresSeleccion
+    public abstract class EquipoSeleccion
     {
         public int edad;
         public string nombre;
         public string apellido;
         public EPaises paises;
 
-        public abstract List<JugadoresSeleccion> Jugadores { get; }
-        public JugadoresSeleccion()
+        public abstract List<EquipoSeleccion> Equipo { get; }
+        public EquipoSeleccion()
         {
             this.edad = 0;
             this.nombre = "SIN NOMBRE";
             this.apellido = "SIN APELLIDO";
             this.paises = EPaises.Argentina;
         }
-        public JugadoresSeleccion(int edad) : this()
+        public EquipoSeleccion(int edad) : this()
         {
             this.edad= edad;
         }
 
-        public JugadoresSeleccion(int edad, string nombre) : this(edad)
+        public EquipoSeleccion(int edad, string nombre) : this(edad)
         {
             this.nombre = nombre;
         }
 
-        public JugadoresSeleccion(int edad, string nombre, string apellido) : this(edad, nombre)
+        public EquipoSeleccion(int edad, string nombre, string apellido) : this(edad, nombre)
         {
             this.apellido = apellido;
         }
 
-        public JugadoresSeleccion(int edad, string nombre, string apellido, EPaises paises) : this(edad, nombre, apellido)
+        public EquipoSeleccion(int edad, string nombre, string apellido, EPaises paises) : this(edad, nombre, apellido)
         {
             this.paises = paises;
         }
 
 
-        public virtual void Concentrarse()
+        public virtual string Concentrarse()
         {
-            Console.WriteLine($"{this.nombre} {this.apellido} se está concentrando.");
+            return $"{this.nombre} {this.apellido} se está concentrando.";
+            //Console.WriteLine($"{this.nombre} {this.apellido} se está concentrando.");
         }
 
-        public virtual void Viajar()
+        public virtual string Viajar()
         {
-            Console.WriteLine($"{this.nombre} {this.apellido} está viajando con el equipo.");
+            return $"{this.nombre} {this.apellido} está viajando con el equipo.";
+            //Console.WriteLine($"{this.nombre} {this.apellido} está viajando con el equipo.");
         }
 
         public override string ToString()
@@ -58,14 +60,14 @@ namespace PrimerParcial
         public override bool Equals(object obj)
         {
             bool returno = false;
-            if (obj is JugadoresSeleccion)
+            if (obj is EquipoSeleccion)
             {
-                returno = this == (JugadoresSeleccion)obj;
+                returno = this == (EquipoSeleccion)obj;
             }
             return returno;
         }
 
-        public static bool operator ==(JugadoresSeleccion a, JugadoresSeleccion b)
+        public static bool operator ==(EquipoSeleccion a, EquipoSeleccion b)
         {
             if (ReferenceEquals(a, b))
                 return true;
@@ -75,7 +77,7 @@ namespace PrimerParcial
             return a.Equals(b);
         }
 
-        public static bool operator !=(JugadoresSeleccion a, JugadoresSeleccion b)
+        public static bool operator !=(EquipoSeleccion a, EquipoSeleccion b)
         {
             return !(a == b);
         }

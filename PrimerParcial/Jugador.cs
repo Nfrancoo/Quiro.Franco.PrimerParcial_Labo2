@@ -6,21 +6,18 @@ using System.Threading.Tasks;
 
 namespace PrimerParcial
 {
-    internal class Jugador : JugadoresSeleccion
+    internal class Jugador : EquipoSeleccion
     {
-        protected List<JugadoresSeleccion> jugadores;
+        protected List<EquipoSeleccion> jugadores;
         private int dorsal;
-        private String demarcacion;
         private EPosicion posicion;
 
-        public Jugador(int edad, string nombre, string apellido, EPaises pais, int dorsal, string demarcacion, EPosicion posicion)
-        : base(edad, nombre, apellido, pais)
+        public Jugador(int edad, string nombre, string apellido, EPaises pais, int dorsal, EPosicion posicion) : base(edad, nombre, apellido, pais)
         {
             this.dorsal = dorsal;
-            this.demarcacion = demarcacion;
             this.posicion = posicion;
         }
-        public override List<JugadoresSeleccion> Jugadores
+        public override List<EquipoSeleccion> Equipo
         {
             get
             {
@@ -33,18 +30,32 @@ namespace PrimerParcial
             set { dorsal = value; }
         }
 
-        public string Demarcacion
-        {
-            get { return demarcacion; }
-            set { demarcacion = value; }
-        }
-
         public EPosicion Posicion
         {
             get { return posicion; }
             set { posicion = value; }
+
+        }
+        public override string Concentrarse()
+        {
+            return $"{base.nombre} {base.apellido} se está concentrando.";
         }
 
+        public override string Viajar()
+        {
+            return $"{base.nombre} {base.apellido} está viajando con el equipo.";
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.AppendLine(base.ToString());
+            foreach (Jugador pasajero in this.jugadores)
+            {
+                sb.AppendLine(pasajero.ToString());
+            }
+            return sb.ToString();
+        }
 
     }
 }
