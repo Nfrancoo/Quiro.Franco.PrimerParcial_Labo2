@@ -36,5 +36,15 @@ namespace PrimerParcial
         {
             Console.WriteLine($"{this.nombre} {this.apellido} esta masajeando a los jugadores.");
         }
+
+        public override string Concentrarse()
+        {
+            return $"{base.nombre} {base.apellido} se está concentrando.";
+        }
+
+        public override string Viajar()
+        {
+            return $"{base.nombre} {base.apellido} está viajando con el equipo.";
+        }
     }
 }

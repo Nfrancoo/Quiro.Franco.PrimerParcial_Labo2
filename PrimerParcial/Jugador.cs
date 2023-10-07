@@ -46,7 +46,7 @@ namespace PrimerParcial
 
         public override string Viajar()
         {
-            return $"{base.nombre} {base.apellido} está viajando con el equipo.";
+            return $"{base.nombre} {base.apellido} esta viajando con el equipo.";
         }
 
         public override string ToString()
@@ -61,7 +61,7 @@ namespace PrimerParcial
         }
         public override void RealizarAccion()
         {
-            Console.WriteLine($"El jugador {nombre} {apellido} está entrenando.");
+            Console.WriteLine($"El jugador {base.nombre} {base.apellido} está entrenando.");
         }
 
     }
