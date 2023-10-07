@@ -6,18 +6,20 @@ using System.Threading.Tasks;
 
 namespace PrimerParcial
 {
-    internal class Jugador : EquipoSeleccion
+    public class Jugador : GenteEquipoSeleccion
     {
-        protected List<EquipoSeleccion> jugadores;
+        protected List<GenteEquipoSeleccion> jugadores;
         private int dorsal;
         private EPosicion posicion;
 
-        public Jugador(int edad, string nombre, string apellido, EPaises pais, int dorsal, EPosicion posicion) : base(edad, nombre, apellido, pais)
+        public Jugador(int edad, string nombre, string apellido, EPaises pais, int dorsal, EPosicion posicion)
+            : base(edad, nombre, apellido, pais)
         {
             this.dorsal = dorsal;
             this.posicion = posicion;
+            this.jugadores = new List<GenteEquipoSeleccion>();
         }
-        public override List<EquipoSeleccion> Equipo
+        public override List<GenteEquipoSeleccion> Equipo
         {
             get
             {
@@ -36,6 +38,7 @@ namespace PrimerParcial
             set { posicion = value; }
 
         }
+
         public override string Concentrarse()
         {
             return $"{base.nombre} {base.apellido} se está concentrando.";
@@ -55,6 +58,10 @@ namespace PrimerParcial
                 sb.AppendLine(pasajero.ToString());
             }
             return sb.ToString();
+        }
+        public override void RealizarAccion()
+        {
+            Console.WriteLine($"El jugador {nombre} {apellido} está entrenando.");
         }
 
     }

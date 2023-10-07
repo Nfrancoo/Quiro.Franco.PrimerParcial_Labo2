@@ -6,13 +6,16 @@ using System.Threading.Tasks;
 
 namespace PrimerParcial
 {
-    internal class Entrenador : EquipoSeleccion
+    public class Entrenador : GenteEquipoSeleccion
     {
-        protected List<EquipoSeleccion> entrenador;
+        protected List<GenteEquipoSeleccion> entrenador;
+        public string tactica;
 
-
-
-        public override List<EquipoSeleccion> Equipo
+        public Entrenador(int edad, string nombre,string apellido,EPaises pais ,string tactica):base(edad, nombre, apellido, pais)
+        {
+            this.tactica = tactica;
+        }
+        public override List<GenteEquipoSeleccion> Equipo
         {
             get
             {
@@ -20,6 +23,19 @@ namespace PrimerParcial
             }
         }
 
+        public override string Concentrarse()
+        {
+            return $"{base.nombre} {base.apellido} se está concentrando.";
+        }
 
+        public override string Viajar()
+        {
+            return $"{base.nombre} {base.apellido} está viajando con el equipo.";
+        }
+
+        public override void RealizarAccion()
+        {
+            Console.WriteLine($"{this.nombre} {this.apellido} esta revisando las tacticas y la que tiene pensado usar es {this.tactica}.");
+        }
     }
 }
