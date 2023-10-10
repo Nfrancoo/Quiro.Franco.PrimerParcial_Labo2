@@ -34,7 +34,7 @@ namespace FormSelecciones
             string correo = txtCorreo.Text;
             string contraseña = txtContraseña.Text;
 
-            // Buscar el usuario por correo y contraseña
+            
             Usuario usuario = usuarios.Find(u => u.correo == correo && u.clave == contraseña);
 
             if (usuario != null)
