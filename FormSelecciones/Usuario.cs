@@ -8,11 +8,11 @@ namespace FormSelecciones
 {
     internal class Usuario
     {
-        public string apellido { get; set; }
-        public string nombre { get; set; }
-        public int legajo { get; set; }
-        public string correo { get; set; } // Cambiar a minúscula para que coincida con el JSON
-        public string clave { get; set; }  // Cambiar a minúscula para que coincida con el JSON
-        public string perfil { get; set; }
+        //public string apellido { get; set; }
+        //public string nombre { get; set; }
+        //public int legajo { get; set; }
+        //public string correo { get; set; } 
+        //public string clave { get; set; }
+        //public string perfil { get; set; }
     }
 }
