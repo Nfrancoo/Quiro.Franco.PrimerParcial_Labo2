@@ -39,6 +39,8 @@ namespace PrimerParcial
 
         }
 
+        public EPaises Pais { get; set; }
+
         public override string Concentrarse()
         {
             return $"{base.nombre} {base.apellido} se está concentrando.";

@@ -40,7 +40,13 @@ namespace FormSelecciones
             if (usuario != null)
             {
                 MessageBox.Show($"Bienvenido, {usuario.nombre} {usuario.apellido}. Perfil: {usuario.perfil}");
-            }
+
+                this.Hide();
+                
+                FormPrincipal formPrincipal = new FormPrincipal();
+
+                formPrincipal.Show();
+             }
             else
             {
                 MessageBox.Show("Correo o contraseña incorrectos");
