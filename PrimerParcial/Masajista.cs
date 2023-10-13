@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace PrimerParcial
 {
-    public class Masajista : GenteEquipoSeleccion
+    public class Masajista : PersonalEquipoSeleccion
     {
-        protected List<GenteEquipoSeleccion> masajistas;
-        private string certificadoMasaje;
+        protected List<PersonalEquipoSeleccion> masajistas;
+        private string lugarDeTituloDeEstudio;
 
-        public Masajista(int edad, string nombre, string apellido, EPaises pais, string certificadoMasaje)
+        public Masajista(int edad, string nombre, string apellido, EPaises pais, string lugarDeTituloDeEstudio)
             : base(edad, nombre, apellido, pais)
         {
-            this.certificadoMasaje = certificadoMasaje;
-            this.masajistas = new List<GenteEquipoSeleccion>();
+            this.lugarDeTituloDeEstudio = lugarDeTituloDeEstudio;
+            this.masajistas = new List<PersonalEquipoSeleccion>();
         }
 
-        public override List<GenteEquipoSeleccion> Equipo
+        public override List<PersonalEquipoSeleccion> Equipo
         {
             get
             {
@@ -26,10 +26,17 @@ namespace PrimerParcial
             }
         }
 
+        public EPaises Paises
+        {
+            get { return this.paises; }
+            set { this.paises = value; }
+        }
+
+
         public string CertificadoMasaje
         {
-            get { return certificadoMasaje; }
-            set { certificadoMasaje = value; }
+            get { return lugarDeTituloDeEstudio; }
+            set { lugarDeTituloDeEstudio = value; }
         }
 
         public override void RealizarAccion()
@@ -45,6 +52,17 @@ namespace PrimerParcial
         public override string Viajar()
         {
             return $"{base.nombre} {base.apellido} está viajando con el equipo.";
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"Nombre: {this.nombre}, Apellido: {this.apellido}, Edad: {this.edad}, País: {this.paises}, Facultadad donde estudio: {this.lugarDeTituloDeEstudio}");
+            foreach (Jugador jugadores in this.masajistas)
+            {
+                sb.AppendLine(jugadores.ToString());
+            }
+            return sb.ToString();
         }
     }
 }

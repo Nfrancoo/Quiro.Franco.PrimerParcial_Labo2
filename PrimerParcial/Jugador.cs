@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace PrimerParcial
 {
-    public class Jugador : GenteEquipoSeleccion
+    public class Jugador : PersonalEquipoSeleccion
     {
-        protected List<GenteEquipoSeleccion> jugadores;
+        protected List<PersonalEquipoSeleccion> jugadores;
         private int dorsal;
         private EPosicion posicion;
 
@@ -17,9 +17,9 @@ namespace PrimerParcial
         {
             this.dorsal = dorsal;
             this.posicion = posicion;
-            this.jugadores = new List<GenteEquipoSeleccion>();
+            this.jugadores = new List<PersonalEquipoSeleccion>();
         }
-        public override List<GenteEquipoSeleccion> Equipo
+        public override List<PersonalEquipoSeleccion> Equipo
         {
             get
             {
@@ -58,10 +58,10 @@ namespace PrimerParcial
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.AppendLine(base.ToString());
-            foreach (Jugador pasajero in this.jugadores)
+            sb.Append($"Nombre: {this.nombre}, Apellido: {this.apellido}, Edad: {this.edad}, País: {this.paises}, Posicion: {this.posicion}, Dorsal: {this.dorsal}");
+            foreach (Jugador jugadores in this.jugadores)
             {
-                sb.AppendLine(pasajero.ToString());
+                sb.AppendLine(jugadores.ToString());
             }
             return sb.ToString();
         }

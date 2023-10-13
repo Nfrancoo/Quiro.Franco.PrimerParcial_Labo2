@@ -219,7 +219,7 @@
             Controls.Add(label2);
             Controls.Add(lblNombre);
             Name = "ConvocarJugador";
-            Text = "Convocar";
+            Text = "Convocar Jugador";
             ResumeLayout(false);
             PerformLayout();
         }

@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace PrimerParcial
 {
-    public class Entrenador : GenteEquipoSeleccion
+    public class Entrenador : PersonalEquipoSeleccion
     {
-        protected List<GenteEquipoSeleccion> entrenadores;
+        protected List<PersonalEquipoSeleccion> entrenadores;
         public string tactica;
 
         public Entrenador(int edad, string nombre,string apellido,EPaises pais ,string tactica):base(edad, nombre, apellido, pais)
         {
             this.tactica = tactica;
-            this.entrenadores = new List<GenteEquipoSeleccion> ();
+            this.entrenadores = new List<PersonalEquipoSeleccion> ();
         }
-        public override List<GenteEquipoSeleccion> Equipo
+        public override List<PersonalEquipoSeleccion> Equipo
         {
             get
             {
@@ -43,6 +43,17 @@ namespace PrimerParcial
         public override void RealizarAccion()
         {
             Console.WriteLine($"{this.nombre} {this.apellido} esta revisando las tacticas y la que tiene pensado usar es {this.tactica}.");
+        }
+
+        public override string ToString()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append($"Nombre: {this.nombre}, Apellido: {this.apellido}, Edad: {this.edad}, País: {this.paises}, Tactica a usar: {this.tactica}");
+            foreach (Jugador jugadores in this.entrenadores)
+            {
+                sb.AppendLine(jugadores.ToString());
+            }
+            return sb.ToString();
         }
     }
 }

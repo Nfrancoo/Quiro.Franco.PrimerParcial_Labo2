@@ -17,6 +17,7 @@ namespace FormSelecciones
     {
         public Jugador nuevoJugador;
         public Entrenador nuevoEntrenador;
+        public Masajista nuevoMasajista;
         FormPrincipal principal = new FormPrincipal();
 
         public Personal()
@@ -27,8 +28,6 @@ namespace FormSelecciones
 
         private void btnJugador_Click(object sender, EventArgs e)
         {
-
-            principal.convocarJugadorSeleccionado = true;
             ConvocarJugador jugador = new ConvocarJugador();
             jugador.ShowDialog();
 
@@ -43,7 +42,6 @@ namespace FormSelecciones
 
         private void btnEntrenador_Click(object sender, EventArgs e)
         {
-            principal.convocarJugadorSeleccionado = false;
             ConvocarEntrenador entrenador = new ConvocarEntrenador();
             entrenador.ShowDialog();
 
@@ -58,6 +56,22 @@ namespace FormSelecciones
             }
 
             this.Close();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            ConvocarMasajista masajista = new ConvocarMasajista();
+            masajista.ShowDialog();
+
+            if (masajista.DialogResult == DialogResult.OK)
+            {
+                nuevoMasajista = masajista.NuevoMasajista;
+                this.DialogResult = DialogResult.OK;
+            }
+            else
+            {
+                this.DialogResult = DialogResult.Cancel;
+            }
         }
     }
 }

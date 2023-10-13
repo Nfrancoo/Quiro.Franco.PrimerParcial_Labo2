@@ -2,39 +2,39 @@
 
 namespace PrimerParcial
 {
-    public abstract class GenteEquipoSeleccion
+    public abstract class PersonalEquipoSeleccion
     {
         public int edad;
         public string nombre;
         public string apellido;
         public EPaises paises;
 
-        public abstract List<GenteEquipoSeleccion> Equipo { get; }
+        public abstract List<PersonalEquipoSeleccion> Equipo { get; }
 
         public abstract void RealizarAccion();
-        public GenteEquipoSeleccion()
+        public PersonalEquipoSeleccion()
         {
             this.edad = 0;
             this.nombre = "SIN NOMBRE";
             this.apellido = "SIN APELLIDO";
             this.paises = EPaises.Brasil;
         }
-        public GenteEquipoSeleccion(int edad) : this()
+        public PersonalEquipoSeleccion(int edad) : this()
         {
             this.edad= edad;
         }
 
-        public GenteEquipoSeleccion(int edad, string nombre) : this(edad)
+        public PersonalEquipoSeleccion(int edad, string nombre) : this(edad)
         {
             this.nombre = nombre;
         }
 
-        public GenteEquipoSeleccion(int edad, string nombre, string apellido) : this(edad, nombre)
+        public PersonalEquipoSeleccion(int edad, string nombre, string apellido) : this(edad, nombre)
         {
             this.apellido = apellido;
         }
 
-        public GenteEquipoSeleccion(int edad, string nombre, string apellido, EPaises paises) : this(edad, nombre, apellido)
+        public PersonalEquipoSeleccion(int edad, string nombre, string apellido, EPaises paises) : this(edad, nombre, apellido)
         {
             this.paises = paises;
         }
@@ -62,9 +62,9 @@ namespace PrimerParcial
         public override bool Equals(object? obj)
         {
             bool retorno = false;
-            if (obj is GenteEquipoSeleccion)
+            if (obj is PersonalEquipoSeleccion)
             {
-                retorno = this == (GenteEquipoSeleccion)obj;
+                retorno = this == (PersonalEquipoSeleccion)obj;
             }
             return retorno;
         }

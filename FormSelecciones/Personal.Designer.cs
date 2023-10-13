@@ -64,6 +64,7 @@
             button2.TabIndex = 2;
             button2.Text = "Llamar Masajista";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += button2_Click;
             // 
             // Personal
             // 
@@ -74,7 +75,7 @@
             Controls.Add(btnEntrenador);
             Controls.Add(btnJugador);
             Name = "Personal";
-            Text = "Personal";
+            Text = "Convocar";
             ResumeLayout(false);
         }
 

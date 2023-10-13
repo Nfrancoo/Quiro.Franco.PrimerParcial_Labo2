@@ -8,26 +8,26 @@ namespace PrimerParcial
 {
     public class Equipo
     {
-        private List<GenteEquipoSeleccion> miembros = new List<GenteEquipoSeleccion>();
+        private List<PersonalEquipoSeleccion> miembros = new List<PersonalEquipoSeleccion>();
 
-        public static Equipo operator +(Equipo equipo, GenteEquipoSeleccion miembro)
+        public static Equipo operator +(Equipo equipo, PersonalEquipoSeleccion miembro)
         {
             equipo.miembros.Add(miembro);
             return equipo;
         }
 
-        public static Equipo operator -(Equipo equipo, GenteEquipoSeleccion miembro)
+        public static Equipo operator -(Equipo equipo, PersonalEquipoSeleccion miembro)
         {
             equipo.miembros.Remove(miembro);
             return equipo;
         }
 
-        public static bool operator ==(Equipo equipo, GenteEquipoSeleccion miembro)
+        public static bool operator ==(Equipo equipo, PersonalEquipoSeleccion miembro)
         {
             return equipo.miembros.Contains(miembro);
         }
 
-        public static bool operator !=(Equipo equipo, GenteEquipoSeleccion miembro)
+        public static bool operator !=(Equipo equipo, PersonalEquipoSeleccion miembro)
         {
             return !equipo.miembros.Contains(miembro);
         }

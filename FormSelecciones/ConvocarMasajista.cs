@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PrimerParcial;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,21 +8,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using PrimerParcial;
 
 namespace FormSelecciones
 {
-    public partial class ConvocarEntrenador : Form
+    public partial class ConvocarMasajista : Form
     {
-        public Entrenador NuevoEntrenador;
-        public ConvocarEntrenador()
+        public Masajista NuevoMasajista;
+        public ConvocarMasajista()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             this.BackColor = Color.LightCyan;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnAceptar_Click(object sender, EventArgs e)
         {
             string nombre = this.txtNombre.Text;
             if (string.IsNullOrEmpty(nombre))
@@ -37,10 +37,10 @@ namespace FormSelecciones
                 return;
             }
 
-            string tactica = this.txtTactica.Text;
-            if (string.IsNullOrEmpty(tactica))
+            string titulo = this.txtTitulo.Text;
+            if (string.IsNullOrEmpty(titulo))
             {
-                MessageBox.Show("Por favor, ingrese un valor en el campo de tactica.");
+                MessageBox.Show("Por favor, ingrese un valor en el campo de titulo.");
                 return;
             }
 
@@ -60,18 +60,14 @@ namespace FormSelecciones
             EPaises pais = (EPaises)Enum.Parse(typeof(EPaises), paisInput);
 
 
-            NuevoEntrenador = new Entrenador(edad, nombre, apellido, pais, tactica);
+            NuevoMasajista = new Masajista(edad, nombre, apellido, pais, titulo);
 
             this.DialogResult = DialogResult.OK;
         }
+
         private bool EsPaisValido(string inputPais)
         {
             return Enum.IsDefined(typeof(EPaises), inputPais);
-        }
-
-        private void btnCancelar_Click(object sender, EventArgs e)
-        {
-            this.DialogResult = DialogResult.Cancel;
         }
     }
 }

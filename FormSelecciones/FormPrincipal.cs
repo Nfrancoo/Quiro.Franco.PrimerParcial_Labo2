@@ -12,11 +12,11 @@ namespace FormSelecciones
 {
     public partial class FormPrincipal : Form
     {
-        public static List<GenteEquipoSeleccion> personalBrasil = new List<GenteEquipoSeleccion>();
-        public static List<GenteEquipoSeleccion> personalArgentina = new List<GenteEquipoSeleccion>();
-        public static List<GenteEquipoSeleccion> personalItalia = new List<GenteEquipoSeleccion>();
-        public static List<GenteEquipoSeleccion> personalAlemania = new List<GenteEquipoSeleccion>();
-        public static List<GenteEquipoSeleccion> personalFrancia = new List<GenteEquipoSeleccion>();
+        public static List<PersonalEquipoSeleccion> personalBrasil = new List<PersonalEquipoSeleccion>();
+        public static List<PersonalEquipoSeleccion> personalArgentina = new List<PersonalEquipoSeleccion>();
+        public static List<PersonalEquipoSeleccion> personalItalia = new List<PersonalEquipoSeleccion>();
+        public static List<PersonalEquipoSeleccion> personalAlemania = new List<PersonalEquipoSeleccion>();
+        public static List<PersonalEquipoSeleccion> personalFrancia = new List<PersonalEquipoSeleccion>();
         public bool convocarJugadorSeleccionado = true;
 
         public FormPrincipal()
@@ -83,23 +83,49 @@ namespace FormSelecciones
                     {
                         case EPaises.Brasil:
                             personalBrasil.Add(entrenador);
-                            lstBrasil.Items.Add(entrenador);
+                            lstBrasilEntrenador.Items.Add(entrenador);
                             break;
                         case EPaises.Argentina:
                             personalArgentina.Add(entrenador);
-                            lstArgentina.Items.Add(entrenador);
+                            lstArgentinaEntrenador.Items.Add(entrenador);
                             break;
                         case EPaises.Italia:
                             personalItalia.Add(entrenador);
-                            lstItalia.Items.Add(entrenador);
+                            lstItaliaEntrenador.Items.Add(entrenador);
                             break;
                         case EPaises.Alemania:
                             personalAlemania.Add(entrenador);
-                            lstAlemania.Items.Add(entrenador);
+                            lstAlemaniaEntrenador.Items.Add(entrenador);
                             break;
                         case EPaises.Francia:
                             personalFrancia.Add(entrenador);
-                            lstFrancia.Items.Add(entrenador);
+                            lstFranciaEntrenador.Items.Add(entrenador);
+                            break;
+                    }
+                }
+                else if (personalForm.nuevoMasajista is Masajista masajista)
+                {
+                    switch (masajista.Paises)
+                    {
+                        case EPaises.Brasil:
+                            personalBrasil.Add(masajista);
+                            lstBrasilMasajeador.Items.Add(masajista);
+                            break;
+                        case EPaises.Argentina:
+                            personalArgentina.Add(masajista);
+                            lstArgentinaMasajeador.Items.Add(masajista);
+                            break;
+                        case EPaises.Italia:
+                            personalItalia.Add(masajista);
+                            lstItaliaMasajeador.Items.Add(masajista);
+                            break;
+                        case EPaises.Alemania:
+                            personalAlemania.Add(masajista);
+                            lstAlemaniaMasajeador.Items.Add(masajista);
+                            break;
+                        case EPaises.Francia:
+                            personalFrancia.Add(masajista);
+                            lstFranciaMasajeador.Items.Add(masajista);
                             break;
                     }
                 }
@@ -117,6 +143,16 @@ namespace FormSelecciones
                 lstAlemania.Visible = false;
                 lstFrancia.Visible = false;
                 lstItalia.Visible = false;
+                lstArgentinaEntrenador.Visible = false;
+                lstBrasilEntrenador.Visible = false;
+                lstAlemaniaEntrenador.Visible = false;
+                lstFranciaEntrenador.Visible = false;
+                lstItaliaEntrenador.Visible = false;
+                lstArgentinaMasajeador.Visible = false;
+                lstBrasilMasajeador.Visible = false;
+                lstItaliaMasajeador.Visible = false;
+                lstFranciaMasajeador.Visible = false;
+                lstAlemaniaMasajeador.Visible = false;
 
                 // Muestra el ListBox correspondiente al país seleccionado
                 EPaises paisSeleccionado = (EPaises)cmbPaises.SelectedItem;
@@ -124,18 +160,28 @@ namespace FormSelecciones
                 {
                     case EPaises.Argentina:
                         lstArgentina.Visible = true;
+                        lstArgentinaEntrenador.Visible = true;
+                        lstArgentinaMasajeador.Visible = true;
                         break;
                     case EPaises.Brasil:
                         lstBrasil.Visible = true;
+                        lstBrasilEntrenador.Visible = true;
+                        lstBrasilMasajeador.Visible = true;
                         break;
                     case EPaises.Italia:
                         lstItalia.Visible = true;
+                        lstItaliaEntrenador.Visible = true;
+                        lstItaliaMasajeador.Visible = true;
                         break;
                     case EPaises.Francia:
                         lstFrancia.Visible = true;
+                        lstFranciaEntrenador.Visible = true;
+                        lstFranciaMasajeador.Visible = true;
                         break;
                     case EPaises.Alemania:
                         lstAlemania.Visible = true;
+                        lstAlemaniaEntrenador.Visible = true;
+                        lstAlemaniaMasajeador.Visible = true;
                         break;
                 }
             }
