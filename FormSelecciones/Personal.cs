@@ -18,7 +18,6 @@ namespace FormSelecciones
         public Jugador nuevoJugador;
         public Entrenador nuevoEntrenador;
         public Masajista nuevoMasajista;
-        FormPrincipal principal = new FormPrincipal();
 
         public Personal()
         {

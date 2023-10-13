@@ -49,6 +49,8 @@
             lstFranciaMasajeador = new ListBox();
             lstItaliaMasajeador = new ListBox();
             lstAlemaniaMasajeador = new ListBox();
+            btnEliminar = new Button();
+            label5 = new Label();
             SuspendLayout();
             // 
             // label1
@@ -57,9 +59,9 @@
             label1.Font = new Font("Sitka Small", 12F, FontStyle.Regular, GraphicsUnit.Point);
             label1.Location = new Point(12, 18);
             label1.Name = "label1";
-            label1.Size = new Size(160, 24);
+            label1.Size = new Size(275, 24);
             label1.TabIndex = 0;
-            label1.Text = "Convocar Personal";
+            label1.Text = "Convocar Personal a la Seleccion";
             // 
             // lstArgentina
             // 
@@ -248,11 +250,35 @@
             lstAlemaniaMasajeador.Size = new Size(410, 124);
             lstAlemaniaMasajeador.TabIndex = 21;
             // 
+            // btnEliminar
+            // 
+            btnEliminar.Font = new Font("Sylfaen", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnEliminar.ForeColor = SystemColors.ActiveCaption;
+            btnEliminar.Location = new Point(89, 195);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(152, 58);
+            btnEliminar.TabIndex = 22;
+            btnEliminar.Text = "Eliminar Personal";
+            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Sitka Small", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.Location = new Point(12, 168);
+            label5.Name = "label5";
+            label5.Size = new Size(275, 24);
+            label5.TabIndex = 23;
+            label5.Text = "Convocar Personal a la Seleccion";
+            // 
             // FormPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 491);
+            Controls.Add(label5);
+            Controls.Add(btnEliminar);
             Controls.Add(lstAlemaniaMasajeador);
             Controls.Add(lstItaliaMasajeador);
             Controls.Add(lstFranciaMasajeador);
@@ -305,5 +331,7 @@
         private ListBox lstFranciaMasajeador;
         private ListBox lstItaliaMasajeador;
         private ListBox lstAlemaniaMasajeador;
+        private Button btnEliminar;
+        private Label label5;
     }
 }
