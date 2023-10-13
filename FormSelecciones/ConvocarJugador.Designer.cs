@@ -1,6 +1,6 @@
 ﻿namespace FormSelecciones
 {
-    partial class Convocar
+    partial class ConvocarJugador
     {
         /// <summary>
         /// Required designer variable.

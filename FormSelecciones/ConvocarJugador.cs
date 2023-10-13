@@ -11,10 +11,10 @@ using PrimerParcial;
 
 namespace FormSelecciones
 {
-    public partial class Convocar : Form
+    public partial class ConvocarJugador : Form
     {
         public Jugador NuevoJugador;
-        public Convocar()
+        public ConvocarJugador()
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
@@ -75,8 +75,30 @@ namespace FormSelecciones
             // Crear el nuevo jugador
             NuevoJugador = new Jugador(edad, nombre, apellido, pais, dorsal, posicion);
 
+
+
             // Establecer el resultado del formulario como "Aceptar"
             this.DialogResult = DialogResult.OK;
+
+            // Agregar al jugador a la lista correspondiente según su país
+            switch (pais)
+            {
+                case EPaises.Argentina:
+                    FormPrincipal.jugadoresArgentina.Add(NuevoJugador);
+                    break;
+                case EPaises.Brasil:
+                    FormPrincipal.jugadoresBrasil.Add(NuevoJugador);
+                    break;
+                case EPaises.Italia:
+                    FormPrincipal.jugadoresItalia.Add(NuevoJugador);
+                    break;
+                case EPaises.Alemania:
+                    FormPrincipal.jugadoresAlemania.Add(NuevoJugador);
+                    break;
+                case EPaises.Francia:
+                    FormPrincipal.jugadoresFrancia.Add(NuevoJugador);
+                    break;
+            }
         }
         private void btnCancelar_Click(object sender, EventArgs e)
         {

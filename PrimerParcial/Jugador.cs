@@ -39,7 +39,11 @@ namespace PrimerParcial
 
         }
 
-        public EPaises Pais { get; set; }
+        public EPaises Pais 
+        {
+            get { return paises; }
+            set { paises = value; } 
+        }
 
         public override string Concentrarse()
         {

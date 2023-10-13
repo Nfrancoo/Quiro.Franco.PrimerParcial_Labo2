@@ -12,68 +12,154 @@ namespace FormSelecciones
 {
     public partial class FormPrincipal : Form
     {
-        private List<Jugador> jugadores = new List<Jugador>();
-        private BindingSource bindingSource = new BindingSource();
+        public static List<Jugador> jugadoresBrasil = new List<Jugador>();
+        public static List<Jugador> jugadoresArgentina = new List<Jugador>();
+        public static List<Jugador> jugadoresItalia = new List<Jugador>();
+        public static List<Jugador> jugadoresAlemania = new List<Jugador>();
+        public static List<Jugador> jugadoresFrancia = new List<Jugador>();
+
         public FormPrincipal()
         {
             InitializeComponent();
-            lstJugadores.DataSource = bindingSource;
+            this.StartPosition = FormStartPosition.CenterScreen;
             cmbPaises.DropDownStyle = ComboBoxStyle.DropDownList;
 
+            cmbPaises.DataSource = Enum.GetValues(typeof(EPaises));
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void FormPrincipal_Load(object sender, EventArgs e)
         {
+            //Inicializa los ListBox y oculta todos excepto uno
+            lstArgentina.Visible = false;
+            lstFrancia.Visible = false;
+            lstBrasil.Visible = false;
+            lstItalia.Visible = false;
+            lstAlemania.Visible = false;
 
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            using (Convocar convocarForm = new Convocar())
+            ConvocarJugador convocarForm = new ConvocarJugador();
+            using (Personal personal = new Personal(convocarForm))
             {
-                DialogResult result = convocarForm.ShowDialog();
+                personal.ShowDialog();
 
-                if (result == DialogResult.OK)
+                if (convocarForm.DialogResult == DialogResult.OK)
                 {
                     Jugador nuevoJugador = convocarForm.NuevoJugador;
 
-                    jugadores.Add(nuevoJugador);
-
-                    // Actualizar el ComboBox y el ListBox en FormPrincipal
-                    LlenarComboBoxNacionalidades();
-                    cmbPaises_SelectedIndexChanged(null, null); // Forzar la actualización del ListBox
+                    switch (nuevoJugador.Pais)
+                    {
+                        case EPaises.Brasil:
+                            jugadoresBrasil.Add(nuevoJugador);
+                            lstBrasil.Items.Add(nuevoJugador); // Agregar al ListBox de Brasil
+                            break;
+                        case EPaises.Argentina:
+                            jugadoresArgentina.Add(nuevoJugador);
+                            lstArgentina.Items.Add(nuevoJugador); // Agregar al ListBox de Argentina
+                            break;
+                        case EPaises.Italia:
+                            jugadoresItalia.Add(nuevoJugador);
+                            lstItalia.Items.Add(nuevoJugador); // Agregar al ListBox de Italia
+                            break;
+                        case EPaises.Alemania:
+                            jugadoresAlemania.Add(nuevoJugador);
+                            lstAlemania.Items.Add(nuevoJugador); // Agregar al ListBox de Alemania
+                            break;
+                        case EPaises.Francia:
+                            jugadoresFrancia.Add(nuevoJugador);
+                            lstFrancia.Items.Add(nuevoJugador); // Agregar al ListBox de Francia
+                            break;
+                    }
                 }
             }
-        }
-        private void LlenarComboBoxNacionalidades()
-        {
-            // Obtener las nacionalidades únicas de la lista de jugadores y convertirlas en una lista de cadenas
-            var nacionalidades = jugadores.Select(jugador => jugador.Pais.ToString()).Distinct().ToList();
-
-            // Asignar la lista de nacionalidades al ListBox
-            lstJugadores.DataSource = nacionalidades;
         }
 
         private void cmbPaises_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbPaises.SelectedItem == null)
+            if (cmbPaises.SelectedItem != null)
             {
-                return; // No hacer nada si no hay un elemento seleccionado
+                // Oculta todos los ListBox
+                lstArgentina.Visible = false;
+                lstBrasil.Visible = false;
+                lstAlemania.Visible = false;
+                lstFrancia.Visible = false;
+                lstItalia.Visible = false;
+
+                // Muestra el ListBox correspondiente al país seleccionado
+                EPaises paisSeleccionado = (EPaises)cmbPaises.SelectedItem;
+                switch (paisSeleccionado)
+                {
+                    case EPaises.Argentina:
+                        lstArgentina.Visible = true;
+                        break;
+                    case EPaises.Brasil:
+                        lstBrasil.Visible = true;
+                        break;
+                    case EPaises.Italia:
+                        lstItalia.Visible = true;
+                        break;
+                    case EPaises.Francia:
+                        lstFrancia.Visible = true;
+                        break;
+                    case EPaises.Alemania:
+                        lstAlemania.Visible = true;
+                        break;
+                }
             }
+        }
 
-            string paisSeleccionado = (string)cmbPaises.SelectedItem;
+        private void FormPrincipal_Leave(object sender, EventArgs e)
+        {
+        }
 
-            // Convierte la cadena seleccionada en un valor enumerado EPaises
-            if (Enum.TryParse(paisSeleccionado, out EPaises nacionalidadSeleccionada))
+        private void FormPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+
+        }
+        private void ManejarListas(ListBox pepe = null)
+        {
+
+            ConvocarJugador convocarForm = new ConvocarJugador();
+            using (Personal personal = new Personal(convocarForm))
             {
-                List<Jugador> jugadoresFiltrados = jugadores.Where(jugador => jugador.Pais == nacionalidadSeleccionada).ToList();
+                personal.ShowDialog();
 
-                lstJugadores.DataSource = null; // Limpia cualquier origen de datos existente
-                lstJugadores.DataSource = jugadoresFiltrados; // Asigna la lista de jugadores filtrados directamente
-                lstJugadores.DisplayMember = "Nombre"; // Cambia "Nombre" por la propiedad que desees mostrar en el ListBox
+                if (convocarForm.DialogResult == DialogResult.OK)
+                {
+                    Jugador nuevoJugador = convocarForm.NuevoJugador;
+
+                    if (pepe != null)
+                    {
+                        switch (nuevoJugador.Pais)
+                        {
+                            case EPaises.Brasil:
+                                jugadoresBrasil.Add(nuevoJugador);
+                                pepe.Items.Add(nuevoJugador); // Agregar al ListBox de Brasil
+                                break;
+                            case EPaises.Argentina:
+                                jugadoresArgentina.Add(nuevoJugador);
+                                lstArgentina.Items.Add(nuevoJugador); // Agregar al ListBox de Argentina
+                                break;
+                            case EPaises.Italia:
+                                jugadoresItalia.Add(nuevoJugador);
+                                lstItalia.Items.Add(nuevoJugador); // Agregar al ListBox de Italia
+                                break;
+                            case EPaises.Alemania:
+                                jugadoresAlemania.Add(nuevoJugador);
+                                lstAlemania.Items.Add(nuevoJugador); // Agregar al ListBox de Alemania
+                                break;
+                            case EPaises.Francia:
+                                jugadoresFrancia.Add(nuevoJugador);
+                                lstFrancia.Items.Add(nuevoJugador); // Agregar al ListBox de Francia
+                                break;
+                        }
+                    }
+                    
+                }
             }
-
         }
     }
 }

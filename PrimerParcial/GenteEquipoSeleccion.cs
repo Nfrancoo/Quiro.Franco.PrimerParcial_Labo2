@@ -17,7 +17,7 @@ namespace PrimerParcial
             this.edad = 0;
             this.nombre = "SIN NOMBRE";
             this.apellido = "SIN APELLIDO";
-            this.paises = EPaises.Argentina;
+            this.paises = EPaises.Brasil;
         }
         public GenteEquipoSeleccion(int edad) : this()
         {
@@ -59,14 +59,14 @@ namespace PrimerParcial
             return sb.ToString();
         }
 
-        public override bool Equals(object obj)
+        public override bool Equals(object? obj)
         {
-            bool returno = false;
+            bool retorno = false;
             if (obj is GenteEquipoSeleccion)
             {
-                returno = this == (GenteEquipoSeleccion)obj;
+                retorno = this == (GenteEquipoSeleccion)obj;
             }
-            return returno;
+            return retorno;
         }
 
         //public static bool operator ==(GenteEquipoSeleccion a, GenteEquipoSeleccion b)

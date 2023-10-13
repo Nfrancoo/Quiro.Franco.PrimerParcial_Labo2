@@ -1,9 +1,8 @@
 ﻿public enum EPaises
 {
-    Argentina,
     Francia,
-    Brasil,
+    Argentina,
+    Brasil ,
     Alemania,
     Italia
-    
 }
