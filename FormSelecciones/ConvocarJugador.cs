@@ -14,6 +14,7 @@ namespace FormSelecciones
     public partial class ConvocarJugador : Form
     {
         public Jugador NuevoJugador;
+
         public ConvocarJugador()
         {
             InitializeComponent();
@@ -81,24 +82,24 @@ namespace FormSelecciones
             this.DialogResult = DialogResult.OK;
 
             // Agregar al jugador a la lista correspondiente según su país
-            switch (pais)
-            {
-                case EPaises.Argentina:
-                    FormPrincipal.jugadoresArgentina.Add(NuevoJugador);
-                    break;
-                case EPaises.Brasil:
-                    FormPrincipal.jugadoresBrasil.Add(NuevoJugador);
-                    break;
-                case EPaises.Italia:
-                    FormPrincipal.jugadoresItalia.Add(NuevoJugador);
-                    break;
-                case EPaises.Alemania:
-                    FormPrincipal.jugadoresAlemania.Add(NuevoJugador);
-                    break;
-                case EPaises.Francia:
-                    FormPrincipal.jugadoresFrancia.Add(NuevoJugador);
-                    break;
-            }
+            //switch (pais)
+            //{
+            //    case EPaises.Argentina:
+            //        FormPrincipal.personalArgentina.Add(NuevoJugador);
+            //        break;
+            //    case EPaises.Brasil:
+            //        FormPrincipal.personalBrasil.Add(NuevoJugador);
+            //        break;
+            //    case EPaises.Italia:
+            //        FormPrincipal.personalItalia.Add(NuevoJugador);
+            //        break;
+            //    case EPaises.Alemania:
+            //        FormPrincipal.personalAlemania.Add(NuevoJugador);
+            //        break;
+            //    case EPaises.Francia:
+            //        FormPrincipal.personalFrancia.Add(NuevoJugador);
+            //        break;
+            //}
         }
         private void btnCancelar_Click(object sender, EventArgs e)
         {

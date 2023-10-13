@@ -12,11 +12,12 @@ namespace FormSelecciones
 {
     public partial class FormPrincipal : Form
     {
-        public static List<Jugador> jugadoresBrasil = new List<Jugador>();
-        public static List<Jugador> jugadoresArgentina = new List<Jugador>();
-        public static List<Jugador> jugadoresItalia = new List<Jugador>();
-        public static List<Jugador> jugadoresAlemania = new List<Jugador>();
-        public static List<Jugador> jugadoresFrancia = new List<Jugador>();
+        public static List<GenteEquipoSeleccion> personalBrasil = new List<GenteEquipoSeleccion>();
+        public static List<GenteEquipoSeleccion> personalArgentina = new List<GenteEquipoSeleccion>();
+        public static List<GenteEquipoSeleccion> personalItalia = new List<GenteEquipoSeleccion>();
+        public static List<GenteEquipoSeleccion> personalAlemania = new List<GenteEquipoSeleccion>();
+        public static List<GenteEquipoSeleccion> personalFrancia = new List<GenteEquipoSeleccion>();
+        public bool convocarJugadorSeleccionado = true;
 
         public FormPrincipal()
         {
@@ -39,43 +40,72 @@ namespace FormSelecciones
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnConvocar_Click(object sender, EventArgs e)
         {
-            ConvocarJugador convocarForm = new ConvocarJugador();
-            using (Personal personal = new Personal(convocarForm))
+            Personal personalForm = new Personal();
+            personalForm.ShowDialog();
+
+            if (personalForm.DialogResult == DialogResult.OK)
             {
-                personal.ShowDialog();
-
-                if (convocarForm.DialogResult == DialogResult.OK)
+                if (personalForm.nuevoJugador is Jugador jugador)
                 {
-                    Jugador nuevoJugador = convocarForm.NuevoJugador;
-
-                    switch (nuevoJugador.Pais)
+                    // Es un jugador
+                    // Agregar el nuevo jugador al ListBox y a la lista correspondiente
+                    switch (jugador.Pais)
                     {
                         case EPaises.Brasil:
-                            jugadoresBrasil.Add(nuevoJugador);
-                            lstBrasil.Items.Add(nuevoJugador); // Agregar al ListBox de Brasil
+                            personalBrasil.Add(jugador);
+                            lstBrasil.Items.Add(jugador);
                             break;
                         case EPaises.Argentina:
-                            jugadoresArgentina.Add(nuevoJugador);
-                            lstArgentina.Items.Add(nuevoJugador); // Agregar al ListBox de Argentina
+                            personalArgentina.Add(jugador);
+                            lstArgentina.Items.Add(jugador);
                             break;
                         case EPaises.Italia:
-                            jugadoresItalia.Add(nuevoJugador);
-                            lstItalia.Items.Add(nuevoJugador); // Agregar al ListBox de Italia
+                            personalItalia.Add(jugador);
+                            lstItalia.Items.Add(jugador);
                             break;
                         case EPaises.Alemania:
-                            jugadoresAlemania.Add(nuevoJugador);
-                            lstAlemania.Items.Add(nuevoJugador); // Agregar al ListBox de Alemania
+                            personalAlemania.Add(jugador);
+                            lstAlemania.Items.Add(jugador);
                             break;
                         case EPaises.Francia:
-                            jugadoresFrancia.Add(nuevoJugador);
-                            lstFrancia.Items.Add(nuevoJugador); // Agregar al ListBox de Francia
+                            personalFrancia.Add(jugador);
+                            lstFrancia.Items.Add(jugador);
+                            break;
+                    }
+                }
+                else if (personalForm.nuevoEntrenador is Entrenador entrenador)
+                {
+                    // Es un entrenador
+                    // Agregar el nuevo entrenador al ListBox y a la lista correspondiente
+                    switch (entrenador.Pais)
+                    {
+                        case EPaises.Brasil:
+                            personalBrasil.Add(entrenador);
+                            lstBrasil.Items.Add(entrenador);
+                            break;
+                        case EPaises.Argentina:
+                            personalArgentina.Add(entrenador);
+                            lstArgentina.Items.Add(entrenador);
+                            break;
+                        case EPaises.Italia:
+                            personalItalia.Add(entrenador);
+                            lstItalia.Items.Add(entrenador);
+                            break;
+                        case EPaises.Alemania:
+                            personalAlemania.Add(entrenador);
+                            lstAlemania.Items.Add(entrenador);
+                            break;
+                        case EPaises.Francia:
+                            personalFrancia.Add(entrenador);
+                            lstFrancia.Items.Add(entrenador);
                             break;
                     }
                 }
             }
         }
+
 
         private void cmbPaises_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -118,48 +148,6 @@ namespace FormSelecciones
         private void FormPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
 
-        }
-        private void ManejarListas(ListBox pepe = null)
-        {
-
-            ConvocarJugador convocarForm = new ConvocarJugador();
-            using (Personal personal = new Personal(convocarForm))
-            {
-                personal.ShowDialog();
-
-                if (convocarForm.DialogResult == DialogResult.OK)
-                {
-                    Jugador nuevoJugador = convocarForm.NuevoJugador;
-
-                    if (pepe != null)
-                    {
-                        switch (nuevoJugador.Pais)
-                        {
-                            case EPaises.Brasil:
-                                jugadoresBrasil.Add(nuevoJugador);
-                                pepe.Items.Add(nuevoJugador); // Agregar al ListBox de Brasil
-                                break;
-                            case EPaises.Argentina:
-                                jugadoresArgentina.Add(nuevoJugador);
-                                lstArgentina.Items.Add(nuevoJugador); // Agregar al ListBox de Argentina
-                                break;
-                            case EPaises.Italia:
-                                jugadoresItalia.Add(nuevoJugador);
-                                lstItalia.Items.Add(nuevoJugador); // Agregar al ListBox de Italia
-                                break;
-                            case EPaises.Alemania:
-                                jugadoresAlemania.Add(nuevoJugador);
-                                lstAlemania.Items.Add(nuevoJugador); // Agregar al ListBox de Alemania
-                                break;
-                            case EPaises.Francia:
-                                jugadoresFrancia.Add(nuevoJugador);
-                                lstFrancia.Items.Add(nuevoJugador); // Agregar al ListBox de Francia
-                                break;
-                        }
-                    }
-                    
-                }
-            }
         }
     }
 }

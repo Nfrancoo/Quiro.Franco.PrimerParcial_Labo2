@@ -196,7 +196,7 @@
             btnCancelar.UseVisualStyleBackColor = true;
             btnCancelar.Click += btnCancelar_Click;
             // 
-            // Convocar
+            // ConvocarJugador
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
@@ -218,7 +218,7 @@
             Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(lblNombre);
-            Name = "Convocar";
+            Name = "ConvocarJugador";
             Text = "Convocar";
             ResumeLayout(false);
             PerformLayout();

@@ -7,35 +7,57 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using PrimerParcial;
+
 
 namespace FormSelecciones
 {
+
     public partial class Personal : Form
     {
-        ConvocarJugador jugador;
-        public Personal(ConvocarJugador jugador)
+        public Jugador nuevoJugador;
+        public Entrenador nuevoEntrenador;
+        FormPrincipal principal = new FormPrincipal();
+
+        public Personal()
         {
             InitializeComponent();
-
             this.StartPosition = FormStartPosition.CenterScreen;
-            this.jugador = jugador;
         }
 
         private void btnJugador_Click(object sender, EventArgs e)
         {
-            Jugador(jugador);
-        }
 
-        public void Jugador(ConvocarJugador jugador)
-        {
+            principal.convocarJugadorSeleccionado = true;
+            ConvocarJugador jugador = new ConvocarJugador();
             jugador.ShowDialog();
+
+            if (jugador.DialogResult == DialogResult.OK)
+            {
+                nuevoJugador = jugador.NuevoJugador;
+                this.DialogResult = DialogResult.OK;
+            }
 
             this.Close();
         }
 
         private void btnEntrenador_Click(object sender, EventArgs e)
         {
+            principal.convocarJugadorSeleccionado = false;
+            ConvocarEntrenador entrenador = new ConvocarEntrenador();
+            entrenador.ShowDialog();
 
+            if (entrenador.DialogResult == DialogResult.OK)
+            {
+                nuevoEntrenador = entrenador.NuevoEntrenador;
+                this.DialogResult = DialogResult.OK; // Establece DialogResult en OK
+            }
+            else
+            {
+                this.DialogResult = DialogResult.Cancel; // Establece DialogResult en Cancel si se presiona el botón Cancelar
+            }
+
+            this.Close();
         }
     }
 }

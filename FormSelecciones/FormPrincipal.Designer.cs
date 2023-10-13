@@ -30,7 +30,7 @@
         {
             label1 = new Label();
             lstArgentina = new ListBox();
-            button1 = new Button();
+            btnConvocar = new Button();
             lstAlemania = new ListBox();
             lstItalia = new ListBox();
             lstBrasil = new ListBox();
@@ -64,17 +64,17 @@
             lstArgentina.Size = new Size(345, 124);
             lstArgentina.TabIndex = 2;
             // 
-            // button1
+            // btnConvocar
             // 
-            button1.Font = new Font("Sylfaen", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.ForeColor = SystemColors.ActiveCaption;
-            button1.Location = new Point(89, 45);
-            button1.Name = "button1";
-            button1.Size = new Size(152, 58);
-            button1.TabIndex = 3;
-            button1.Text = "Convocar Personal";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btnConvocar.Font = new Font("Sylfaen", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnConvocar.ForeColor = SystemColors.ActiveCaption;
+            btnConvocar.Location = new Point(89, 45);
+            btnConvocar.Name = "btnConvocar";
+            btnConvocar.Size = new Size(152, 58);
+            btnConvocar.TabIndex = 3;
+            btnConvocar.Text = "Convocar Personal";
+            btnConvocar.UseVisualStyleBackColor = true;
+            btnConvocar.Click += btnConvocar_Click;
             // 
             // lstAlemania
             // 
@@ -204,7 +204,7 @@
             Controls.Add(lstBrasil);
             Controls.Add(lstItalia);
             Controls.Add(lstAlemania);
-            Controls.Add(button1);
+            Controls.Add(btnConvocar);
             Controls.Add(lstArgentina);
             Controls.Add(label1);
             Name = "FormPrincipal";
@@ -219,7 +219,7 @@
 
         private Label label1;
         private ListBox lstArgentina;
-        private Button button1;
+        private Button btnConvocar;
         private ListBox lstAlemania;
         private ListBox lstItalia;
         private ListBox lstBrasil;
