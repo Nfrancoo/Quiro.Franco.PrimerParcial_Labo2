@@ -94,11 +94,11 @@ namespace FormSelecciones
 
         public void Modificador(Jugador jug)
         {
-            this.txtApellido.Text = jug.Apellido;
-            this.txtNombre.Text = jug.Nombre;
-            this.txtEdad.Text = jug.Edad.ToString();
+            this.txtApellido.Text = jug.apellido;
+            this.txtNombre.Text = jug.nombre;
+            this.txtEdad.Text = jug.edad.ToString();
             this.txtDorsal.Text = jug.Dorsal.ToString();
-            this.txtPais.Text = jug.Pais.ToString();
+            this.txtPais.Text = jug.paises.ToString();
             this.txtPosicion.Text = jug.Posicion.ToString();
             this.txtApellido.Enabled = false;
             this.txtNombre.Enabled = false;

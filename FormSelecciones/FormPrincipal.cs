@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using PrimerParcial;
 using System.IO;
 using System.Text.Json;
+using Newtonsoft.Json;
+
 
 namespace FormSelecciones
 {
@@ -34,16 +36,17 @@ namespace FormSelecciones
 
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
-            if (File.Exists("./personal.json"))
-            {
-                using (StreamReader reader = new StreamReader("./personal.json"))
-                {
-                    string jsonString = reader.ReadToEnd();
+            //if (File.Exists("./personal.json"))
+            //{
+            //    using (StreamReader reader = new StreamReader("./personal.json"))
+            //    {
+            //        string jsonString = reader.ReadToEnd();
 
-                    this.listaDeListas = (List<List<PersonalEquipoSeleccion>>)JsonSerializer.Deserialize(jsonString, typeof(List<List < PersonalEquipoSeleccion>>));
-                }
-            }
+            //        this.listaDeListas = (List<List<PersonalEquipoSeleccion>>)JsonSerializer.Deserialize(jsonString, typeof(List<List < PersonalEquipoSeleccion>>));
+            //    }
+            //}
 
+            CargarDatosDesdeJSON();
         }
 
         private void btnConvocar_Click(object sender, EventArgs e)
@@ -55,9 +58,10 @@ namespace FormSelecciones
             {
                 if (personalForm.nuevoJugador is Jugador jugador)
                 {
+
                     // Es un jugador
                     // Agregar el nuevo jugador al ListBox y a la lista correspondiente
-                    switch (jugador.Pais)
+                    switch (jugador.paises)
                     {
                         case EPaises.Brasil:
                             personalBrasil.Add(jugador);
@@ -94,6 +98,7 @@ namespace FormSelecciones
                         case EPaises.Argentina:
                             personalArgentina.Add(entrenador);
                             lstArgentinaEntrenador.Items.Add(entrenador);
+
                             break;
                         case EPaises.Italia:
                             personalItalia.Add(entrenador);
@@ -185,11 +190,12 @@ namespace FormSelecciones
 
         private void FormPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
-            string jsonString = JsonSerializer.Serialize(this.listaDeListas);
-            using (StreamWriter writer = new StreamWriter("./personal.json"))
-            {
-                writer.WriteLine(jsonString);
-            }
+            //string jsonString = JsonSerializer.Serialize(this.listaDeListas);
+            //using (StreamWriter writer = new StreamWriter("./personal.json"))
+            //{
+            //    writer.WriteLine(jsonString);
+            //}
+            GuardarDatosEnJSON();
         }
 
         private void btnEliminar_Click(object sender, EventArgs e)
@@ -205,70 +211,85 @@ namespace FormSelecciones
                         if (lstArgentina.SelectedIndex != -1)
                         {
                             lstArgentina.Items.RemoveAt(lstArgentina.SelectedIndex);
+                            personalArgentina.RemoveAt(lstArgentina.SelectedIndex);
                         }
                         if (lstArgentinaEntrenador.SelectedIndex != -1)
                         {
                             lstArgentinaEntrenador.Items.RemoveAt(lstArgentinaEntrenador.SelectedIndex);
+                            personalArgentina.RemoveAt(lstArgentinaEntrenador.SelectedIndex);
                         }
                         if (lstArgentinaMasajeador.SelectedIndex != -1)
                         {
                             lstArgentinaMasajeador.Items.RemoveAt(lstArgentinaMasajeador.SelectedIndex);
+                            personalArgentina.RemoveAt(lstArgentinaMasajeador.SelectedIndex);
                         }
                         break;
                     case EPaises.Brasil:
                         if (lstBrasil.SelectedIndex != -1)
                         {
                             lstBrasil.Items.RemoveAt(lstBrasil.SelectedIndex);
+                            personalBrasil.RemoveAt(lstBrasil.SelectedIndex);
                         }
                         if (lstBrasilEntrenador.SelectedIndex != -1)
                         {
                             lstBrasilEntrenador.Items.RemoveAt(lstBrasilEntrenador.SelectedIndex);
+                            personalBrasil.RemoveAt(lstBrasilEntrenador.SelectedIndex);
                         }
                         if (lstBrasilMasajeador.SelectedIndex != -1)
                         {
                             lstBrasilMasajeador.Items.RemoveAt(lstBrasilMasajeador.SelectedIndex);
+                            personalBrasil.RemoveAt(lstBrasilMasajeador.SelectedIndex);
                         }
                         break;
                     case EPaises.Italia:
                         if (lstItalia.SelectedIndex != -1)
                         {
                             lstItalia.Items.RemoveAt(lstItalia.SelectedIndex);
+                            personalItalia.RemoveAt(lstItalia.SelectedIndex);
                         }
                         if (lstItaliaEntrenador.SelectedIndex != -1)
                         {
                             lstItaliaEntrenador.Items.RemoveAt(lstItaliaEntrenador.SelectedIndex);
+                            personalItalia.RemoveAt(lstItaliaEntrenador.SelectedIndex);
                         }
                         if (lstItaliaMasajeador.SelectedIndex != -1)
                         {
                             lstItaliaMasajeador.Items.RemoveAt(lstItaliaMasajeador.SelectedIndex);
+                            personalItalia.RemoveAt(lstItaliaMasajeador.SelectedIndex);
                         }
                         break;
                     case EPaises.Francia:
                         if (lstFrancia.SelectedIndex != -1)
                         {
                             lstFrancia.Items.RemoveAt(lstFrancia.SelectedIndex);
+                            personalFrancia.RemoveAt(lstFrancia.SelectedIndex);
                         }
                         if (lstFranciaEntrenador.SelectedIndex != -1)
                         {
                             lstFranciaEntrenador.Items.RemoveAt(lstFranciaEntrenador.SelectedIndex);
+                            personalFrancia.RemoveAt(lstFranciaEntrenador.SelectedIndex);
                         }
                         if (lstFranciaMasajeador.SelectedIndex != -1)
                         {
                             lstFranciaMasajeador.Items.RemoveAt(lstFranciaMasajeador.SelectedIndex);
+                            personalFrancia.RemoveAt(lstFranciaMasajeador.SelectedIndex);
                         }
                         break;
                     case EPaises.Alemania:
                         if (lstAlemania.SelectedIndex != -1)
                         {
                             lstAlemania.Items.RemoveAt(lstAlemania.SelectedIndex);
+                            personalAlemania.RemoveAt(lstAlemania.SelectedIndex);
                         }
                         if (lstAlemaniaEntrenador.SelectedIndex != -1)
                         {
                             lstAlemaniaEntrenador.Items.RemoveAt(lstAlemaniaEntrenador.SelectedIndex);
+                            personalAlemania.RemoveAt(lstAlemaniaEntrenador.SelectedIndex);
                         }
                         if (lstAlemaniaMasajeador.SelectedIndex != -1)
                         {
                             lstAlemaniaMasajeador.Items.RemoveAt(lstAlemaniaMasajeador.SelectedIndex);
+                            personalAlemania.RemoveAt(lstAlemaniaMasajeador.SelectedIndex);
                         }
                         break;
                 }
@@ -455,7 +476,7 @@ namespace FormSelecciones
                 personal[selectedIndex] = entrenadorModificado;
                 lst.Items[selectedIndex] = entrenadorModificado;
             }
-        }       
+        }
     }
 }
 

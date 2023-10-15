@@ -13,7 +13,7 @@ namespace FormSelecciones
 {
     public partial class ConvocarMasajista : Form
     {
-        public Masajista MasajeadorParaEditar {  get; set; }
+        public Masajista MasajeadorParaEditar { get; set; }
         public Masajista NuevoMasajista;
 
         public ConvocarMasajista(Masajista masaj)
@@ -92,5 +92,9 @@ namespace FormSelecciones
             this.txtPais.Enabled = false;
         }
 
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+        }
     }
 }

@@ -9,8 +9,6 @@ namespace PrimerParcial
         public string apellido;
         public EPaises paises;
 
-        public abstract List<PersonalEquipoSeleccion> Equipo { get; }
-
         public abstract void RealizarAccion();
         public PersonalEquipoSeleccion()
         {
@@ -68,6 +66,8 @@ namespace PrimerParcial
             }
             return retorno;
         }
+
+        
 
         //public static bool operator ==(GenteEquipoSeleccion a, GenteEquipoSeleccion b)
         //{

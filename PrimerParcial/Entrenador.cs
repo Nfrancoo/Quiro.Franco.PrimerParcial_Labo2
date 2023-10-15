@@ -10,23 +10,12 @@ namespace PrimerParcial
     {
         protected List<PersonalEquipoSeleccion> entrenadores;
         public string tactica;
-
-        public Entrenador()
-        {
-            this.tactica = "SIN TACTICA";
-        }
         public Entrenador(int edad, string nombre,string apellido,EPaises pais ,string tactica):base(edad, nombre, apellido, pais)
         {
             this.tactica = tactica;
             this.entrenadores = new List<PersonalEquipoSeleccion> ();
         }
-        public override List<PersonalEquipoSeleccion> Equipo
-        {
-            get
-            {
-                return this.entrenadores;
-            }
-        }
+        public PersonalEquipoSeleccion Equipo { get; set; }
 
         public string Nombre
         {

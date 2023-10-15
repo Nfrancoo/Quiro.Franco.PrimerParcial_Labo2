@@ -19,13 +19,7 @@ namespace PrimerParcial
             this.masajistas = new List<PersonalEquipoSeleccion>();
         }
 
-        public override List<PersonalEquipoSeleccion> Equipo
-        {
-            get
-            {
-                return this.masajistas;
-            }
-        }
+        public PersonalEquipoSeleccion Equipo { get; set; }
 
         public string Nombre
         {
