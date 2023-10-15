@@ -28,163 +28,196 @@
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
-            txtNombre = new TextBox();
-            label2 = new Label();
-            txtApellido = new TextBox();
-            label3 = new Label();
-            txtEdad = new TextBox();
-            label4 = new Label();
-            txtPais = new TextBox();
-            label5 = new Label();
-            txtTactica = new TextBox();
-            button1 = new Button();
             btnCancelar = new Button();
+            btnAceptar = new Button();
+            txtTactica = new TextBox();
+            txtPais = new TextBox();
+            txtEdad = new TextBox();
+            txtApellido = new TextBox();
+            txtNombre = new TextBox();
+            label7 = new Label();
+            label6 = new Label();
+            label5 = new Label();
+            label4 = new Label();
+            label1 = new Label();
+            label3 = new Label();
+            label2 = new Label();
+            lblNombre = new Label();
             SuspendLayout();
             // 
-            // label1
+            // btnCancelar
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(41, 27);
-            label1.Name = "label1";
-            label1.Size = new Size(64, 20);
-            label1.TabIndex = 0;
-            label1.Text = "Nombre";
+            btnCancelar.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnCancelar.Location = new Point(166, 322);
+            btnCancelar.Name = "btnCancelar";
+            btnCancelar.Size = new Size(141, 70);
+            btnCancelar.TabIndex = 34;
+            btnCancelar.Text = "Cancelar";
+            btnCancelar.UseVisualStyleBackColor = true;
+            btnCancelar.Click += btnCancelar_Click;
             // 
-            // txtNombre
+            // btnAceptar
             // 
-            txtNombre.Location = new Point(41, 50);
-            txtNombre.Name = "txtNombre";
-            txtNombre.Size = new Size(240, 23);
-            txtNombre.TabIndex = 1;
+            btnAceptar.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAceptar.Location = new Point(12, 322);
+            btnAceptar.Name = "btnAceptar";
+            btnAceptar.Size = new Size(141, 70);
+            btnAceptar.TabIndex = 33;
+            btnAceptar.Text = "Aceptar";
+            btnAceptar.UseVisualStyleBackColor = true;
+            btnAceptar.Click += btnAceptar_Click;
             // 
-            // label2
+            // txtTactica
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(39, 87);
-            label2.Name = "label2";
-            label2.Size = new Size(66, 20);
-            label2.TabIndex = 2;
-            label2.Text = "Apellido";
-            // 
-            // txtApellido
-            // 
-            txtApellido.Location = new Point(41, 110);
-            txtApellido.Name = "txtApellido";
-            txtApellido.Size = new Size(240, 23);
-            txtApellido.TabIndex = 3;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(39, 151);
-            label3.Name = "label3";
-            label3.Size = new Size(43, 20);
-            label3.TabIndex = 4;
-            label3.Text = "Edad";
-            // 
-            // txtEdad
-            // 
-            txtEdad.Location = new Point(41, 174);
-            txtEdad.Name = "txtEdad";
-            txtEdad.Size = new Size(240, 23);
-            txtEdad.TabIndex = 5;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(39, 212);
-            label4.Name = "label4";
-            label4.Size = new Size(35, 20);
-            label4.TabIndex = 6;
-            label4.Text = "Pais";
+            txtTactica.Location = new Point(33, 264);
+            txtTactica.Name = "txtTactica";
+            txtTactica.Size = new Size(240, 23);
+            txtTactica.TabIndex = 31;
             // 
             // txtPais
             // 
-            txtPais.Location = new Point(41, 235);
+            txtPais.Location = new Point(33, 203);
             txtPais.Name = "txtPais";
             txtPais.Size = new Size(240, 23);
-            txtPais.TabIndex = 7;
+            txtPais.TabIndex = 30;
+            // 
+            // txtEdad
+            // 
+            txtEdad.Location = new Point(33, 148);
+            txtEdad.Name = "txtEdad";
+            txtEdad.Size = new Size(240, 23);
+            txtEdad.TabIndex = 29;
+            // 
+            // txtApellido
+            // 
+            txtApellido.Location = new Point(33, 90);
+            txtApellido.Name = "txtApellido";
+            txtApellido.Size = new Size(240, 23);
+            txtApellido.TabIndex = 28;
+            // 
+            // txtNombre
+            // 
+            txtNombre.Location = new Point(33, 36);
+            txtNombre.Name = "txtNombre";
+            txtNombre.Size = new Size(240, 23);
+            txtNombre.TabIndex = 27;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(72, 304);
+            label7.Name = "label7";
+            label7.Size = new Size(0, 15);
+            label7.TabIndex = 25;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label6.Location = new Point(33, 241);
+            label6.Name = "label6";
+            label6.Size = new Size(157, 20);
+            label6.TabIndex = 24;
+            label6.Text = "Tactica a implementar";
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(39, 272);
+            label5.Location = new Point(33, 125);
             label5.Name = "label5";
-            label5.Size = new Size(56, 20);
-            label5.TabIndex = 8;
-            label5.Text = "Tactica";
+            label5.Size = new Size(43, 20);
+            label5.TabIndex = 23;
+            label5.Text = "Edad";
             // 
-            // txtTactica
+            // label4
             // 
-            txtTactica.Location = new Point(41, 295);
-            txtTactica.Name = "txtTactica";
-            txtTactica.Size = new Size(240, 23);
-            txtTactica.TabIndex = 9;
+            label4.AutoSize = true;
+            label4.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label4.Location = new Point(33, 180);
+            label4.Name = "label4";
+            label4.Size = new Size(35, 20);
+            label4.TabIndex = 22;
+            label4.Text = "Pais";
             // 
-            // button1
+            // label1
             // 
-            button1.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.Location = new Point(12, 343);
-            button1.Name = "button1";
-            button1.Size = new Size(141, 70);
-            button1.TabIndex = 18;
-            button1.Text = "Aceptar";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            label1.AutoSize = true;
+            label1.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            label1.Location = new Point(33, 67);
+            label1.Name = "label1";
+            label1.Size = new Size(66, 20);
+            label1.TabIndex = 21;
+            label1.Text = "Apellido";
             // 
-            // btnCancelar
+            // label3
             // 
-            btnCancelar.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
-            btnCancelar.Location = new Point(169, 343);
-            btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(141, 70);
-            btnCancelar.TabIndex = 19;
-            btnCancelar.Text = "Cancelar";
-            btnCancelar.UseVisualStyleBackColor = true;
-            btnCancelar.Click += btnCancelar_Click;
+            label3.AutoSize = true;
+            label3.Location = new Point(127, 208);
+            label3.Name = "label3";
+            label3.Size = new Size(0, 15);
+            label3.TabIndex = 20;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(42, 62);
+            label2.Name = "label2";
+            label2.Size = new Size(0, 15);
+            label2.TabIndex = 19;
+            // 
+            // lblNombre
+            // 
+            lblNombre.AutoSize = true;
+            lblNombre.Font = new Font("Segoe UI Symbol", 11.25F, FontStyle.Regular, GraphicsUnit.Point);
+            lblNombre.Location = new Point(33, 13);
+            lblNombre.Name = "lblNombre";
+            lblNombre.Size = new Size(64, 20);
+            lblNombre.TabIndex = 18;
+            lblNombre.Text = "Nombre";
             // 
             // ConvocarEntrenador
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(322, 450);
+            ClientSize = new Size(319, 422);
             Controls.Add(btnCancelar);
-            Controls.Add(button1);
+            Controls.Add(btnAceptar);
             Controls.Add(txtTactica);
-            Controls.Add(label5);
             Controls.Add(txtPais);
-            Controls.Add(label4);
             Controls.Add(txtEdad);
-            Controls.Add(label3);
             Controls.Add(txtApellido);
-            Controls.Add(label2);
             Controls.Add(txtNombre);
+            Controls.Add(label7);
+            Controls.Add(label6);
+            Controls.Add(label5);
+            Controls.Add(label4);
             Controls.Add(label1);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(lblNombre);
             Name = "ConvocarEntrenador";
-            Text = "Convocar Entrenador";
+            Text = "ConvocarEntrenador";
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
 
-        private Label label1;
-        private TextBox txtNombre;
-        private Label label2;
-        private TextBox txtApellido;
-        private Label label3;
-        private TextBox txtEdad;
-        private Label label4;
-        private TextBox txtPais;
-        private Label label5;
-        private TextBox txtTactica;
-        private Button button1;
         private Button btnCancelar;
+        private Button btnAceptar;
+        private TextBox txtTactica;
+        private TextBox txtPais;
+        private TextBox txtEdad;
+        private TextBox txtApellido;
+        private TextBox txtNombre;
+        private Label label7;
+        private Label label6;
+        private Label label5;
+        private Label label4;
+        private Label label1;
+        private Label label3;
+        private Label label2;
+        private Label lblNombre;
     }
 }

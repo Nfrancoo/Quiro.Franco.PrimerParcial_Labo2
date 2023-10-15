@@ -329,8 +329,8 @@
             Name = "FormPrincipal";
             Text = "FormPrincipal";
             FormClosing += FormPrincipal_FormClosing;
+            Load += FormPrincipal_Load;
             Click += FormPrincipal_Click;
-            Leave += FormPrincipal_Leave;
             ResumeLayout(false);
             PerformLayout();
         }

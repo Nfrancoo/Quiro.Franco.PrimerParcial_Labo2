@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -11,6 +12,13 @@ namespace PrimerParcial
         protected List<PersonalEquipoSeleccion> jugadores;
         private int dorsal;
         private EPosicion posicion;
+
+        public Jugador() 
+        {
+            this.dorsal = 0;
+            this.posicion = EPosicion.Delantero;
+            this.jugadores = new List<PersonalEquipoSeleccion>();
+        }
 
         public Jugador(int edad, string nombre, string apellido, EPaises pais, int dorsal, EPosicion posicion)
             : base(edad, nombre, apellido, pais)
