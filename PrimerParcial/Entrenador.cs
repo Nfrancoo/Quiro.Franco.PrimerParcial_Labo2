@@ -24,10 +24,34 @@ namespace PrimerParcial
             }
         }
 
+        public string Nombre
+        {
+            get { return this.nombre; }
+            set { this.nombre = value; }
+        }
+
+        public string Apellido
+        {
+            get { return this.apellido; }
+            set { this.apellido = value; }
+        }
+
+        public int Edad
+        {
+            get { return this.edad; }
+            set { this.edad = value; }
+        }
+
+        public string Tactica
+        {
+            get { return this.tactica; }
+            set { this.tactica = value; }
+        }
+
         public EPaises Pais
         {
-            get { return paises; }
-            set { paises = value; }
+            get { return this.paises; }
+            set { this.paises = value; }
         }
 
         public override string Concentrarse()

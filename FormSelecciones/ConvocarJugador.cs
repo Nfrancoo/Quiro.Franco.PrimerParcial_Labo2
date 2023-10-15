@@ -13,8 +13,16 @@ namespace FormSelecciones
 {
     public partial class ConvocarJugador : Form
     {
+        public Jugador JugadorParaEditar { get; set; }
         public Jugador NuevoJugador;
 
+        public ConvocarJugador(Jugador jug)
+        {
+            InitializeComponent();
+             this.StartPosition = FormStartPosition.CenterScreen;
+            this.BackColor = Color.LightCyan;
+            Modificador(jug);
+        }
         public ConvocarJugador()
         {
             InitializeComponent();
@@ -58,11 +66,10 @@ namespace FormSelecciones
             string paisInput = this.txtPais.Text;
             string posicionInput = this.txtPosicion.Text;
 
-            // Verificar si el país ingresado es válido
             if (!EsPaisValido(paisInput))
             {
                 MessageBox.Show("Por favor, ingrese un país válido.");
-                return; // Detener el proceso si el país no es válido
+                return;
             }
             EPaises pais = (EPaises)Enum.Parse(typeof(EPaises), paisInput);
 
@@ -70,40 +77,32 @@ namespace FormSelecciones
             if (!Enum.TryParse(posicionInput, out EPosicion posicion))
             {
                 MessageBox.Show("Por favor, ingrese una posición válida.");
-                return; // Detener el proceso si la posición no es válida
+                return;
             }
 
-            // Crear el nuevo jugador
             NuevoJugador = new Jugador(edad, nombre, apellido, pais, dorsal, posicion);
+ 
+
+            this.DialogResult |= DialogResult.OK;
 
 
-
-            // Establecer el resultado del formulario como "Aceptar"
-            this.DialogResult = DialogResult.OK;
-
-            // Agregar al jugador a la lista correspondiente según su país
-            //switch (pais)
-            //{
-            //    case EPaises.Argentina:
-            //        FormPrincipal.personalArgentina.Add(NuevoJugador);
-            //        break;
-            //    case EPaises.Brasil:
-            //        FormPrincipal.personalBrasil.Add(NuevoJugador);
-            //        break;
-            //    case EPaises.Italia:
-            //        FormPrincipal.personalItalia.Add(NuevoJugador);
-            //        break;
-            //    case EPaises.Alemania:
-            //        FormPrincipal.personalAlemania.Add(NuevoJugador);
-            //        break;
-            //    case EPaises.Francia:
-            //        FormPrincipal.personalFrancia.Add(NuevoJugador);
-            //        break;
-            //}
         }
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
+        }
+
+        public void Modificador(Jugador jug)
+        {
+            this.txtApellido.Text = jug.Apellido;
+            this.txtNombre.Text = jug.Nombre;
+            this.txtEdad.Text = jug.Edad.ToString();
+            this.txtDorsal.Text = jug.Dorsal.ToString();
+            this.txtPais.Text = jug.Pais.ToString();
+            this.txtPosicion.Text = jug.Posicion.ToString();
+            this.txtApellido.Enabled = false;
+            this.txtNombre.Enabled = false;
+            this.txtPais.Enabled = false;
         }
 
         private bool EsPaisValido(string inputPais)

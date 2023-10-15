@@ -13,7 +13,17 @@ namespace FormSelecciones
 {
     public partial class ConvocarMasajista : Form
     {
+        public Masajista MasajeadorParaEditar {  get; set; }
         public Masajista NuevoMasajista;
+
+        public ConvocarMasajista(Masajista masaj)
+        {
+            InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.BackColor = Color.LightCyan;
+            Modificador(masaj);
+        }
+
         public ConvocarMasajista()
         {
             InitializeComponent();
@@ -69,5 +79,18 @@ namespace FormSelecciones
         {
             return Enum.IsDefined(typeof(EPaises), inputPais);
         }
+
+        public void Modificador(Masajista masaj)
+        {
+            this.txtApellido.Text = masaj.Apellido;
+            this.txtNombre.Text = masaj.Nombre;
+            this.txtEdad.Text = masaj.Edad.ToString();
+            this.txtPais.Text = masaj.Pais.ToString();
+            this.txtTitulo.Text = masaj.CertificadoMasaje;
+            this.txtApellido.Enabled = false;
+            this.txtNombre.Enabled = false;
+            this.txtPais.Enabled = false;
+        }
+
     }
 }

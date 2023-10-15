@@ -26,6 +26,7 @@ namespace FormSelecciones
             cmbPaises.DropDownStyle = ComboBoxStyle.DropDownList;
 
             cmbPaises.DataSource = Enum.GetValues(typeof(EPaises));
+            this.Click += FormPrincipal_Click;
 
         }
 
@@ -105,7 +106,7 @@ namespace FormSelecciones
                 }
                 else if (personalForm.nuevoMasajista is Masajista masajista)
                 {
-                    switch (masajista.Paises)
+                    switch (masajista.Pais)
                     {
                         case EPaises.Brasil:
                             personalBrasil.Add(masajista);
@@ -278,6 +279,422 @@ namespace FormSelecciones
                 }
             }
 
+        }
+
+        private void btnModificar_Click(object sender, EventArgs e)
+        {
+            if (cmbPaises.SelectedItem != null)
+            {
+                EPaises paisSeleccionado = (EPaises)cmbPaises.SelectedItem;
+
+                switch (paisSeleccionado)
+                {
+                    case EPaises.Argentina:
+                        if (lstArgentina.SelectedIndex != -1)
+                        {
+                            // Abre un formulario de edición para el jugador seleccionado
+                            
+                            Jugador jugadorSeleccionado = (Jugador)lstArgentina.SelectedItem;
+                            ConvocarJugador editarJugadorForm = new ConvocarJugador(jugadorSeleccionado);
+
+                            // Pasa el jugador seleccionado al formulario de edición
+                            editarJugadorForm.JugadorParaEditar = jugadorSeleccionado;
+
+                            editarJugadorForm.ShowDialog();
+
+                            if (editarJugadorForm.DialogResult == DialogResult.OK)
+                            {
+                                // Obtén el jugador modificado del formulario de edición
+                                Jugador jugadorModificado = editarJugadorForm.NuevoJugador;
+
+                                // Actualiza la lista con los cambios realizados por el usuario
+                                int selectedIndex = lstArgentina.SelectedIndex;
+
+                                // Actualiza el jugador en la lista y la ListBox
+                                personalArgentina[selectedIndex] = jugadorModificado;
+                                lstArgentina.Items[selectedIndex] = jugadorModificado;
+                            }
+                        }
+                        if (lstArgentinaEntrenador.SelectedIndex != -1)
+                        {
+                            // Abre un formulario de edición para el jugador seleccionado
+                            
+                            Entrenador entrenadorSeleccionado = (Entrenador)lstArgentinaEntrenador.SelectedItem;
+                            ConvocarEntrenador editarEntrenadorForm = new ConvocarEntrenador(entrenadorSeleccionado);
+
+                            // Pasa el jugador seleccionado al formulario de edición
+                            editarEntrenadorForm.EntrenadorParaEditar = entrenadorSeleccionado;
+
+                            editarEntrenadorForm.ShowDialog();
+
+                            if (editarEntrenadorForm.DialogResult == DialogResult.OK)
+                            {
+                                // Obtén el jugador modificado del formulario de edición
+                                Entrenador entrenadorModificado = editarEntrenadorForm.NuevoEntrenador;
+
+                                // Actualiza la lista con los cambios realizados por el usuario
+                                int selectedIndex = lstArgentinaEntrenador.SelectedIndex;
+
+                                // Actualiza el jugador en la lista y la ListBox
+                                personalArgentina[selectedIndex] = entrenadorModificado;
+                                lstArgentinaEntrenador.Items[selectedIndex] = entrenadorModificado;
+                            }
+                        }
+                        if (lstArgentinaMasajeador.SelectedIndex != -1)
+                        {
+
+                            // Abre un formulario de edición para el jugador seleccionado
+                            Masajista masajeadorSeleccionado = (Masajista)lstArgentinaMasajeador.SelectedItem;
+                            ConvocarMasajista editarMasajeadorForm = new ConvocarMasajista(masajeadorSeleccionado);
+
+                            // Pasa el jugador seleccionado al formulario de edición
+                            editarMasajeadorForm.MasajeadorParaEditar = masajeadorSeleccionado;
+
+                            editarMasajeadorForm.ShowDialog();
+
+                            if (editarMasajeadorForm.DialogResult == DialogResult.OK)
+                            {
+                                // Obtén el jugador modificado del formulario de edición
+                                Masajista masajeadorModificado = editarMasajeadorForm.NuevoMasajista;
+
+                                // Actualiza la lista con los cambios realizados por el usuario
+                                int selectedIndex = lstArgentinaMasajeador.SelectedIndex;
+
+                                // Actualiza el jugador en la lista y la ListBox
+                                personalArgentina[selectedIndex] = masajeadorModificado;
+                                lstArgentinaMasajeador.Items[selectedIndex] = masajeadorModificado;
+                            }
+                        }
+                        break;
+                    case EPaises.Brasil:
+                        if (lstBrasil.SelectedIndex != -1)
+                        {
+                            // Abre un formulario de edición para el jugador seleccionado
+                            
+                            Jugador jugadorSeleccionado = (Jugador)lstBrasil.SelectedItem;
+                            ConvocarJugador editarJugadorForm = new ConvocarJugador(jugadorSeleccionado);
+
+                            // Pasa el jugador seleccionado al formulario de edición
+                            editarJugadorForm.JugadorParaEditar = jugadorSeleccionado;
+
+                            editarJugadorForm.ShowDialog();
+
+                            if (editarJugadorForm.DialogResult == DialogResult.OK)
+                            {
+                                // Obtén el jugador modificado del formulario de edición
+                                Jugador jugadorModificado = editarJugadorForm.NuevoJugador;
+
+                                // Actualiza la lista con los cambios realizados por el usuario
+                                int selectedIndex = lstBrasil.SelectedIndex;
+
+                                // Actualiza el jugador en la lista y la ListBox
+                                personalBrasil[selectedIndex] = jugadorModificado;
+                                lstBrasil.Items[selectedIndex] = jugadorModificado;
+                            }
+                        }
+                        if (lstBrasilEntrenador.SelectedIndex != -1)
+                        {
+                            // Abre un formulario de edición para el jugador seleccionado
+
+                            Entrenador entrenadorSeleccionado = (Entrenador)lstBrasilEntrenador.SelectedItem;
+                            ConvocarEntrenador editarEntrenadorForm = new ConvocarEntrenador(entrenadorSeleccionado);
+
+                            // Pasa el jugador seleccionado al formulario de edición
+                            editarEntrenadorForm.EntrenadorParaEditar = entrenadorSeleccionado;
+
+                            editarEntrenadorForm.ShowDialog();
+
+                            if (editarEntrenadorForm.DialogResult == DialogResult.OK)
+                            {
+                                // Obtén el jugador modificado del formulario de edición
+                                Entrenador entrenadorModificado = editarEntrenadorForm.NuevoEntrenador;
+
+                                // Actualiza la lista con los cambios realizados por el usuario
+                                int selectedIndex = lstBrasilEntrenador.SelectedIndex;
+
+                                // Actualiza el jugador en la lista y la ListBox
+                                personalBrasil[selectedIndex] = entrenadorModificado;
+                                lstBrasilEntrenador.Items[selectedIndex] = entrenadorModificado;
+                            }
+                        }
+                        if (lstBrasilMasajeador.SelectedIndex != -1)
+                        {
+                            // Abre un formulario de edición para el jugador seleccionado
+                            
+                            Masajista masajeadorSeleccionado = (Masajista)lstBrasilMasajeador.SelectedItem;
+                            ConvocarMasajista editarMasajeadorForm = new ConvocarMasajista(masajeadorSeleccionado);
+
+                            // Pasa el jugador seleccionado al formulario de edición
+                            editarMasajeadorForm.MasajeadorParaEditar = masajeadorSeleccionado;
+
+                            editarMasajeadorForm.ShowDialog();
+
+                            if (editarMasajeadorForm.DialogResult == DialogResult.OK)
+                            {
+                                // Obtén el jugador modificado del formulario de edición
+                                Masajista masajeadorModificado = editarMasajeadorForm.NuevoMasajista;
+
+                                // Actualiza la lista con los cambios realizados por el usuario
+                                int selectedIndex = lstBrasilMasajeador.SelectedIndex;
+
+                                // Actualiza el jugador en la lista y la ListBox
+                                personalBrasil[selectedIndex] = masajeadorModificado;
+                                lstBrasilMasajeador.Items[selectedIndex] = masajeadorModificado;
+                            }
+                        }
+                        break;
+                    case EPaises.Italia:
+                        if (lstItalia.SelectedIndex != -1)
+                        {
+                            // Abre un formulario de edición para el jugador seleccionado
+                            
+                            Jugador jugadorSeleccionado = (Jugador)lstItalia.SelectedItem;
+                            ConvocarJugador editarJugadorForm = new ConvocarJugador(jugadorSeleccionado);
+
+                            // Pasa el jugador seleccionado al formulario de edición
+                            editarJugadorForm.JugadorParaEditar = jugadorSeleccionado;
+
+                            editarJugadorForm.ShowDialog();
+
+                            if (editarJugadorForm.DialogResult == DialogResult.OK)
+                            {
+                                // Obtén el jugador modificado del formulario de edición
+                                Jugador jugadorModificado = editarJugadorForm.NuevoJugador;
+
+                                // Actualiza la lista con los cambios realizados por el usuario
+                                int selectedIndex = lstItalia.SelectedIndex;
+
+                                // Actualiza el jugador en la lista y la ListBox
+                                personalItalia[selectedIndex] = jugadorModificado;
+                                lstItalia.Items[selectedIndex] = jugadorModificado;
+                            }
+                        }
+                        if (lstItaliaEntrenador.SelectedIndex != -1)
+                        {
+                            // Abre un formulario de edición para el jugador seleccionado
+                            
+                            Entrenador entrenadorSeleccionado = (Entrenador)lstItaliaEntrenador.SelectedItem;
+                            ConvocarEntrenador editarEntrenadorForm = new ConvocarEntrenador(entrenadorSeleccionado);
+
+                            // Pasa el jugador seleccionado al formulario de edición
+                            editarEntrenadorForm.EntrenadorParaEditar = entrenadorSeleccionado;
+
+                            editarEntrenadorForm.ShowDialog();
+
+                            if (editarEntrenadorForm.DialogResult == DialogResult.OK)
+                            {
+                                // Obtén el jugador modificado del formulario de edición
+                                Entrenador entrenadorModificado = editarEntrenadorForm.NuevoEntrenador;
+
+                                // Actualiza la lista con los cambios realizados por el usuario
+                                int selectedIndex = lstItaliaEntrenador.SelectedIndex;
+
+                                // Actualiza el jugador en la lista y la ListBox
+                                personalItalia[selectedIndex] = entrenadorModificado;
+                                lstItaliaEntrenador.Items[selectedIndex] = entrenadorModificado;
+                            }
+                        }
+                        if (lstItaliaMasajeador.SelectedIndex != -1)
+                        {
+                            // Abre un formulario de edición para el jugador seleccionado
+                            
+                            Masajista masajeadorSeleccionado = (Masajista)lstItaliaMasajeador.SelectedItem;
+                            ConvocarMasajista editarMasajeadorForm = new ConvocarMasajista(masajeadorSeleccionado);
+
+                            // Pasa el jugador seleccionado al formulario de edición
+                            editarMasajeadorForm.MasajeadorParaEditar = masajeadorSeleccionado;
+
+                            editarMasajeadorForm.ShowDialog();
+
+                            if (editarMasajeadorForm.DialogResult == DialogResult.OK)
+                            {
+                                // Obtén el jugador modificado del formulario de edición
+                                Masajista masajeadorModificado = editarMasajeadorForm.NuevoMasajista;
+
+                                // Actualiza la lista con los cambios realizados por el usuario
+                                int selectedIndex = lstItaliaMasajeador.SelectedIndex;
+
+                                // Actualiza el jugador en la lista y la ListBox
+                                personalItalia[selectedIndex] = masajeadorModificado;
+                                lstItaliaMasajeador.Items[selectedIndex] = masajeadorModificado;
+                            }
+                        }
+                        break;
+                    case EPaises.Francia:
+                        if (lstFrancia.SelectedIndex != -1)
+                        {
+                            // Abre un formulario de edición para el jugador seleccionado
+                            
+                            Jugador jugadorSeleccionado = (Jugador)lstFrancia.SelectedItem;
+                            ConvocarJugador editarJugadorForm = new ConvocarJugador(jugadorSeleccionado);
+
+                            // Pasa el jugador seleccionado al formulario de edición
+                            editarJugadorForm.JugadorParaEditar = jugadorSeleccionado;
+
+                            editarJugadorForm.ShowDialog();
+
+                            if (editarJugadorForm.DialogResult == DialogResult.OK)
+                            {
+                                // Obtén el jugador modificado del formulario de edición
+                                Jugador jugadorModificado = editarJugadorForm.NuevoJugador;
+
+                                // Actualiza la lista con los cambios realizados por el usuario
+                                int selectedIndex = lstFrancia.SelectedIndex;
+
+                                // Actualiza el jugador en la lista y la ListBox
+                                personalFrancia[selectedIndex] = jugadorModificado;
+                                lstFrancia.Items[selectedIndex] = jugadorModificado;
+                            }
+                        }
+                        if (lstFranciaEntrenador.SelectedIndex != -1)
+                        {
+                            // Abre un formulario de edición para el jugador seleccionado
+                            
+                            Entrenador entrenadorSeleccionado = (Entrenador)lstFranciaEntrenador.SelectedItem;
+                            ConvocarEntrenador editarEntrenadorForm = new ConvocarEntrenador(entrenadorSeleccionado);
+
+                            // Pasa el jugador seleccionado al formulario de edición
+                            editarEntrenadorForm.EntrenadorParaEditar = entrenadorSeleccionado;
+
+                            editarEntrenadorForm.ShowDialog();
+
+                            if (editarEntrenadorForm.DialogResult == DialogResult.OK)
+                            {
+                                // Obtén el jugador modificado del formulario de edición
+                                Entrenador entrenadorModificado = editarEntrenadorForm.NuevoEntrenador;
+
+                                // Actualiza la lista con los cambios realizados por el usuario
+                                int selectedIndex = lstFranciaEntrenador.SelectedIndex;
+
+                                // Actualiza el jugador en la lista y la ListBox
+                                personalFrancia[selectedIndex] = entrenadorModificado;
+                                lstFranciaEntrenador.Items[selectedIndex] = entrenadorModificado;
+                            }
+                        }
+                        if (lstFranciaMasajeador.SelectedIndex != -1)
+                        {
+                            // Abre un formulario de edición para el jugador seleccionado
+                            
+                            Masajista masajeadorSeleccionado = (Masajista)lstFranciaMasajeador.SelectedItem;
+                            ConvocarMasajista editarMasajeadorForm = new ConvocarMasajista(masajeadorSeleccionado);
+
+                            // Pasa el jugador seleccionado al formulario de edición
+                            editarMasajeadorForm.MasajeadorParaEditar = masajeadorSeleccionado;
+
+                            editarMasajeadorForm.ShowDialog();
+
+                            if (editarMasajeadorForm.DialogResult == DialogResult.OK)
+                            {
+                                // Obtén el jugador modificado del formulario de edición
+                                Masajista masajeadorModificado = editarMasajeadorForm.NuevoMasajista;
+
+                                // Actualiza la lista con los cambios realizados por el usuario
+                                int selectedIndex = lstFranciaMasajeador.SelectedIndex;
+
+                                // Actualiza el jugador en la lista y la ListBox
+                                personalFrancia[selectedIndex] = masajeadorModificado;
+                                lstFranciaMasajeador.Items[selectedIndex] = masajeadorModificado;
+                            }
+                        }
+                        break;
+                    case EPaises.Alemania:
+                        if (lstAlemania.SelectedIndex != -1)
+                        {
+                            // Abre un formulario de edición para el jugador seleccionado
+                            
+                            Jugador jugadorSeleccionado = (Jugador)lstAlemania.SelectedItem;
+                            ConvocarJugador editarJugadorForm = new ConvocarJugador(jugadorSeleccionado);
+
+                            // Pasa el jugador seleccionado al formulario de edición
+                            editarJugadorForm.JugadorParaEditar = jugadorSeleccionado;
+
+                            editarJugadorForm.ShowDialog();
+
+                            if (editarJugadorForm.DialogResult == DialogResult.OK)
+                            {
+                                // Obtén el jugador modificado del formulario de edición
+                                Jugador jugadorModificado = editarJugadorForm.NuevoJugador;
+
+                                // Actualiza la lista con los cambios realizados por el usuario
+                                int selectedIndex = lstAlemania.SelectedIndex;
+
+                                // Actualiza el jugador en la lista y la ListBox
+                                personalAlemania[selectedIndex] = jugadorModificado;
+                                lstAlemania.Items[selectedIndex] = jugadorModificado;
+                            }
+                        }
+                        if (lstAlemaniaEntrenador.SelectedIndex != -1)
+                        {
+                            // Abre un formulario de edición para el jugador seleccionado
+                            
+                            Entrenador entrenadorSeleccionado = (Entrenador)lstAlemaniaEntrenador.SelectedItem;
+                            ConvocarEntrenador editarEntrenadorForm = new ConvocarEntrenador(entrenadorSeleccionado);
+
+                            // Pasa el jugador seleccionado al formulario de edición
+                            editarEntrenadorForm.EntrenadorParaEditar = entrenadorSeleccionado;
+
+                            editarEntrenadorForm.ShowDialog();
+
+                            if (editarEntrenadorForm.DialogResult == DialogResult.OK)
+                            {
+                                // Obtén el jugador modificado del formulario de edición
+                                Entrenador entrenadorModificado = editarEntrenadorForm.NuevoEntrenador;
+
+                                // Actualiza la lista con los cambios realizados por el usuario
+                                int selectedIndex = lstAlemaniaEntrenador.SelectedIndex;
+
+                                // Actualiza el jugador en la lista y la ListBox
+                                personalAlemania[selectedIndex] = entrenadorModificado;
+                                lstAlemaniaEntrenador.Items[selectedIndex] = entrenadorModificado;
+                            }
+                        }
+                        if (lstAlemaniaMasajeador.SelectedIndex != -1)
+                        {
+                            // Abre un formulario de edición para el jugador seleccionado
+                            
+                            Masajista masajeadorSeleccionado = (Masajista)lstAlemaniaMasajeador.SelectedItem;
+                            ConvocarMasajista editarMasajeadorForm = new ConvocarMasajista(masajeadorSeleccionado);
+
+                            // Pasa el jugador seleccionado al formulario de edición
+                            editarMasajeadorForm.MasajeadorParaEditar = masajeadorSeleccionado;
+
+                            editarMasajeadorForm.ShowDialog();
+
+                            if (editarMasajeadorForm.DialogResult == DialogResult.OK)
+                            {
+                                // Obtén el jugador modificado del formulario de edición
+                                Masajista masajeadorModificado = editarMasajeadorForm.NuevoMasajista;
+
+                                // Actualiza la lista con los cambios realizados por el usuario
+                                int selectedIndex = lstAlemaniaMasajeador.SelectedIndex;
+
+                                // Actualiza el jugador en la lista y la ListBox
+                                personalAlemania[selectedIndex] = masajeadorModificado;
+                                lstAlemaniaMasajeador.Items[selectedIndex] = masajeadorModificado;
+                            }
+                        }
+                        break;
+                }
+            }
+        }
+
+        private void FormPrincipal_Click(object sender, EventArgs e)
+        {
+            lstArgentina.ClearSelected();
+            lstBrasil.ClearSelected();
+            lstItalia.ClearSelected();
+            lstFrancia.ClearSelected();
+            lstAlemania.ClearSelected();
+            lstArgentinaEntrenador.ClearSelected();
+            lstBrasilEntrenador.ClearSelected();
+            lstItaliaEntrenador.ClearSelected();
+            lstFranciaEntrenador.ClearSelected();
+            lstAlemaniaEntrenador.ClearSelected();
+            lstArgentinaMasajeador.ClearSelected();
+            lstBrasilMasajeador.ClearSelected();
+            lstItaliaMasajeador.ClearSelected();
+            lstFranciaMasajeador.ClearSelected();
+            lstAlemaniaMasajeador.ClearSelected();
         }
     }
 }

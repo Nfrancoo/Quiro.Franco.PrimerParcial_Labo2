@@ -26,6 +26,26 @@ namespace PrimerParcial
                 return this.jugadores;
             }
         }
+        public string Nombre
+        {
+            get { return nombre; }
+            set { nombre = value; }
+        }
+
+        public string Apellido
+        {
+            get { return apellido; }
+            set { apellido = value; }
+        
+        }
+
+        public int Edad
+        {
+            get { return edad; }
+            set { edad = value; }
+
+        }
+
         public int Dorsal
         {
             get { return dorsal; }

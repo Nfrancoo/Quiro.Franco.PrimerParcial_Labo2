@@ -13,7 +13,18 @@ namespace FormSelecciones
 {
     public partial class ConvocarEntrenador : Form
     {
+        public Entrenador EntrenadorParaEditar { get; set; }
         public Entrenador NuevoEntrenador;
+
+
+        public ConvocarEntrenador(Entrenador entre)
+        {
+            InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen;
+            this.BackColor = Color.LightCyan;
+            Modificador(entre);
+        }
+
         public ConvocarEntrenador()
         {
             InitializeComponent();
@@ -67,6 +78,18 @@ namespace FormSelecciones
         private bool EsPaisValido(string inputPais)
         {
             return Enum.IsDefined(typeof(EPaises), inputPais);
+        }
+
+        public void Modificador(Entrenador entre)
+        {
+            this.txtApellido.Text = entre.Apellido;
+            this.txtNombre.Text = entre.Nombre;
+            this.txtEdad.Text = entre.Edad.ToString();
+            this.txtPais.Text = entre.Pais.ToString();
+            this.txtTactica.Text = entre.Tactica;
+            this.txtApellido.Enabled = false;
+            this.txtNombre.Enabled = false;
+            this.txtPais.Enabled = false;
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)
