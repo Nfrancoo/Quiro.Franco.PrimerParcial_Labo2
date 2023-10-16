@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormPrincipal));
             label1 = new Label();
             lstArgentina = new ListBox();
             btnConvocar = new Button();
@@ -53,6 +54,16 @@
             label5 = new Label();
             label6 = new Label();
             btnModificar = new Button();
+            pctArgentina = new PictureBox();
+            pctItalia = new PictureBox();
+            pctBrasil = new PictureBox();
+            pctAlemania = new PictureBox();
+            pctFrancia = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pctArgentina).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pctItalia).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pctBrasil).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pctAlemania).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pctFrancia).BeginInit();
             SuspendLayout();
             // 
             // label1
@@ -71,7 +82,7 @@
             lstArgentina.ItemHeight = 15;
             lstArgentina.Location = new Point(349, 43);
             lstArgentina.Name = "lstArgentina";
-            lstArgentina.Size = new Size(506, 124);
+            lstArgentina.Size = new Size(538, 124);
             lstArgentina.TabIndex = 2;
             // 
             // btnConvocar
@@ -92,7 +103,7 @@
             lstAlemania.ItemHeight = 15;
             lstAlemania.Location = new Point(349, 43);
             lstAlemania.Name = "lstAlemania";
-            lstAlemania.Size = new Size(506, 124);
+            lstAlemania.Size = new Size(538, 124);
             lstAlemania.TabIndex = 4;
             // 
             // lstItalia
@@ -101,7 +112,7 @@
             lstItalia.ItemHeight = 15;
             lstItalia.Location = new Point(349, 43);
             lstItalia.Name = "lstItalia";
-            lstItalia.Size = new Size(506, 124);
+            lstItalia.Size = new Size(538, 124);
             lstItalia.TabIndex = 5;
             // 
             // lstBrasil
@@ -110,7 +121,7 @@
             lstBrasil.ItemHeight = 15;
             lstBrasil.Location = new Point(349, 43);
             lstBrasil.Name = "lstBrasil";
-            lstBrasil.Size = new Size(506, 124);
+            lstBrasil.Size = new Size(538, 124);
             lstBrasil.TabIndex = 6;
             // 
             // lstFrancia
@@ -119,7 +130,7 @@
             lstFrancia.ItemHeight = 15;
             lstFrancia.Location = new Point(349, 43);
             lstFrancia.Name = "lstFrancia";
-            lstFrancia.Size = new Size(506, 124);
+            lstFrancia.Size = new Size(538, 124);
             lstFrancia.TabIndex = 7;
             // 
             // cmbPaises
@@ -138,14 +149,14 @@
             lstArgentinaEntrenador.ItemHeight = 15;
             lstArgentinaEntrenador.Location = new Point(349, 195);
             lstArgentinaEntrenador.Name = "lstArgentinaEntrenador";
-            lstArgentinaEntrenador.Size = new Size(506, 124);
+            lstArgentinaEntrenador.Size = new Size(538, 124);
             lstArgentinaEntrenador.TabIndex = 9;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Sitka Small", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(766, 18);
+            label2.Location = new Point(798, 18);
             label2.Name = "label2";
             label2.Size = new Size(89, 24);
             label2.TabIndex = 10;
@@ -155,7 +166,7 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Sitka Small", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label3.Location = new Point(736, 170);
+            label3.Location = new Point(768, 170);
             label3.Name = "label3";
             label3.Size = new Size(119, 24);
             label3.TabIndex = 11;
@@ -167,7 +178,7 @@
             lstItaliaEntrenador.ItemHeight = 15;
             lstItaliaEntrenador.Location = new Point(349, 195);
             lstItaliaEntrenador.Name = "lstItaliaEntrenador";
-            lstItaliaEntrenador.Size = new Size(506, 124);
+            lstItaliaEntrenador.Size = new Size(538, 124);
             lstItaliaEntrenador.TabIndex = 12;
             // 
             // lstAlemaniaEntrenador
@@ -176,7 +187,7 @@
             lstAlemaniaEntrenador.ItemHeight = 15;
             lstAlemaniaEntrenador.Location = new Point(349, 195);
             lstAlemaniaEntrenador.Name = "lstAlemaniaEntrenador";
-            lstAlemaniaEntrenador.Size = new Size(506, 124);
+            lstAlemaniaEntrenador.Size = new Size(538, 124);
             lstAlemaniaEntrenador.TabIndex = 13;
             // 
             // lstFranciaEntrenador
@@ -185,7 +196,7 @@
             lstFranciaEntrenador.ItemHeight = 15;
             lstFranciaEntrenador.Location = new Point(349, 195);
             lstFranciaEntrenador.Name = "lstFranciaEntrenador";
-            lstFranciaEntrenador.Size = new Size(506, 124);
+            lstFranciaEntrenador.Size = new Size(538, 124);
             lstFranciaEntrenador.TabIndex = 14;
             // 
             // lstBrasilEntrenador
@@ -194,14 +205,14 @@
             lstBrasilEntrenador.ItemHeight = 15;
             lstBrasilEntrenador.Location = new Point(349, 195);
             lstBrasilEntrenador.Name = "lstBrasilEntrenador";
-            lstBrasilEntrenador.Size = new Size(506, 124);
+            lstBrasilEntrenador.Size = new Size(538, 124);
             lstBrasilEntrenador.TabIndex = 15;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Sitka Small", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label4.Location = new Point(734, 325);
+            label4.Location = new Point(766, 325);
             label4.Name = "label4";
             label4.Size = new Size(121, 24);
             label4.TabIndex = 16;
@@ -213,7 +224,7 @@
             lstArgentinaMasajeador.ItemHeight = 15;
             lstArgentinaMasajeador.Location = new Point(349, 352);
             lstArgentinaMasajeador.Name = "lstArgentinaMasajeador";
-            lstArgentinaMasajeador.Size = new Size(506, 124);
+            lstArgentinaMasajeador.Size = new Size(538, 124);
             lstArgentinaMasajeador.TabIndex = 17;
             // 
             // lstBrasilMasajeador
@@ -222,7 +233,7 @@
             lstBrasilMasajeador.ItemHeight = 15;
             lstBrasilMasajeador.Location = new Point(349, 352);
             lstBrasilMasajeador.Name = "lstBrasilMasajeador";
-            lstBrasilMasajeador.Size = new Size(506, 124);
+            lstBrasilMasajeador.Size = new Size(538, 124);
             lstBrasilMasajeador.TabIndex = 18;
             // 
             // lstFranciaMasajeador
@@ -231,7 +242,7 @@
             lstFranciaMasajeador.ItemHeight = 15;
             lstFranciaMasajeador.Location = new Point(349, 352);
             lstFranciaMasajeador.Name = "lstFranciaMasajeador";
-            lstFranciaMasajeador.Size = new Size(506, 124);
+            lstFranciaMasajeador.Size = new Size(538, 124);
             lstFranciaMasajeador.TabIndex = 19;
             // 
             // lstItaliaMasajeador
@@ -240,7 +251,7 @@
             lstItaliaMasajeador.ItemHeight = 15;
             lstItaliaMasajeador.Location = new Point(349, 352);
             lstItaliaMasajeador.Name = "lstItaliaMasajeador";
-            lstItaliaMasajeador.Size = new Size(506, 124);
+            lstItaliaMasajeador.Size = new Size(538, 124);
             lstItaliaMasajeador.TabIndex = 20;
             // 
             // lstAlemaniaMasajeador
@@ -249,7 +260,7 @@
             lstAlemaniaMasajeador.ItemHeight = 15;
             lstAlemaniaMasajeador.Location = new Point(349, 352);
             lstAlemaniaMasajeador.Name = "lstAlemaniaMasajeador";
-            lstAlemaniaMasajeador.Size = new Size(506, 124);
+            lstAlemaniaMasajeador.Size = new Size(538, 124);
             lstAlemaniaMasajeador.TabIndex = 21;
             // 
             // btnEliminar
@@ -296,11 +307,66 @@
             btnModificar.UseVisualStyleBackColor = true;
             btnModificar.Click += btnModificar_Click;
             // 
+            // pctArgentina
+            // 
+            pctArgentina.Image = (Image)resources.GetObject("pctArgentina.Image");
+            pctArgentina.Location = new Point(907, 12);
+            pctArgentina.Name = "pctArgentina";
+            pctArgentina.Size = new Size(164, 182);
+            pctArgentina.SizeMode = PictureBoxSizeMode.StretchImage;
+            pctArgentina.TabIndex = 26;
+            pctArgentina.TabStop = false;
+            // 
+            // pctItalia
+            // 
+            pctItalia.Image = (Image)resources.GetObject("pctItalia.Image");
+            pctItalia.Location = new Point(907, 12);
+            pctItalia.Name = "pctItalia";
+            pctItalia.Size = new Size(131, 182);
+            pctItalia.SizeMode = PictureBoxSizeMode.StretchImage;
+            pctItalia.TabIndex = 27;
+            pctItalia.TabStop = false;
+            // 
+            // pctBrasil
+            // 
+            pctBrasil.Image = (Image)resources.GetObject("pctBrasil.Image");
+            pctBrasil.Location = new Point(907, 12);
+            pctBrasil.Name = "pctBrasil";
+            pctBrasil.Size = new Size(164, 182);
+            pctBrasil.SizeMode = PictureBoxSizeMode.StretchImage;
+            pctBrasil.TabIndex = 28;
+            pctBrasil.TabStop = false;
+            // 
+            // pctAlemania
+            // 
+            pctAlemania.Image = (Image)resources.GetObject("pctAlemania.Image");
+            pctAlemania.Location = new Point(907, 12);
+            pctAlemania.Name = "pctAlemania";
+            pctAlemania.Size = new Size(164, 182);
+            pctAlemania.SizeMode = PictureBoxSizeMode.StretchImage;
+            pctAlemania.TabIndex = 29;
+            pctAlemania.TabStop = false;
+            // 
+            // pctFrancia
+            // 
+            pctFrancia.Image = (Image)resources.GetObject("pctFrancia.Image");
+            pctFrancia.Location = new Point(907, 12);
+            pctFrancia.Name = "pctFrancia";
+            pctFrancia.Size = new Size(164, 195);
+            pctFrancia.SizeMode = PictureBoxSizeMode.StretchImage;
+            pctFrancia.TabIndex = 30;
+            pctFrancia.TabStop = false;
+            // 
             // FormPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(895, 491);
+            ClientSize = new Size(1083, 491);
+            Controls.Add(pctFrancia);
+            Controls.Add(pctAlemania);
+            Controls.Add(pctBrasil);
+            Controls.Add(pctItalia);
+            Controls.Add(pctArgentina);
             Controls.Add(btnModificar);
             Controls.Add(label6);
             Controls.Add(label5);
@@ -331,6 +397,11 @@
             FormClosing += FormPrincipal_FormClosing;
             Load += FormPrincipal_Load;
             Click += FormPrincipal_Click;
+            ((System.ComponentModel.ISupportInitialize)pctArgentina).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pctItalia).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pctBrasil).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pctAlemania).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pctFrancia).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -362,5 +433,10 @@
         private Label label5;
         private Label label6;
         private Button btnModificar;
+        private PictureBox pctArgentina;
+        private PictureBox pctItalia;
+        private PictureBox pctBrasil;
+        private PictureBox pctAlemania;
+        private PictureBox pctFrancia;
     }
 }

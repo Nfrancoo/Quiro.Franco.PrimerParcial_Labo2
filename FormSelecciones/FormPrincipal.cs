@@ -88,7 +88,7 @@ namespace FormSelecciones
             ActualizarVisor(masajeadoresFrancia, lstFranciaMasajeador);
             Deserializar("MasajistaFrancia.json", ref masajeadoresFrancia);
             ActualizarVisor(masajeadoresAlemania, lstAlemaniaMasajeador);
-        }   
+        }
 
         private void btnConvocar_Click(object sender, EventArgs e)
         {
@@ -142,7 +142,7 @@ namespace FormSelecciones
 
                             break;
                         case EPaises.Italia:
-                           entrenadorItalia.Add(entrenador);
+                            entrenadorItalia.Add(entrenador);
                             lstItaliaEntrenador.Items.Add(entrenador);
                             break;
                         case EPaises.Alemania:
@@ -190,40 +190,30 @@ namespace FormSelecciones
             if (cmbPaises.SelectedItem != null)
             {
                 // Oculta todos los ListBox
-                lstArgentina.Visible = false;
-                lstBrasil.Visible = false;
-                lstAlemania.Visible = false;
-                lstFrancia.Visible = false;
-                lstItalia.Visible = false;
-                lstArgentinaEntrenador.Visible = false;
-                lstBrasilEntrenador.Visible = false;
-                lstAlemaniaEntrenador.Visible = false;
-                lstFranciaEntrenador.Visible = false;
-                lstItaliaEntrenador.Visible = false;
-                lstArgentinaMasajeador.Visible = false;
-                lstBrasilMasajeador.Visible = false;
-                lstItaliaMasajeador.Visible = false;
-                lstFranciaMasajeador.Visible = false;
-                lstAlemaniaMasajeador.Visible = false;
+                CambiarVisualizacion(lstArgentina, lstArgentinaEntrenador, lstArgentinaMasajeador, pctArgentina, false);
+                CambiarVisualizacion(lstBrasil, lstBrasilEntrenador, lstBrasilMasajeador, pctBrasil, false);
+                CambiarVisualizacion(lstAlemania, lstAlemaniaEntrenador, lstAlemaniaMasajeador, pctAlemania, false);
+                CambiarVisualizacion(lstFrancia, lstFranciaEntrenador, lstFranciaMasajeador, pctFrancia, false);
+                CambiarVisualizacion(lstItalia, lstItaliaEntrenador, lstItaliaMasajeador, pctItalia, false);
 
                 // Muestra el ListBox correspondiente al país seleccionado
                 EPaises paisSeleccionado = (EPaises)cmbPaises.SelectedItem;
                 switch (paisSeleccionado)
                 {
                     case EPaises.Argentina:
-                        CambiarVisualizacion(lstArgentina, lstArgentinaEntrenador, lstArgentinaMasajeador);
+                        CambiarVisualizacion(lstArgentina, lstArgentinaEntrenador, lstArgentinaMasajeador, pctArgentina, true);
                         break;
                     case EPaises.Brasil:
-                        CambiarVisualizacion(lstBrasil, lstBrasilEntrenador, lstBrasilMasajeador);
+                        CambiarVisualizacion(lstBrasil, lstBrasilEntrenador, lstBrasilMasajeador, pctBrasil, true);
                         break;
                     case EPaises.Italia:
-                        CambiarVisualizacion(lstItalia, lstItaliaEntrenador, lstItaliaMasajeador);
+                        CambiarVisualizacion(lstItalia, lstItaliaEntrenador, lstItaliaMasajeador, pctItalia, true);
                         break;
                     case EPaises.Francia:
-                        CambiarVisualizacion(lstFrancia, lstFranciaEntrenador, lstFranciaMasajeador);
+                        CambiarVisualizacion(lstFrancia, lstFranciaEntrenador, lstFranciaMasajeador, pctFrancia, true);
                         break;
                     case EPaises.Alemania:
-                        CambiarVisualizacion(lstAlemania, lstAlemaniaEntrenador, lstAlemaniaMasajeador);
+                        CambiarVisualizacion(lstAlemania, lstAlemaniaEntrenador, lstAlemaniaMasajeador, pctAlemania, true);
                         break;
                 }
             }
@@ -263,89 +253,29 @@ namespace FormSelecciones
                 switch (paisSeleccionado)
                 {
                     case EPaises.Argentina:
-                        if (lstArgentina.SelectedIndex != -1)
-                        {
-                            lstArgentina.Items.RemoveAt(lstArgentina.SelectedIndex);
-                            //personalArgentina.RemoveAt(lstArgentina.SelectedIndex);
-                        }
-                        if (lstArgentinaEntrenador.SelectedIndex != -1)
-                        {
-                            lstArgentinaEntrenador.Items.RemoveAt(lstArgentinaEntrenador.SelectedIndex);
-                            //personalArgentina.RemoveAt(lstArgentinaEntrenador.SelectedIndex);
-                        }
-                        if (lstArgentinaMasajeador.SelectedIndex != -1)
-                        {
-                            lstArgentinaMasajeador.Items.RemoveAt(lstArgentinaMasajeador.SelectedIndex);
-                            //personalArgentina.RemoveAt(lstArgentinaMasajeador.SelectedIndex);
-                        }
+                        EliminarElemento(lstArgentina, jugadoresArgentina);
+                        EliminarElemento(lstArgentinaEntrenador, entrenadorArgentina);
+                        EliminarElemento(lstArgentinaMasajeador, masajeadoresArgentina);
                         break;
                     case EPaises.Brasil:
-                        if (lstBrasil.SelectedIndex != -1)
-                        {
-                            lstBrasil.Items.RemoveAt(lstBrasil.SelectedIndex);
-                            //personalBrasil.RemoveAt(lstBrasil.SelectedIndex);
-                        }
-                        if (lstBrasilEntrenador.SelectedIndex != -1)
-                        {
-                            lstBrasilEntrenador.Items.RemoveAt(lstBrasilEntrenador.SelectedIndex);
-                            //personalBrasil.RemoveAt(lstBrasilEntrenador.SelectedIndex);
-                        }
-                        if (lstBrasilMasajeador.SelectedIndex != -1)
-                        {
-                            lstBrasilMasajeador.Items.RemoveAt(lstBrasilMasajeador.SelectedIndex);
-                            //personalBrasil.RemoveAt(lstBrasilMasajeador.SelectedIndex);
-                        }
+                        EliminarElemento(lstBrasil, jugadoresBrasil);
+                        EliminarElemento(lstBrasilEntrenador, entrenadorBrasil);
+                        EliminarElemento(lstBrasilMasajeador, masajeadoresBrasil);
                         break;
                     case EPaises.Italia:
-                        if (lstItalia.SelectedIndex != -1)
-                        {
-                            lstItalia.Items.RemoveAt(lstItalia.SelectedIndex);
-                            //personalItalia.RemoveAt(lstItalia.SelectedIndex);
-                        }
-                        if (lstItaliaEntrenador.SelectedIndex != -1)
-                        {
-                            lstItaliaEntrenador.Items.RemoveAt(lstItaliaEntrenador.SelectedIndex);
-                            //personalItalia.RemoveAt(lstItaliaEntrenador.SelectedIndex);
-                        }
-                        if (lstItaliaMasajeador.SelectedIndex != -1)
-                        {
-                            lstItaliaMasajeador.Items.RemoveAt(lstItaliaMasajeador.SelectedIndex);
-                            //personalItalia.RemoveAt(lstItaliaMasajeador.SelectedIndex);
-                        }
+                        EliminarElemento(lstItalia, jugadoresItalia);
+                        EliminarElemento(lstItaliaEntrenador, entrenadorItalia);
+                        EliminarElemento(lstItaliaMasajeador, masajeadoresItalia);
                         break;
                     case EPaises.Francia:
-                        if (lstFrancia.SelectedIndex != -1)
-                        {
-                            lstFrancia.Items.RemoveAt(lstFrancia.SelectedIndex);
-                            //personalFrancia.RemoveAt(lstFrancia.SelectedIndex);
-                        }
-                        if (lstFranciaEntrenador.SelectedIndex != -1)
-                        {
-                            lstFranciaEntrenador.Items.RemoveAt(lstFranciaEntrenador.SelectedIndex);
-                            //personalFrancia.RemoveAt(lstFranciaEntrenador.SelectedIndex);
-                        }
-                        if (lstFranciaMasajeador.SelectedIndex != -1)
-                        {
-                            lstFranciaMasajeador.Items.RemoveAt(lstFranciaMasajeador.SelectedIndex);
-                            //personalFrancia.RemoveAt(lstFranciaMasajeador.SelectedIndex);
-                        }
+                        EliminarElemento(lstFrancia, jugadoresFrancia);
+                        EliminarElemento(lstFranciaEntrenador, entrenadorFrancia);
+                        EliminarElemento(lstFranciaMasajeador, masajeadoresFrancia);
                         break;
                     case EPaises.Alemania:
-                        if (lstAlemania.SelectedIndex != -1)
-                        {
-                            lstAlemania.Items.RemoveAt(lstAlemania.SelectedIndex);
-                            //personalAlemania.RemoveAt(lstAlemania.SelectedIndex);
-                        }
-                        if (lstAlemaniaEntrenador.SelectedIndex != -1)
-                        {
-                            lstAlemaniaEntrenador.Items.RemoveAt(lstAlemaniaEntrenador.SelectedIndex);
-                            //personalAlemania.RemoveAt(lstAlemaniaEntrenador.SelectedIndex);
-                        }
-                        if (lstAlemaniaMasajeador.SelectedIndex != -1)
-                        {
-                            lstAlemaniaMasajeador.Items.RemoveAt(lstAlemaniaMasajeador.SelectedIndex);
-                            //personalAlemania.RemoveAt(lstAlemaniaMasajeador.SelectedIndex);
-                        }
+                        EliminarElemento(lstAlemania, jugadoresAlemania);
+                        EliminarElemento(lstAlemaniaEntrenador, entrenadorAlemania);
+                        EliminarElemento(lstAlemaniaMasajeador, masajeadoresAlemania);
                         break;
                 }
             }
@@ -361,80 +291,35 @@ namespace FormSelecciones
                 switch (paisSeleccionado)
                 {
                     case EPaises.Argentina:
-                        if (lstArgentina.SelectedIndex != -1)
-                        {
-                            ModificarListJugador(lstArgentina, jugadoresArgentina);
-                        }
-
-                        if (lstArgentinaEntrenador.SelectedIndex != -1)
-                        {
-                            ModificarListEntrenador(lstArgentinaEntrenador, entrenadorArgentina);
-                        }
-                        if (lstArgentinaMasajeador.SelectedIndex != -1)
-                        {
-                            ModificarListMasajeador(lstArgentinaMasajeador, masajeadoresArgentina);
-                        }
+                        ModificarElemento(lstArgentina, jugadoresArgentina);
+                        ModificarElemento(lstArgentinaEntrenador, entrenadorArgentina);
+                        ModificarElemento(lstArgentinaMasajeador, masajeadoresArgentina);
                         break;
                     case EPaises.Brasil:
-                        if (lstBrasil.SelectedIndex != -1)
-                        {
-                            ModificarListJugador(lstBrasil, jugadoresBrasil);
-                        }
-                        if (lstBrasilEntrenador.SelectedIndex != -1)
-                        {
-                            ModificarListEntrenador(lstBrasilEntrenador, entrenadorBrasil);
-                        }
-                        if (lstBrasilMasajeador.SelectedIndex != -1)
-                        {
-                            ModificarListMasajeador(lstBrasilMasajeador, masajeadoresBrasil);
-                        }
+                        ModificarElemento(lstBrasil, jugadoresBrasil);
+                        ModificarElemento(lstBrasilEntrenador, entrenadorBrasil);
+                        ModificarElemento(lstBrasilMasajeador, masajeadoresBrasil);
                         break;
                     case EPaises.Italia:
-                        if (lstItalia.SelectedIndex != -1)
-                        {
-                            ModificarListJugador(lstItalia, jugadoresItalia);
-                        }
-                        if (lstItaliaEntrenador.SelectedIndex != -1)
-                        {
-                            ModificarListEntrenador(lstItaliaEntrenador, entrenadorItalia);
-                        }
-                        if (lstItaliaMasajeador.SelectedIndex != -1)
-                        {
-                            ModificarListMasajeador(lstItaliaMasajeador, masajeadoresItalia);
-                        }
+                        ModificarElemento(lstItalia, jugadoresItalia);
+                        ModificarElemento(lstItaliaEntrenador, entrenadorItalia);
+                        ModificarElemento(lstItaliaMasajeador, masajeadoresItalia);
                         break;
                     case EPaises.Francia:
-                        if (lstFrancia.SelectedIndex != -1)
-                        {
-                            ModificarListJugador(lstFrancia, jugadoresFrancia);
-                        }
-                        if (lstFranciaEntrenador.SelectedIndex != -1)
-                        {
-                            ModificarListEntrenador(lstFranciaEntrenador, entrenadorFrancia);
-                        }
-                        if (lstFranciaMasajeador.SelectedIndex != -1)
-                        {
-                            ModificarListMasajeador(lstFranciaMasajeador, masajeadoresFrancia);
-                        }
+                        ModificarElemento(lstFrancia, jugadoresFrancia);
+                        ModificarElemento(lstFranciaEntrenador, entrenadorFrancia);
+                        ModificarElemento(lstFranciaMasajeador, masajeadoresFrancia);
                         break;
                     case EPaises.Alemania:
-                        if (lstAlemania.SelectedIndex != -1)
-                        {
-                            ModificarListJugador(lstAlemania, jugadoresAlemania);
-                        }
-                        if (lstAlemaniaEntrenador.SelectedIndex != -1)
-                        {
-                            ModificarListEntrenador(lstAlemaniaEntrenador, entrenadorAlemania);
-                        }
-                        if (lstAlemaniaMasajeador.SelectedIndex != -1)
-                        {
-                            ModificarListMasajeador(lstAlemaniaMasajeador, masajeadoresAlemania);
-                        }
+                        ModificarElemento(lstAlemania, jugadoresAlemania);
+                        ModificarElemento(lstAlemaniaEntrenador, entrenadorAlemania);
+                        ModificarElemento(lstAlemaniaMasajeador, masajeadoresAlemania);
                         break;
                 }
             }
         }
 
+        #region metodos
         private void FormPrincipal_Click(object sender, EventArgs e)
         {
             lstArgentina.ClearSelected();
@@ -453,15 +338,49 @@ namespace FormSelecciones
             lstFranciaMasajeador.ClearSelected();
             lstAlemaniaMasajeador.ClearSelected();
         }
+        
 
-        private void CambiarVisualizacion(ListBox lst1, ListBox lst2, ListBox lst3)
+        private void CambiarVisualizacion(ListBox lst1, ListBox lst2, ListBox lst3, PictureBox pictur, bool algo)
         {
-            lst1.Visible = true;
-            lst2.Visible = true;
-            lst3.Visible = true;
+            lst1.Visible = algo;
+            lst2.Visible = algo;
+            lst3.Visible = algo;
+            pictur.Visible = algo;
         }
+        #endregion
+
+        #region Metodos Eliminar
+        private void EliminarElemento(ListBox listBox, List<Jugador> lista)
+        {
+            if (listBox.SelectedIndex != -1)
+            {
+                int selectedIndex = listBox.SelectedIndex;
+                listBox.Items.RemoveAt(selectedIndex);
+                lista.RemoveAt(selectedIndex);
+            }
+        }
+        private void EliminarElemento(ListBox listBox, List<Entrenador> lista)
+        {
+            if (listBox.SelectedIndex != -1)
+            {
+                int selectedIndex = listBox.SelectedIndex;
+                listBox.Items.RemoveAt(selectedIndex);
+                lista.RemoveAt(selectedIndex);
+            }
+        }
+        private void EliminarElemento(ListBox listBox, List<Masajista> lista)
+        {
+            if (listBox.SelectedIndex != -1)
+            {
+                int selectedIndex = listBox.SelectedIndex;
+                listBox.Items.RemoveAt(selectedIndex);
+                lista.RemoveAt(selectedIndex);
+            }
+        }
+        #endregion
+
         #region Metodos Modificar
-        private void ModificarListJugador(ListBox lst, List<Jugador> personal)
+        private void ModificarList(ListBox lst, List<Jugador> personal)
         {
             // Abre un formulario de edición para el jugador seleccionado
 
@@ -487,7 +406,7 @@ namespace FormSelecciones
             }
         }
 
-        private void ModificarListEntrenador(ListBox lst, List<Entrenador> personal)
+        private void ModificarList(ListBox lst, List<Entrenador> personal)
         {
             Entrenador entrenadorSeleccionado = (Entrenador)lst.SelectedItem;
             ConvocarEntrenador editarEntrenadorForm = new ConvocarEntrenador(entrenadorSeleccionado);
@@ -507,7 +426,7 @@ namespace FormSelecciones
             }
         }
 
-        private void ModificarListMasajeador(ListBox lst, List<Masajista> personal)
+        private void ModificarList(ListBox lst, List<Masajista> personal)
         {
             // Abre un formulario de edición para el jugador seleccionado
 
@@ -532,8 +451,33 @@ namespace FormSelecciones
                 lst.Items[selectedIndex] = entrenadorModificado;
             }
         }
+
+        public void ModificarElemento(ListBox listBox, List<Jugador> lista)
+        {
+            if (listBox.SelectedIndex != -1)
+            {
+                ModificarList(listBox, lista);
+            }
+        }
+        public void ModificarElemento(ListBox listBox, List<Masajista> lista)
+        {
+            if (listBox.SelectedIndex != -1)
+            {
+                ModificarList(listBox, lista);
+            }
+        }
+        public void ModificarElemento(ListBox listBox, List<Entrenador> lista)
+        {
+            if (listBox.SelectedIndex != -1)
+            {
+                ModificarList(listBox, lista);
+            }
+        }
+
+
         #endregion
 
+        #region Metodos para Serializar y Deserializar
         public void Serializar(string path, List<Jugador> listJugador)
         {
             JsonSerializerOptions serializador = new JsonSerializerOptions();
@@ -636,14 +580,8 @@ namespace FormSelecciones
                 lst.Items.Add(masajista);
             }
         }
-        //private void ActualizarVisor()
-        //{
-        //    this.lstArgentina.Items.Clear();
-        //    foreach(Jugador jugador in this.jugadoresArgentina)
-        //    {
-        //        lstArgentina.Items.Add(jugador.ToString());
-        //    }           
-        //}
+
+        #endregion
     }
 }
 
