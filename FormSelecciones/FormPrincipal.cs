@@ -15,42 +15,81 @@ using Newtonsoft.Json;
 
 namespace FormSelecciones
 {
+    /// <summary>
+    /// Formulario principal que gestiona los miembros de los equipos de selección.
+    /// </summary>
     public partial class FormPrincipal : Form
     {
         //JUGADORES
-        public List<Jugador> jugadoresArgentina = new List<Jugador>();
-        public List<Jugador> jugadoresBrasil = new List<Jugador>();
-        public List<Jugador> jugadoresAlemania = new List<Jugador>();
-        public List<Jugador> jugadoresItalia = new List<Jugador>();
-        public List<Jugador> jugadoresFrancia = new List<Jugador>();
+        private List<Jugador> jugadoresArgentina = new List<Jugador>();
+        private List<Jugador> jugadoresBrasil = new List<Jugador>();
+        private List<Jugador> jugadoresAlemania = new List<Jugador>();
+        private List<Jugador> jugadoresItalia = new List<Jugador>();
+        private List<Jugador> jugadoresFrancia = new List<Jugador>();
 
         //ENTRENADORES
-        public List<Entrenador> entrenadorArgentina = new List<Entrenador>();
-        public List<Entrenador> entrenadorBrasil = new List<Entrenador>();
-        public List<Entrenador> entrenadorAlemania = new List<Entrenador>();
-        public List<Entrenador> entrenadorItalia = new List<Entrenador>();
-        public List<Entrenador> entrenadorFrancia = new List<Entrenador>();
+        private List<Entrenador> entrenadorArgentina = new List<Entrenador>();
+        private List<Entrenador> entrenadorBrasil = new List<Entrenador>();
+        private List<Entrenador> entrenadorAlemania = new List<Entrenador>();
+        private List<Entrenador> entrenadorItalia = new List<Entrenador>();
+        private List<Entrenador> entrenadorFrancia = new List<Entrenador>();
 
         //MASAJEADORES
-        public List<Masajista> masajeadoresArgentina = new List<Masajista>();
-        public List<Masajista> masajeadoresBrasil = new List<Masajista>();
-        public List<Masajista> masajeadoresItalia = new List<Masajista>();
-        public List<Masajista> masajeadoresAlemania = new List<Masajista>();
-        public List<Masajista> masajeadoresFrancia = new List<Masajista>();
+        private List<Masajista> masajeadoresArgentina = new List<Masajista>();
+        private List<Masajista> masajeadoresBrasil = new List<Masajista>();
+        private List<Masajista> masajeadoresItalia = new List<Masajista>();
+        private List<Masajista> masajeadoresAlemania = new List<Masajista>();
+        private List<Masajista> masajeadoresFrancia = new List<Masajista>();
 
+        private Usuario usuarioLog;
 
-
-        public FormPrincipal()
+        /// <summary>
+        /// Constructor del formulario principal.
+        /// </summary>
+        public FormPrincipal(Usuario usuario)
         {
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
             cmbPaises.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.BackColor = Color.LightCyan;
+            ModificarColores(Color.LightBlue);
+            BordesBoton(FlatStyle.Flat, Color.LightSkyBlue, 2, btnConvocar, btnModificar, btnEliminar, btnOrdenar, btnGuardarManualmente);
+            this.usuarioLog = usuario;
+
+            if (usuario != null)
+            {
+                this.Text = $"Operador: {usuario.nombre} - fecha actual: {DateTime.Now.ToShortDateString()}";
+            }
+
+            string rutaArchivoLog = "usuarios.log";
+            try
+            {
+                using (StreamWriter sw = File.AppendText(rutaArchivoLog))
+                {
+                    sw.WriteLine($"Nombre: {usuario.nombre} - Apellido: {usuario.apellido} - Horario de entrada: {DateTime.Now}");
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("No se pudo crear el archivo .log" + ex.Message);
+            }
 
             cmbPaises.DataSource = Enum.GetValues(typeof(EPaises));
             this.Click += FormPrincipal_Click;
 
         }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            VerLogForm archivo = new VerLogForm();
+
+            archivo.ShowDialog();
+        }
+    
+        /// <summary>
+        /// Manejador de eventos al cargar el formulario.
+        /// Carga datos de jugadores, entrenadores y masajistas.
+        /// </summary>
         private void FormPrincipal_Load(object sender, EventArgs e)
         {
             //JUGADORES
@@ -90,6 +129,10 @@ namespace FormSelecciones
             ActualizarVisor(masajeadoresAlemania, lstAlemaniaMasajeador);
         }
 
+        /// <summary>
+        /// Manejador de eventos para el botón de convocar.
+        /// Abre el formulario de creación de personal y agrega el nuevo personal a las listas correspondientes.
+        /// </summary>
         private void btnConvocar_Click(object sender, EventArgs e)
         {
             Personal personalForm = new Personal();
@@ -128,30 +171,22 @@ namespace FormSelecciones
                 }
                 else if (personalForm.nuevoEntrenador is Entrenador entrenador)
                 {
-                    // Es un entrenador
-                    // Agregar el nuevo entrenador al ListBox y a la lista correspondiente
                     switch (entrenador.Pais)
                     {
                         case EPaises.Brasil:
-                            entrenadorBrasil.Add(entrenador);
-                            lstBrasilEntrenador.Items.Add(entrenador);
+                            SoloUnEntrenador(entrenadorBrasil, lstBrasilEntrenador, entrenador);
                             break;
                         case EPaises.Argentina:
-                            entrenadorArgentina.Add(entrenador);
-                            lstArgentinaEntrenador.Items.Add(entrenador);
-
+                            SoloUnEntrenador(entrenadorArgentina, lstArgentinaEntrenador, entrenador);
                             break;
                         case EPaises.Italia:
-                            entrenadorItalia.Add(entrenador);
-                            lstItaliaEntrenador.Items.Add(entrenador);
+                            SoloUnEntrenador(entrenadorItalia, lstItaliaEntrenador, entrenador);
                             break;
                         case EPaises.Alemania:
-                            entrenadorAlemania.Add(entrenador);
-                            lstAlemaniaEntrenador.Items.Add(entrenador);
+                            SoloUnEntrenador(entrenadorAlemania, lstAlemaniaEntrenador, entrenador);
                             break;
                         case EPaises.Francia:
-                            entrenadorFrancia.Add(entrenador);
-                            lstFranciaEntrenador.Items.Add(entrenador);
+                            SoloUnEntrenador(entrenadorFrancia, lstFranciaEntrenador, entrenador);
                             break;
                     }
                 }
@@ -184,7 +219,10 @@ namespace FormSelecciones
             }
         }
 
-
+        /// <summary>
+        /// Manejador de eventos para el cambio en la selección del país en el ComboBox.
+        /// Muestra el ListBox correspondiente al país seleccionado y oculta los demás.
+        /// </summary>
         private void cmbPaises_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbPaises.SelectedItem != null)
@@ -219,6 +257,10 @@ namespace FormSelecciones
             }
         }
 
+        /// <summary>
+        /// Manejador de eventos al cerrar el formulario.
+        /// Realiza la serialización de los datos de jugadores, entrenadores y masajistas.
+        /// </summary>
         private void FormPrincipal_FormClosing(object sender, FormClosingEventArgs e)
         {
             //JUGADORES
@@ -241,8 +283,14 @@ namespace FormSelecciones
             Serializar("MasajistaItalia.json", masajeadoresItalia);
             Serializar("MasajistaFrancia.json", masajeadoresFrancia);
             Serializar("MasajistaAlemania.json", masajeadoresAlemania);
+
+
         }
 
+        /// <summary>
+        /// Manejador de eventos para el botón de eliminar.
+        /// Elimina el elemento seleccionado en el ListBox correspondiente al país seleccionado.
+        /// </summary>
         private void btnEliminar_Click(object sender, EventArgs e)
         {
 
@@ -282,6 +330,11 @@ namespace FormSelecciones
 
         }
 
+        /// <summary>
+        /// Método que maneja el evento Click del botón "Modificar". 
+        /// Modifica un elemento seleccionado en la lista correspondiente 
+        /// (jugadores, entrenadores o masajistas) según el país seleccionado.
+        /// </summary>
         private void btnModificar_Click(object sender, EventArgs e)
         {
             if (cmbPaises.SelectedItem != null)
@@ -319,7 +372,9 @@ namespace FormSelecciones
             }
         }
 
-        #region metodos
+        /// <summary>
+        /// Maneja el evento Click del formulario principal y deselecciona todos los elementos en las listas.
+        /// </summary>
         private void FormPrincipal_Click(object sender, EventArgs e)
         {
             lstArgentina.ClearSelected();
@@ -338,8 +393,256 @@ namespace FormSelecciones
             lstFranciaMasajeador.ClearSelected();
             lstAlemaniaMasajeador.ClearSelected();
         }
-        
 
+        /// <summary>
+        /// Método que maneja el evento Click del botón "Ordenar". 
+        /// Ordena los elementos de la lista correspondiente (jugadores, entrenadores o masajistas) 
+        /// en función de la opción seleccionada (ascendente o descendente) y el país seleccionado
+        /// Los jugadores de van a poder ordenar en cuanto a posicion y edad y los entrenador y masajistas solo por edad
+        /// </summary>
+        private void btnOrdenar_Click(object sender, EventArgs e)
+        {
+            if (rdoAscendenteEdad.Checked)
+            {
+                EPaises paisSeleccionado = (EPaises)cmbPaises.SelectedItem;
+
+                switch (paisSeleccionado)
+                {
+                    case EPaises.Argentina:
+                        OrdenarEdadAs(lstArgentina, jugadoresArgentina);
+                        OrdenarEdadAs(lstArgentinaEntrenador, entrenadorArgentina);
+                        OrdenarEdadAs(lstArgentinaMasajeador, masajeadoresArgentina);
+                        break;
+                    case EPaises.Brasil:
+                        OrdenarEdadAs(lstBrasil, jugadoresBrasil);
+                        OrdenarEdadAs(lstBrasilEntrenador, entrenadorBrasil);
+                        OrdenarEdadAs(lstBrasilMasajeador, masajeadoresBrasil);
+                        break;
+                    case EPaises.Italia:
+                        OrdenarEdadAs(lstItalia, jugadoresItalia);
+                        OrdenarEdadAs(lstItaliaEntrenador, entrenadorItalia);
+                        OrdenarEdadAs(lstItaliaMasajeador, masajeadoresItalia);
+                        break;
+                    case EPaises.Francia:
+                        OrdenarEdadAs(lstFrancia, jugadoresFrancia);
+                        OrdenarEdadAs(lstFranciaEntrenador, entrenadorFrancia);
+                        OrdenarEdadAs(lstFranciaMasajeador, masajeadoresFrancia);
+                        break;
+                    case EPaises.Alemania:
+                        OrdenarEdadAs(lstAlemania, jugadoresAlemania);
+                        OrdenarEdadAs(lstAlemaniaEntrenador, entrenadorAlemania);
+                        OrdenarEdadAs(lstAlemaniaMasajeador, masajeadoresAlemania);
+                        break;
+                }
+            }
+            else if (rdoDescendenteEdad.Checked)
+            {
+                EPaises paisSeleccionado = (EPaises)cmbPaises.SelectedItem;
+
+                switch (paisSeleccionado)
+                {
+                    case EPaises.Argentina:
+                        OrdenarEdadDes(lstArgentina, jugadoresArgentina);
+                        OrdenarEdadDes(lstArgentinaEntrenador, entrenadorArgentina);
+                        OrdenarEdadDes(lstArgentinaMasajeador, masajeadoresArgentina);
+                        break;
+                    case EPaises.Brasil:
+                        OrdenarEdadDes(lstBrasil, jugadoresBrasil);
+                        OrdenarEdadDes(lstBrasilEntrenador, entrenadorBrasil);
+                        OrdenarEdadDes(lstBrasilMasajeador, masajeadoresBrasil);
+                        break;
+                    case EPaises.Italia:
+                        OrdenarEdadDes(lstItalia, jugadoresItalia);
+                        OrdenarEdadDes(lstItaliaEntrenador, entrenadorItalia);
+                        OrdenarEdadDes(lstItaliaMasajeador, masajeadoresItalia);
+                        break;
+                    case EPaises.Francia:
+                        OrdenarEdadDes(lstFrancia, jugadoresFrancia);
+                        OrdenarEdadDes(lstFranciaEntrenador, entrenadorFrancia);
+                        OrdenarEdadDes(lstFranciaMasajeador, masajeadoresFrancia);
+                        break;
+                    case EPaises.Alemania:
+                        OrdenarEdadDes(lstAlemania, jugadoresAlemania);
+                        OrdenarEdadDes(lstAlemaniaEntrenador, entrenadorAlemania);
+                        OrdenarEdadDes(lstAlemaniaMasajeador, masajeadoresAlemania);
+                        break;
+                }
+            }
+            else if (rdoAscendentePosicion.Checked)
+            {
+                EPaises paisSeleccionado = (EPaises)cmbPaises.SelectedItem;
+
+                switch (paisSeleccionado)
+                {
+                    case EPaises.Argentina:
+                        OrdenarPosicionAs(lstArgentina, jugadoresArgentina);
+                        break;
+                    case EPaises.Brasil:
+                        OrdenarPosicionAs(lstBrasil, jugadoresBrasil);
+                        break;
+                    case EPaises.Italia:
+                        OrdenarPosicionAs(lstItalia, jugadoresItalia);
+                        break;
+                    case EPaises.Francia:
+                        OrdenarPosicionAs(lstFrancia, jugadoresFrancia);
+                        break;
+                    case EPaises.Alemania:
+                        OrdenarPosicionAs(lstAlemania, jugadoresAlemania);
+                        break;
+                }
+            }
+            else if (rdoDescendentePosicion.Checked)
+            {
+                EPaises paisSeleccionado = (EPaises)cmbPaises.SelectedItem;
+
+                switch (paisSeleccionado)
+                {
+                    case EPaises.Argentina:
+                        OrdenarPosicionDes(lstArgentina, jugadoresArgentina);
+                        break;
+                    case EPaises.Brasil:
+                        OrdenarPosicionDes(lstBrasil, jugadoresBrasil);
+                        break;
+                    case EPaises.Italia:
+                        OrdenarPosicionDes(lstItalia, jugadoresItalia);
+                        break;
+                    case EPaises.Francia:
+                        OrdenarPosicionDes(lstFrancia, jugadoresFrancia);
+                        break;
+                    case EPaises.Alemania:
+                        OrdenarPosicionDes(lstAlemania, jugadoresAlemania);
+                        break;
+                }
+            }
+
+        }
+        private void btnGuardarManualmente_Click(object sender, EventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show("¿Estás seguro de que quieres guardar manualmente? Tendras que guardar absolutamente todas los json.", "Advertencia", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+
+            if (resultado == DialogResult.Yes)
+            {
+
+                SerializarManual("JugadorFrancia.json", this.jugadoresFrancia);
+                SerializarManual("JugadorArgentina.json", this.jugadoresArgentina);
+                SerializarManual("JugadorItalia.json", this.jugadoresItalia);
+                SerializarManual("JugadorBrasil.json", this.jugadoresBrasil);
+                SerializarManual("JugadorAlemania.json", this.jugadoresAlemania);
+
+                SerializarManual("EntrenadorFrancia.json", this.entrenadorFrancia);
+                SerializarManual("EntrenadorArgentina.json", this.entrenadorArgentina);
+                SerializarManual("EntrenadorItalia.json", this.entrenadorItalia);
+                SerializarManual("EntrenadorBrasil.json", this.entrenadorBrasil);
+                SerializarManual("EntrenadorAlemania.json", this.entrenadorAlemania);
+
+                SerializarManual("MasajistaFrancia.json", this.masajeadoresFrancia);
+                SerializarManual("MasajistaArgentina.json", this.masajeadoresArgentina);
+                SerializarManual("MasajistaItalia.json", this.masajeadoresItalia);
+                SerializarManual("MasajistaBrasil.json", this.masajeadoresBrasil);
+                SerializarManual("MasajistaAlemania.json", this.masajeadoresAlemania);
+            }
+            else
+            {
+
+            }
+        }
+
+        #region Serializacion Manual
+        public void SerializarManual(string path, List<Jugador> lista)
+        {
+            try
+            {
+                string nombreArchivo = path;
+
+                SaveFileDialog guardar = new SaveFileDialog();
+
+                guardar.FileName = nombreArchivo;
+
+                if (guardar.ShowDialog() == DialogResult.OK)
+                {
+                    using (StreamWriter sw = new StreamWriter(guardar.FileName))
+                    {
+                        JsonSerializerOptions opciones = new JsonSerializerOptions();
+                        opciones.WriteIndented = true;
+
+                        string objJson = System.Text.Json.JsonSerializer.Serialize(lista, opciones);
+                        sw.WriteLine(objJson);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void SerializarManual(string path, List<Entrenador> lista)
+        {
+            try
+            {
+                string nombreArchivo = path;
+
+                SaveFileDialog guardar = new SaveFileDialog();
+
+                guardar.FileName = nombreArchivo;
+
+                if (guardar.ShowDialog() == DialogResult.OK)
+                {
+                    using (StreamWriter sw = new StreamWriter(guardar.FileName))
+                    {
+                        JsonSerializerOptions opciones = new JsonSerializerOptions();
+                        opciones.WriteIndented = true;
+
+                        string objJson = System.Text.Json.JsonSerializer.Serialize(lista, opciones);
+                        sw.WriteLine(objJson);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void SerializarManual(string path, List<Masajista> lista)
+        {
+            try
+            {
+                string nombreArchivo = path;
+
+                SaveFileDialog guardar = new SaveFileDialog();
+
+                guardar.FileName = nombreArchivo;
+
+                if (guardar.ShowDialog() == DialogResult.OK)
+                {
+                    using (StreamWriter sw = new StreamWriter(guardar.FileName))
+                    {
+                        JsonSerializerOptions opciones = new JsonSerializerOptions();
+                        opciones.WriteIndented = true;
+
+                        string objJson = System.Text.Json.JsonSerializer.Serialize(lista, opciones);
+                        sw.WriteLine(objJson);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        #endregion
+
+        #region metodos
+        /// <summary>
+        /// Cambia la visibilidad de los controles ListBox y PictureBox.
+        /// </summary>
+        /// <param name="lst1">Primer ListBox a controlar</param>
+        /// <param name="lst2">Segundo ListBox a controlar</param>
+        /// <param name="lst3">Tercer ListBox a controlar</param>
+        /// <param name="pictur">PictureBox a controlar</param>
+        /// <param name="algo">Indica si se deben mostrar (true) o ocultar (false) los controles</param>
         private void CambiarVisualizacion(ListBox lst1, ListBox lst2, ListBox lst3, PictureBox pictur, bool algo)
         {
             lst1.Visible = algo;
@@ -347,9 +650,75 @@ namespace FormSelecciones
             lst3.Visible = algo;
             pictur.Visible = algo;
         }
+
+        /// <summary>
+        /// Modifica el color de fondo de los botones de convocar, eliminar y modificar.
+        /// </summary>
+        /// <param name="colorin">Color de fondo a establecer para los botones</param>
+        private void ModificarColores(Color colorin)
+        {
+            btnConvocar.BackColor = colorin;
+            btnEliminar.BackColor = colorin;
+            btnModificar.BackColor = colorin;
+        }
+
+        /// <summary>
+        /// Configura el estilo y borde de los botones para personalizar su apariencia.
+        /// </summary>
+        /// <param name="flat">Estilo de los botones (FlatStyle)</param>
+        /// <param name="colorin">Color del borde</param>
+        /// <param name="tamaño">Grosor del borde en píxeles</param>
+        /// <param name="FrmCRUD1">Primer botón a configurar</param>
+        /// <param name="FrmCRUD2">Segundo botón a configurar</param>
+        /// <param name="FrmCRUD3">Tercer botón a configurar</param>
+        /// <param name="FrmCRUD4">Cuarto botón a configurar</param>
+        /// /// <param name="FrmCRUD5">Quinto botón a configurar</param>
+        private void BordesBoton(FlatStyle flat, Color colorin, int tamaño, Button FrmCRUD1, Button FrmCRUD2, Button FrmCRUD3, Button FrmCRUD4, Button FrmCRUD5)
+        {
+            FrmCRUD1.FlatStyle = flat;
+            FrmCRUD1.FlatAppearance.BorderColor = colorin; // Color del borde
+            FrmCRUD1.FlatAppearance.BorderSize = tamaño; // Grosor del borde en píxeles
+            FrmCRUD2.FlatStyle = flat;
+            FrmCRUD2.FlatAppearance.BorderColor = colorin;
+            FrmCRUD2.FlatAppearance.BorderSize = tamaño;
+            FrmCRUD3.FlatStyle = flat;
+            FrmCRUD3.FlatAppearance.BorderColor = colorin;
+            FrmCRUD3.FlatAppearance.BorderSize = tamaño;
+            FrmCRUD4.FlatStyle = flat;
+            FrmCRUD4.FlatAppearance.BorderColor = colorin;
+            FrmCRUD4.FlatAppearance.BorderSize = tamaño;
+            FrmCRUD5.FlatStyle = flat;
+            FrmCRUD5.FlatAppearance.BorderColor = colorin;
+            FrmCRUD5.FlatAppearance.BorderSize = tamaño;
+        }
+
+        /// <summary>
+        /// Agrega un entrenador a la lista correspondiente, asegurándose de que solo haya un entrenador por país.
+        /// </summary>
+        /// <param name="lista">Lista de entrenadores del país</param>
+        /// <param name="lst">ListBox que muestra los entrenadores</param>
+        /// <param name="entrenador">Entrenador a agregar</param>
+        public void SoloUnEntrenador(List<Entrenador> lista, ListBox lst, Entrenador entrenador)
+        {
+            if (lista.Count > 0)
+            {
+                MessageBox.Show("Ya hay un entrenador para este país. Debes eliminar el entrenador existente antes de agregar uno nuevo.", "Error");
+            }
+            else
+            {
+                lista.Add(entrenador);
+                lst.Items.Add(entrenador);
+            }
+        }
         #endregion
 
         #region Metodos Eliminar
+        /// <summary>
+        /// Estos tres metodos eliminan un elemento de la lista (jugador,entrenador,masajista)
+        /// y de la ListBox correspondiente.
+        /// </summary>
+        /// <param name="listBox">ListBox que contiene la lista de jugadores</param>
+        /// <param name="lista">Lista de jugadores</param>
         private void EliminarElemento(ListBox listBox, List<Jugador> lista)
         {
             if (listBox.SelectedIndex != -1)
@@ -380,6 +749,12 @@ namespace FormSelecciones
         #endregion
 
         #region Metodos Modificar
+        /// <summary>
+        /// Estos tres metodos abreb un formulario de edición para modificar el personal
+        /// seleccionado y actualiza la lista con los cambios realizados.
+        /// </summary>
+        /// <param name="lst">ListBox que contiene la lista de jugadores</param>
+        /// <param name="personal">Lista de jugadores</param>
         private void ModificarList(ListBox lst, List<Jugador> personal)
         {
             // Abre un formulario de edición para el jugador seleccionado
@@ -452,6 +827,12 @@ namespace FormSelecciones
             }
         }
 
+        /// <summary>
+        /// Estos tres metodos abren un formulario de edición para el elemento seleccionado en la ListBox 
+        /// y lo modifica en la lista llamando a el metodo ModificarList().
+        /// </summary>
+        /// <param name="listBox">ListBox que contiene el elemento a modificar</param>
+        /// <param name="lista">Lista de elementos del mismo tipo</param
         public void ModificarElemento(ListBox listBox, List<Jugador> lista)
         {
             if (listBox.SelectedIndex != -1)
@@ -478,6 +859,12 @@ namespace FormSelecciones
         #endregion
 
         #region Metodos para Serializar y Deserializar
+        /// <summary>
+        /// los tres metodos Serializan una lista (Jugadores, Entrenador, Masajista)
+        /// y la guarda en un archivo JSON.
+        /// </summary>
+        /// <param name="path">Ruta del archivo JSON</param>
+        /// <param name="listJugador">Lista de jugadores a serializar</param>
         public void Serializar(string path, List<Jugador> listJugador)
         {
             JsonSerializerOptions serializador = new JsonSerializerOptions();
@@ -490,6 +877,7 @@ namespace FormSelecciones
                 sw.WriteLine(objJson);
             }
         }
+
 
         public void Serializar(string path, List<Entrenador> listEntrenador)
         {
@@ -517,6 +905,12 @@ namespace FormSelecciones
             }
         }
 
+        /// <summary>
+        /// estos tres metodos Deserializa un archivo JSON en una lista dependiendo
+        /// que typo de lista le pases por parametro(Jugador, Entrenador, Masajista).
+        /// </summary>
+        /// <param name="path">Ruta del archivo JSON</param>
+        /// <param name="listJugadores">Referencia a la lista de jugadores donde se almacenarán los datos deserializados</param>
         public void Deserializar(string path, ref List<Jugador> listJugadores)
         {
             if (File.Exists(path))
@@ -556,6 +950,11 @@ namespace FormSelecciones
             }
         }
 
+        /// <summary>
+        /// Actualiza la ListBox con una lista que le pase por parametro(Jugador,Masajista,Entrenador).
+        /// </summary>
+        /// <param name="listJugador">Lista de jugadores</param>
+        /// <param name="lst">ListBox que se actualizará</param>
         private void ActualizarVisor(List<Jugador> listJugador, ListBox lst)
         {
             lst.Items.Clear();
@@ -582,8 +981,147 @@ namespace FormSelecciones
         }
 
         #endregion
+
+        #region Metodos para Ordenar
+
+
+
+        /// <summary>
+        /// los 3 metodos ordenan una lista (puede ser Juagador, Masajista o Entrenador)
+        /// por edad en orden ascendente y actualiza una ListBox.
+        /// </summary>
+        /// <param name="lst">ListBox que se actualizará con la lista ordenada</param>
+        /// <param name="lista">Lista de jugadores que se ordenará</param>
+        public void OrdenarEdadAs(ListBox lst, List<Jugador> lista)
+        {
+
+            if (rdoAscendenteEdad.Checked)
+            {
+                lista.Sort((j1, j2) => j1.Edad.CompareTo(j2.Edad));
+            }
+            lst.Items.Clear();
+
+            foreach (var jugador in lista)
+            {
+                lst.Items.Add(jugador);
+            }
+        }
+        public void OrdenarEdadAs(ListBox lst, List<Entrenador> lista)
+        {
+
+            if (rdoAscendenteEdad.Checked)
+            {
+                lista.Sort((j1, j2) => j1.Edad.CompareTo(j2.Edad));
+            }
+
+            lst.Items.Clear();
+
+            foreach (var jugador in lista)
+            {
+                lst.Items.Add(jugador);
+            }
+        }
+        public void OrdenarEdadAs(ListBox lst, List<Masajista> lista)
+        {
+
+            if (rdoAscendenteEdad.Checked)
+            {
+                lista.Sort((j1, j2) => j1.Edad.CompareTo(j2.Edad));
+            }
+
+            lst.Items.Clear();
+
+            foreach (var jugador in lista)
+            {
+                lst.Items.Add(jugador);
+            }
+        }
+
+        /// <summary>
+        /// los 3 metodos ordenan una lista (puede ser Juagador, Masajista o Entrenador)
+        /// por edad en orden descendente y actualiza una ListBox.
+        /// </summary>
+        /// <param name="lst">ListBox que se actualizará con la lista ordenada</param>
+        /// <param name="lista">Lista de jugadores que se ordenará</param>
+        public void OrdenarEdadDes(ListBox lst, List<Jugador> lista)
+        {
+            if (rdoDescendenteEdad.Checked)
+            {
+                lista.Sort((j1, j2) => j2.Edad.CompareTo(j1.Edad));
+            }
+            lst.Items.Clear();
+
+            foreach (var jugador in lista)
+            {
+                lst.Items.Add(jugador);
+            }
+        }
+        public void OrdenarEdadDes(ListBox lst, List<Entrenador> lista)
+        {
+            if (rdoDescendenteEdad.Checked)
+            {
+                lista.Sort((j1, j2) => j2.Edad.CompareTo(j1.Edad));
+            }
+            lst.Items.Clear();
+
+            foreach (var jugador in lista)
+            {
+                lst.Items.Add(jugador);
+            }
+        }
+        public void OrdenarEdadDes(ListBox lst, List<Masajista> lista)
+        {
+            if (rdoDescendenteEdad.Checked)
+            {
+                lista.Sort((j1, j2) => j2.Edad.CompareTo(j1.Edad));
+            }
+            lst.Items.Clear();
+
+            foreach (var jugador in lista)
+            {
+                lst.Items.Add(jugador);
+            }
+        }
+
+        /// <summary>
+        /// Ordena solamente una lista de jugadores por posición en orden ascendente y actualiza una ListBox.
+        /// </summary>
+        /// <param name="lst">ListBox que se actualizará con la lista ordenada</param>
+        /// <param name="lista">Lista de jugadores que se ordenará</param>
+        public void OrdenarPosicionAs(ListBox lst, List<Jugador> lista)
+        {
+            if (rdoAscendentePosicion.Checked)
+            {
+                lista.Sort((j1, j2) => j1.Posicion.CompareTo(j2.Posicion));
+            }
+            lst.Items.Clear();
+
+            foreach (var jugador in lista)
+            {
+                lst.Items.Add(jugador);
+            }
+        }
+
+        /// <summary>
+        /// Ordena solamente una lista de jugadores por posición en orden descendente y actualiza una ListBox.
+        /// </summary>
+        /// <param name="lst">ListBox que se actualizará con la lista ordenada</param>
+        /// <param name="lista">Lista de jugadores que se ordenará</param>
+
+        public void OrdenarPosicionDes(ListBox lst, List<Jugador> lista)
+        {
+            if (rdoDescendentePosicion.Checked)
+            {
+                lista.Sort((j1, j2) => j2.Posicion.CompareTo(j1.Posicion));
+            }
+            lst.Items.Clear();
+
+            foreach (var jugador in lista)
+            {
+                lst.Items.Add(jugador);
+            }
+        }
+        #endregion
+       
     }
 }
-
-
-

@@ -45,6 +45,14 @@ namespace FormSelecciones
                 MessageBox.Show("Por favor, ingrese un valor en el campo de apellido.");
                 return;
             }
+            nombre = Capitalize(nombre);
+            apellido = Capitalize(apellido);
+
+            if (!EsTextoValido(nombre) || !EsTextoValido(apellido))
+            {
+                MessageBox.Show("El nombre y el apellido no deben contener números ni caracteres especiales.");
+                return;
+            }
 
             if (!int.TryParse(this.txtEdad.Text, out int edad))
             {
@@ -58,17 +66,16 @@ namespace FormSelecciones
                 MessageBox.Show("Por favor, ingrese un valor en el campo de tactica.");
                 return;
             }
-
+            
             string paisInput = this.txtPais.Text;
-
+            paisInput = Capitalize(paisInput);
 
             // Verificar si el país ingresado es válido
-            if (!EsPaisValido(paisInput))
+            if (!Enum.TryParse(paisInput, out EPaises pais))
             {
                 MessageBox.Show("Por favor, ingrese un país válido.");
-                return; // Detener el proceso si el país no es válido
+                return;
             }
-            EPaises pais = (EPaises)Enum.Parse(typeof(EPaises), paisInput);
 
 
             // Crear el nuevo entrenador
@@ -79,16 +86,25 @@ namespace FormSelecciones
             // Establecer el resultado del formulario como "Aceptar"
             this.DialogResult |= DialogResult.OK;
 
-            
-        }
-        private bool EsPaisValido(string inputPais)
-        {
-            return Enum.IsDefined(typeof(EPaises), inputPais);
-        }
+            // Cerrar el formulario
+            this.Close();
 
+
+            if (this.DialogResult == DialogResult.OK)
+            {
+                MessageBox.Show(NuevoEntrenador.RealizarAccion());
+            }
+        }
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
+        }
+
+
+        #region Metodos
+        private bool EsTextoValido(string texto)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(texto, @"^[a-zA-Z]+$");
         }
 
         public void Modificador(Entrenador jug)
@@ -102,5 +118,16 @@ namespace FormSelecciones
             this.txtNombre.Enabled = false;
             this.txtPais.Enabled = false;
         }
+        private string Capitalize(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+            {
+                return input;
+            }
+
+            // Convierte el primer carácter a mayúscula y el resto a minúscula
+            return char.ToUpper(input[0]) + input.Substring(1).ToLower();
+        }
+        #endregion
     }
 }

@@ -6,8 +6,14 @@ using System.Threading.Tasks;
 
 namespace FormSelecciones
 {
-    internal class Usuario
+    /// <summary>
+    /// Representa un usuario en la aplicación.
+    /// </summary>
+    public class Usuario
     {
+        /// <summary>
+        /// Obtiene o establece a cada uno de los elementos del Json.
+        /// </summary>
         public string apellido { get; set; }
         public string nombre { get; set; }
         public int legajo { get; set; }

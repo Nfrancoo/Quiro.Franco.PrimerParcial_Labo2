@@ -47,6 +47,15 @@ namespace FormSelecciones
                 return;
             }
 
+            nombre = Capitalize(nombre);
+            apellido = Capitalize(apellido);
+
+            if (!EsTextoValido(nombre) || !EsTextoValido(apellido))
+            {
+                MessageBox.Show("El nombre y el apellido no deben contener números ni caracteres especiales.");
+                return;
+            }
+
             string titulo = this.txtTitulo.Text;
             if (string.IsNullOrEmpty(titulo))
             {
@@ -61,23 +70,37 @@ namespace FormSelecciones
             }
 
             string paisInput = this.txtPais.Text;
-            if (!EsPaisValido(paisInput))
+            paisInput = Capitalize(paisInput);
+
+            if (!Enum.TryParse(paisInput, out EPaises pais))
             {
                 MessageBox.Show("Por favor, ingrese un país válido.");
-                return; // Detener el proceso si el país no es válido
+                return;
             }
-
-            EPaises pais = (EPaises)Enum.Parse(typeof(EPaises), paisInput);
-
 
             NuevoMasajista = new Masajista(edad, nombre, apellido, pais, titulo);
 
-            this.DialogResult = DialogResult.OK;
-        }
+            // Establecer el resultado del formulario como "Aceptar"
+            this.DialogResult |= DialogResult.OK;
 
-        private bool EsPaisValido(string inputPais)
+            // Cerrar el formulario
+            this.Close();
+
+
+            if (this.DialogResult == DialogResult.OK)
+            {
+                MessageBox.Show(NuevoMasajista.RealizarAccion());
+            }
+        }
+        private void btnCancelar_Click(object sender, EventArgs e)
         {
-            return Enum.IsDefined(typeof(EPaises), inputPais);
+            this.DialogResult = DialogResult.Cancel;
+        }
+        #region Metodos
+
+        private bool EsTextoValido(string texto)
+        {
+            return System.Text.RegularExpressions.Regex.IsMatch(texto, @"^[a-zA-Z]+$");
         }
 
         public void Modificador(Masajista masaj)
@@ -92,9 +115,17 @@ namespace FormSelecciones
             this.txtPais.Enabled = false;
         }
 
-        private void btnCancelar_Click(object sender, EventArgs e)
+        
+        private string Capitalize(string input)
         {
-            this.DialogResult = DialogResult.Cancel;
+            if (string.IsNullOrEmpty(input))
+            {
+                return input;
+            }
+
+            // Convierte el primer carácter a mayúscula y el resto a minúscula
+            return char.ToUpper(input[0]) + input.Substring(1).ToLower();
         }
+        #endregion
     }
 }

@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -11,18 +13,36 @@ using PrimerParcial;
 
 namespace FormSelecciones
 {
+    /// <summary>
+    /// Formulario para la convocatoria de un jugador.
+    /// </summary>
     public partial class ConvocarJugador : Form
     {
+        /// <summary>
+        /// Obtiene o establece el jugador para editar.
+        /// </summary>
         public Jugador JugadorParaEditar { get; set; }
+
+        /// <summary>
+        /// Obtiene el nuevo jugador creado o editado.
+        /// </summary>
         public Jugador NuevoJugador;
 
+        /// <summary>
+        /// Inicializa una nueva instancia de la clase <see cref="ConvocarJugador"/> con un jugador existente para editar.
+        /// </summary>
+        /// <param name="jug">El jugador a editar.</param>
         public ConvocarJugador(Jugador jug)
         {
             InitializeComponent();
-             this.StartPosition = FormStartPosition.CenterScreen;
+            this.StartPosition = FormStartPosition.CenterScreen;
             this.BackColor = Color.LightCyan;
             Modificador(jug);
         }
+
+        /// <summary>
+        /// Inicializa una nueva instancia de la clase <see cref="ConvocarJugador"/>.
+        /// </summary>
         public ConvocarJugador()
         {
             InitializeComponent();
@@ -35,6 +55,15 @@ namespace FormSelecciones
 
         }
 
+        /// <summary>
+        /// Maneja el evento Click del botón "Aceptar" lo que hace quye
+        /// se convoque al jugador segun lo escrito en los TextBox, utilizo
+        /// Regex para verificar que el nombre y el apellido no sean numero,
+        /// tambien utilizo un metodo creado Capitalize() (haciendo referencia a Python)
+        /// que hace de cualquier manera que pongas algo en los TextBox este siempre va a terminar
+        /// mostrandose con la primera letra mayuscula y las demas minuscula y por ultimo verifico que lo
+        /// puesto en los enum pertenezcan a ellos
+        /// </summary>
         private void btnAceptar_Click(object sender, EventArgs e)
         {
             string nombre = this.txtNombre.Text;
@@ -48,6 +77,15 @@ namespace FormSelecciones
             if (string.IsNullOrEmpty(apellido))
             {
                 MessageBox.Show("Por favor, ingrese un valor en el campo de apellido.");
+                return;
+            }
+
+            nombre = Capitalize(nombre);
+            apellido = Capitalize(apellido);
+
+            if (!EsTextoValido(nombre) || !EsTextoValido(apellido))
+            {
+                MessageBox.Show("El nombre y el apellido no deben contener números ni caracteres especiales.");
                 return;
             }
 
@@ -66,12 +104,15 @@ namespace FormSelecciones
             string paisInput = this.txtPais.Text;
             string posicionInput = this.txtPosicion.Text;
 
-            if (!EsPaisValido(paisInput))
+            paisInput = Capitalize(paisInput);
+            posicionInput = Capitalize(posicionInput);
+
+            if(!Enum.TryParse(paisInput, out EPaises pais))
             {
                 MessageBox.Show("Por favor, ingrese un país válido.");
                 return;
             }
-            EPaises pais = (EPaises)Enum.Parse(typeof(EPaises), paisInput);
+
 
             // Verificar si la posición ingresada es válida
             if (!Enum.TryParse(posicionInput, out EPosicion posicion))
@@ -81,17 +122,35 @@ namespace FormSelecciones
             }
 
             NuevoJugador = new Jugador(edad, nombre, apellido, pais, dorsal, posicion);
- 
 
-            this.DialogResult |= DialogResult.OK;
+            this.DialogResult = DialogResult.OK; // Configura el resultado del formulario
+
+            // Cerrar el formulario
+            this.Close();
+
+
+            if (this.DialogResult == DialogResult.OK)
+            {
+                MessageBox.Show(NuevoJugador.Concentrarse());
+            }
 
 
         }
+
+        /// <summary>
+        /// Maneja el evento Click del botón "Cancelar".
+        /// </summary>
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
         }
 
+        #region Metodos
+        /// <summary>
+        /// Modifica los campos del formulario con los datos del jugador existente pero desabilitando
+        /// la edicion de algunos TextBox
+        /// </summary>
+        /// <param name="jug">El jugador a editar.</param>
         public void Modificador(Jugador jug)
         {
             this.txtApellido.Text = jug.apellido;
@@ -105,9 +164,31 @@ namespace FormSelecciones
             this.txtPais.Enabled = false;
         }
 
-        private bool EsPaisValido(string inputPais)
+        /// <summary>
+        /// Verifica si el texto contiene solo caracteres alfabéticos.
+        /// </summary>
+        /// <param name="texto">El texto a verificar.</param>
+        /// <returns><c>true</c> si el texto contiene solo caracteres alfabéticos; de lo contrario, <c>false</c>.</returns>
+        private bool EsTextoValido(string texto)
         {
-            return Enum.IsDefined(typeof(EPaises), inputPais);
+            return System.Text.RegularExpressions.Regex.IsMatch(texto, @"^[a-zA-Z]+$");
         }
+
+        /// <summary>
+        /// Convierte la primera letra del texto en mayúscula y el resto en minúscula.
+        /// </summary>
+        /// <param name="input">El texto de entrada.</param>
+        /// <returns>El texto con la primera letra en mayúscula y el resto en minúscula.</returns>
+        private string Capitalize(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+            {
+                return input;
+            }
+
+            // Convierte el primer carácter a mayúscula y el resto a minúscula
+            return char.ToUpper(input[0]) + input.Substring(1).ToLower();
+        }
+        #endregion
     }
 }
