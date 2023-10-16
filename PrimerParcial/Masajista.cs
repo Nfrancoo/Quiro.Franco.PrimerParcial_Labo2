@@ -1,25 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace PrimerParcial
 {
     public class Masajista : PersonalEquipoSeleccion
     {
-        protected List<PersonalEquipoSeleccion> masajistas;
         private string lugarDeTituloDeEstudio;
-      
-        public Masajista(int edad, string nombre, string apellido, EPaises pais, string lugarDeTituloDeEstudio)
-            : base(edad, nombre, apellido, pais)
+
+
+        [JsonConstructor]
+        public Masajista()
         {
-            this.lugarDeTituloDeEstudio = lugarDeTituloDeEstudio;
-            this.masajistas = new List<PersonalEquipoSeleccion>();
+            // Constructor sin parámetros necesario para la deserialización
         }
 
-        public PersonalEquipoSeleccion Equipo { get; set; }
+        public Masajista(int edad, string nombre, string apellido, EPaises pais, string lugarDeTituloDeEstudio) : base(edad, nombre, apellido, pais)
+        {
+            this.lugarDeTituloDeEstudio = lugarDeTituloDeEstudio;
+        }
 
         public string Nombre
         {
@@ -40,6 +38,7 @@ namespace PrimerParcial
             set { this.edad = value; }
         }
 
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public EPaises Pais
         {
             get { return this.paises; }
@@ -50,12 +49,12 @@ namespace PrimerParcial
         public string CertificadoMasaje
         {
             get { return lugarDeTituloDeEstudio; }
-            set { lugarDeTituloDeEstudio = value; }
+            set { this.lugarDeTituloDeEstudio = value; }
         }
 
         public override void RealizarAccion()
         {
-            Console.WriteLine($"{this.nombre} {this.apellido} esta masajeando a los jugadores.");
+            Console.WriteLine($"{this.nombre} {this.apellido} está masajeando a los jugadores.");
         }
 
         public override string Concentrarse()
@@ -70,13 +69,7 @@ namespace PrimerParcial
 
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
-            sb.Append($"Nombre: {this.nombre}, Apellido: {this.apellido}, Edad: {this.edad}, País: {this.paises}, Facultadad donde estudio: {this.lugarDeTituloDeEstudio}");
-            foreach (Jugador jugadores in this.masajistas)
-            {
-                sb.AppendLine(jugadores.ToString());
-            }
-            return sb.ToString();
+            return $"Nombre: {this.nombre}, Apellido: {this.apellido}, Edad: {this.edad}, País: {this.paises}, Facultadad donde estudio: {this.lugarDeTituloDeEstudio}";
         }
     }
 }

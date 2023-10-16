@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text;
-
+using System.Text.Json.Serialization;
 
 namespace PrimerParcial
 {
@@ -35,22 +35,26 @@ namespace PrimerParcial
             set { this.edad = value; }
         }
 
-        public EPaises Pais
+        [JsonConverter(typeof(JsonStringEnumConverter))]
+        public EPaises Pais 
         {
-            get { return this.paises; }
-            set { this.paises = value;}
+            get {return this.paises; }
+            set {this.paises = value; } 
         }
+        
         public int Dorsal
         {
             get { return this.dorsal; }
             set { this.dorsal = value; }
         }
 
+        [JsonConverter(typeof(JsonStringEnumConverter))]
         public EPosicion Posicion
         {
             get { return this.posicion; }
             set { this.posicion = value; }
         }
+
 
         public override string ToString()
         {
