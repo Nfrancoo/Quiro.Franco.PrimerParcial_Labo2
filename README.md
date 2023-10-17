@@ -12,10 +12,10 @@ Terminando, todavia soy una persona muy pobre en esto de la programacion pero co
 ## Resumen - Como funciona la app
 Esta aplicación sirve como una herramienta para gestionar la información del personal de las distintas selecciones de fútbol. Permite agregar, eliminar y modificar jugadores, entrenadores y masajistas, organizándolos por país a través de un Enum de países. En resumen, esta aplicación actúa como una base de datos centralizada para el personal de las selecciones nacionales, simplificando el proceso de convocatoria y gestión de equipos.
 
-## Digrama de clases
+## Digrama de clases:
 
 ![Alt text](<Captura de pantalla 2023-10-16 222544.png>)
 
-## Diseño principal de mi Form
+## Diseño principal de mi Form:
 
 ![Alt text](<Captura de pantalla 2023-10-16 222841.png>)
