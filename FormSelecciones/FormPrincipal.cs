@@ -41,6 +41,10 @@ namespace FormSelecciones
         private List<Masajista> masajeadoresAlemania = new List<Masajista>();
         private List<Masajista> masajeadoresFrancia = new List<Masajista>();
 
+
+        Equipo equipoArgentina = new Equipo();
+        Equipo equipoBrasil = new Equipo();
+
         private Usuario usuarioLog;
 
         /// <summary>
@@ -148,24 +152,19 @@ namespace FormSelecciones
                     switch (jugador.Pais)
                     {
                         case EPaises.Brasil:
-                            jugadoresBrasil.Add(jugador);
-                            lstBrasil.Items.Add(jugador);
+                            Añadir(jugadoresBrasil, jugador, lstBrasil);
                             break;
                         case EPaises.Argentina:
-                            jugadoresArgentina.Add(jugador);
-                            lstArgentina.Items.Add(jugador);
+                            Añadir(jugadoresArgentina, jugador, lstArgentina);
                             break;
                         case EPaises.Italia:
-                            jugadoresItalia.Add(jugador);
-                            lstItalia.Items.Add(jugador);
+                            Añadir(jugadoresItalia, jugador, lstItalia);
                             break;
                         case EPaises.Alemania:
-                            jugadoresAlemania.Add(jugador);
-                            lstAlemania.Items.Add(jugador);
+                            Añadir(jugadoresAlemania, jugador, lstAlemania);
                             break;
                         case EPaises.Francia:
-                            jugadoresFrancia.Add(jugador);
-                            lstFrancia.Items.Add(jugador);
+                            Añadir(jugadoresFrancia, jugador, lstFrancia);
                             break;
                     }
                 }
@@ -195,24 +194,19 @@ namespace FormSelecciones
                     switch (masajista.Pais)
                     {
                         case EPaises.Brasil:
-                            masajeadoresBrasil.Add(masajista);
-                            lstBrasilMasajeador.Items.Add(masajista);
+                            Añadir(masajeadoresFrancia, masajista, lstFranciaMasajeador);
                             break;
                         case EPaises.Argentina:
-                            masajeadoresArgentina.Add(masajista);
-                            lstArgentinaMasajeador.Items.Add(masajista);
+                            Añadir(masajeadoresArgentina, masajista, lstArgentinaMasajeador);
                             break;
                         case EPaises.Italia:
-                            masajeadoresItalia.Add(masajista);
-                            lstItaliaMasajeador.Items.Add(masajista);
+                            Añadir(masajeadoresItalia, masajista, lstItaliaMasajeador);
                             break;
                         case EPaises.Alemania:
-                            masajeadoresAlemania.Add(masajista);
-                            lstAlemaniaMasajeador.Items.Add(masajista);
+                            Añadir(masajeadoresAlemania, masajista, lstAlemaniaMasajeador);
                             break;
                         case EPaises.Francia:
-                            masajeadoresFrancia.Add(masajista);
-                            lstFranciaMasajeador.Items.Add(masajista);
+                            Añadir(masajeadoresFrancia, masajista, lstFranciaMasajeador);
                             break;
                     }
                 }
@@ -706,8 +700,7 @@ namespace FormSelecciones
             }
             else
             {
-                lista.Add(entrenador);
-                lst.Items.Add(entrenador);
+                Añadir(lista, entrenador, lst);
             }
         }
         #endregion
@@ -1122,6 +1115,56 @@ namespace FormSelecciones
             }
         }
         #endregion
-       
+
+        #region Añadir
+        public void Añadir(List<Jugador> lista, Jugador personal, ListBox lst)
+        {
+            bool jugadorRepetido = lista.Any(j => j.Equals(personal));
+            if (jugadorRepetido)
+            {
+                // Aquí puedes mostrar un mensaje de error o tomar alguna otra acción.
+                MessageBox.Show("El jugador ya existe en la lista.");
+            }
+            else
+            {
+                // Si el jugador no existe en la lista, agrégalo.
+                lista.Add(personal);
+                lst.Items.Add(personal);
+            }
+        }
+
+        public void Añadir(List<Entrenador> lista, Entrenador personal, ListBox lst)
+        {
+            bool jugadorRepetido = lista.Any(j => j.Equals(personal));
+            if (jugadorRepetido)
+            {
+                // Aquí puedes mostrar un mensaje de error o tomar alguna otra acción.
+                MessageBox.Show("El jugador ya existe en la lista.");
+            }
+            else
+            {
+                // Si el jugador no existe en la lista, agrégalo.
+                lista.Add(personal);
+                lst.Items.Add(personal);
+            }
+        }
+
+        public void Añadir(List<Masajista> lista, Masajista personal, ListBox lst)
+        {
+            bool jugadorRepetido = lista.Any(j => j.Equals(personal));
+            if (jugadorRepetido)
+            {
+                // Aquí puedes mostrar un mensaje de error o tomar alguna otra acción.
+                MessageBox.Show("El jugador ya existe en la lista.");
+            }
+            else
+            {
+                // Si el jugador no existe en la lista, agrégalo.
+                lista.Add(personal);
+                lst.Items.Add(personal);
+            }
+        }
+        #endregion
+
     }
 }

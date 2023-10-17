@@ -11,6 +11,7 @@ namespace PrimerParcial
     {
         private int dorsal;
         private EPosicion posicion;
+        public Equipo jugador;
 
         /// <summary>
         /// Constructor que inicializa un jugador con su información básica.
@@ -20,6 +21,7 @@ namespace PrimerParcial
         {
             this.dorsal = dorsal;
             this.posicion = posicion;
+            this.jugador = new Equipo();
         }
 
         /// <summary>
@@ -107,6 +109,17 @@ namespace PrimerParcial
             return sb.ToString().Trim();
             //Console.WriteLine($"{this.nombre} {this.apellido} se está concentrando.");
         }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj is Jugador jugador)
+            {
+                // Compara los nombres y apellidos de los jugadores.
+                return this.Nombre == jugador.Nombre && this.Apellido == jugador.Apellido;
+            }
+            return false;
+        }
+
 
         public void Method()
         {

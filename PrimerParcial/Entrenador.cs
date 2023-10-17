@@ -102,5 +102,15 @@ namespace PrimerParcial
         {
             throw new System.NotImplementedException();
         }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj is Entrenador entre)
+            {
+                // Compara los nombres y apellidos de los jugadores.
+                return this.Nombre == entre.Nombre && this.Apellido == entre.Apellido;
+            }
+            return false;
+        }
     }
 }

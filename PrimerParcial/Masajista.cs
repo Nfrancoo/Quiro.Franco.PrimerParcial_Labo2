@@ -97,5 +97,15 @@ namespace PrimerParcial
         {
             throw new System.NotImplementedException();
         }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj is Masajista masajista)
+            {
+                // Compara los nombres y apellidos de los jugadores.
+                return this.Nombre == masajista.Nombre && this.Apellido == masajista.Apellido;
+            }
+            return false;
+        }
     }
 }
