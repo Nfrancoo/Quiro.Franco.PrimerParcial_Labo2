@@ -97,7 +97,12 @@ namespace PrimerParcial
             return retorno;
         }
 
-        
+        public void Method()
+        {
+            throw new System.NotImplementedException();
+        }
+
+
 
         //public static bool operator ==(GenteEquipoSeleccion a, GenteEquipoSeleccion b)
         //{

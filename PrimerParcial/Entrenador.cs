@@ -97,5 +97,10 @@ namespace PrimerParcial
             sb.Append($"Nombre: {this.nombre}, Apellido: {this.apellido}, Edad: {this.edad}, País: {this.paises}, Tactica a usar: {this.tactica}");
             return sb.ToString();
         }
+
+        public void Method()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

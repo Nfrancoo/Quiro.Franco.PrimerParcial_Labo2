@@ -92,5 +92,10 @@ namespace PrimerParcial
         {
             return $"Nombre: {this.nombre}, Apellido: {this.apellido}, Edad: {this.edad}, País: {this.paises}, Facultadad donde estudio: {this.lugarDeTituloDeEstudio}";
         }
+
+        public void Method()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

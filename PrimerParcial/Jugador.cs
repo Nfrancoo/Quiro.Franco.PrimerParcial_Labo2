@@ -107,5 +107,10 @@ namespace PrimerParcial
             return sb.ToString().Trim();
             //Console.WriteLine($"{this.nombre} {this.apellido} se está concentrando.");
         }
+
+        public void Method()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
