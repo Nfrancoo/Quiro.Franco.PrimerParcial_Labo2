@@ -77,7 +77,7 @@ namespace PrimerParcial
         /// </summary>
         public override string Concentrarse()
         {
-            return $"{base.nombre} {base.apellido} se está concentrando.";
+            return $"{base.nombre} {base.apellido} se está concentrando con el equipo.";
         }
 
         //public override string Viajar()

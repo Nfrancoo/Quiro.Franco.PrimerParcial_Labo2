@@ -92,7 +92,7 @@ namespace FormSelecciones
 
             if (this.DialogResult == DialogResult.OK)
             {
-                MessageBox.Show(NuevoEntrenador.RealizarAccion());
+                MessageBox.Show(NuevoEntrenador.Concentrarse());
             }
         }
         private void btnCancelar_Click(object sender, EventArgs e)

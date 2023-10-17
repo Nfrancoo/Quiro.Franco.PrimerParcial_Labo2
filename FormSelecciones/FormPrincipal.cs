@@ -57,7 +57,7 @@ namespace FormSelecciones
             cmbPaises.DropDownStyle = ComboBoxStyle.DropDownList;
             this.BackColor = Color.LightCyan;
             ModificarColores(Color.LightBlue);
-            BordesBoton(FlatStyle.Flat, Color.LightSkyBlue, 2, btnConvocar, btnModificar, btnEliminar, btnOrdenar, btnGuardarManualmente);
+            BordesBoton(FlatStyle.Flat, Color.LightSkyBlue, 2, btnConvocar, btnModificar, btnEliminar, btnOrdenar, btnGuardarManualmente, btnAccion, btnMostrar);
             this.usuarioLog = usuario;
 
             if (usuario != null)
@@ -89,7 +89,7 @@ namespace FormSelecciones
 
             archivo.ShowDialog();
         }
-    
+
         /// <summary>
         /// Manejador de eventos al cargar el formulario.
         /// Carga datos de jugadores, entrenadores y masajistas.
@@ -361,6 +361,43 @@ namespace FormSelecciones
                         ModificarElemento(lstAlemania, jugadoresAlemania);
                         ModificarElemento(lstAlemaniaEntrenador, entrenadorAlemania);
                         ModificarElemento(lstAlemaniaMasajeador, masajeadoresAlemania);
+                        break;
+                }
+            }
+        }
+
+        private void btnAccion_Click(object sender, EventArgs e)
+        {
+            if (cmbPaises.SelectedItem != null)
+            {
+                EPaises paisSeleccionado = (EPaises)cmbPaises.SelectedItem;
+
+                switch (paisSeleccionado)
+                {
+                    case EPaises.Argentina:
+                        AccionJugador(lstArgentina);
+                        AccionEntrenador(lstArgentinaEntrenador);
+                        AccionMasajista(lstArgentinaMasajeador);
+                        break;
+                    case EPaises.Brasil:
+                        AccionJugador(lstBrasil);
+                        AccionEntrenador(lstBrasilEntrenador);
+                        AccionMasajista(lstBrasilMasajeador);
+                        break;
+                    case EPaises.Italia:
+                        AccionJugador(lstItalia);
+                        AccionEntrenador(lstItaliaEntrenador);
+                        AccionMasajista(lstItaliaMasajeador);
+                        break;
+                    case EPaises.Francia:
+                        AccionJugador(lstFrancia);
+                        AccionEntrenador(lstFranciaEntrenador);
+                        AccionMasajista(lstFranciaMasajeador); ;
+                        break;
+                    case EPaises.Alemania:
+                        AccionJugador(lstAlemania);
+                        AccionEntrenador(lstAlemaniaEntrenador);
+                        AccionMasajista(lstAlemaniaMasajeador);
                         break;
                 }
             }
@@ -654,6 +691,10 @@ namespace FormSelecciones
             btnConvocar.BackColor = colorin;
             btnEliminar.BackColor = colorin;
             btnModificar.BackColor = colorin;
+            btnOrdenar.BackColor = colorin;
+            btnGuardarManualmente.BackColor = colorin;
+            btnMostrar.BackColor = colorin;
+            btnAccion.BackColor = colorin;
         }
 
         /// <summary>
@@ -666,8 +707,10 @@ namespace FormSelecciones
         /// <param name="FrmCRUD2">Segundo botón a configurar</param>
         /// <param name="FrmCRUD3">Tercer botón a configurar</param>
         /// <param name="FrmCRUD4">Cuarto botón a configurar</param>
-        /// /// <param name="FrmCRUD5">Quinto botón a configurar</param>
-        private void BordesBoton(FlatStyle flat, Color colorin, int tamaño, Button FrmCRUD1, Button FrmCRUD2, Button FrmCRUD3, Button FrmCRUD4, Button FrmCRUD5)
+        /// <param name="FrmCRUD5">Quinto botón a configurar</param>
+        /// <param name="FrmCRUD6">Sexto botón a configurar</param>
+        /// <param name="FrmCRUD7">Septimo botón a configurar</param>
+        private void BordesBoton(FlatStyle flat, Color colorin, int tamaño, Button FrmCRUD1, Button FrmCRUD2, Button FrmCRUD3, Button FrmCRUD4, Button FrmCRUD5, Button FrmCRUD6, Button FrmCRUD7)
         {
             FrmCRUD1.FlatStyle = flat;
             FrmCRUD1.FlatAppearance.BorderColor = colorin; // Color del borde
@@ -684,6 +727,12 @@ namespace FormSelecciones
             FrmCRUD5.FlatStyle = flat;
             FrmCRUD5.FlatAppearance.BorderColor = colorin;
             FrmCRUD5.FlatAppearance.BorderSize = tamaño;
+            FrmCRUD6.FlatStyle = flat;
+            FrmCRUD6.FlatAppearance.BorderColor = colorin;
+            FrmCRUD6.FlatAppearance.BorderSize = tamaño;
+            FrmCRUD7.FlatStyle = flat;
+            FrmCRUD7.FlatAppearance.BorderColor = colorin;
+            FrmCRUD7.FlatAppearance.BorderSize = tamaño;
         }
 
         /// <summary>
@@ -1166,5 +1215,53 @@ namespace FormSelecciones
         }
         #endregion
 
+        #region
+        private void AccionJugador(ListBox listBox)
+        {
+            if (listBox.SelectedIndex != -1)
+            {
+                // Verifica si el objeto seleccionado es de tipo Jugador.
+                if (listBox.SelectedItem is Jugador jugador)
+                {
+                    // Llama al método RealizarAccion del jugador seleccionado.
+                    string accion = jugador.RealizarAccion();
+
+                    // Puedes mostrar la acción en un MessageBox o en otro lugar según tus necesidades.
+                    MessageBox.Show(accion, "Acción del Jugador", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }                
+            }
+        }
+        private void AccionEntrenador(ListBox listBox)
+        {
+            if (listBox.SelectedIndex != -1)
+            {
+                // Verifica si el objeto seleccionado es de tipo Jugador.
+                if (listBox.SelectedItem is Entrenador entrenador)
+                {
+                    // Llama al método RealizarAccion del jugador seleccionado.
+                    string accion = entrenador.RealizarAccion();
+
+                    // Puedes mostrar la acción en un MessageBox o en otro lugar según tus necesidades.
+                    MessageBox.Show(accion, "Acción del Jugador", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+        private void AccionMasajista(ListBox listBox)
+        {
+            if (listBox.SelectedIndex != -1)
+            {
+                // Verifica si el objeto seleccionado es de tipo Jugador.
+                if (listBox.SelectedItem is Masajista masajista)
+                {
+                    // Llama al método RealizarAccion del jugador seleccionado.
+                    string accion = masajista.RealizarAccion();
+
+                    // Puedes mostrar la acción en un MessageBox o en otro lugar según tus necesidades.
+                    MessageBox.Show(accion, "Acción del Jugador", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+        }
+
+        #endregion
     }
 }

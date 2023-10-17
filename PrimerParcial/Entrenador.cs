@@ -85,7 +85,7 @@ namespace PrimerParcial
         /// </summary>
         public override string RealizarAccion()
         {
-            return $"{this.nombre} {this.apellido} esta revisando las tacticas y la que tiene pensado usar es {this.tactica}.";
+            return $"{this.nombre} {this.apellido} esta preparando al equipo para salir con la tactica: {this.tactica}.";
         }
 
         /// <summary>

@@ -71,8 +71,10 @@
             label9 = new Label();
             groupBox2 = new GroupBox();
             groupBox3 = new GroupBox();
-            button1 = new Button();
+            btnMostrar = new Button();
             groupBox4 = new GroupBox();
+            groupBox5 = new GroupBox();
+            btnAccion = new Button();
             ((System.ComponentModel.ISupportInitialize)pctArgentina).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pctItalia).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pctBrasil).BeginInit();
@@ -82,6 +84,7 @@
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
             groupBox4.SuspendLayout();
+            groupBox5.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -509,21 +512,21 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "Guardar json manualmente";
             // 
-            // button1
+            // btnMostrar
             // 
-            button1.Font = new Font("Sylfaen", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            button1.ForeColor = SystemColors.ActiveCaptionText;
-            button1.Location = new Point(14, 22);
-            button1.Name = "button1";
-            button1.Size = new Size(152, 58);
-            button1.TabIndex = 34;
-            button1.Text = "Mostrar";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            btnMostrar.Font = new Font("Sylfaen", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnMostrar.ForeColor = SystemColors.ActiveCaptionText;
+            btnMostrar.Location = new Point(14, 22);
+            btnMostrar.Name = "btnMostrar";
+            btnMostrar.Size = new Size(152, 58);
+            btnMostrar.TabIndex = 34;
+            btnMostrar.Text = "Mostrar";
+            btnMostrar.UseVisualStyleBackColor = true;
+            btnMostrar.Click += button1_Click;
             // 
             // groupBox4
             // 
-            groupBox4.Controls.Add(button1);
+            groupBox4.Controls.Add(btnMostrar);
             groupBox4.Location = new Point(893, 219);
             groupBox4.Name = "groupBox4";
             groupBox4.Size = new Size(178, 100);
@@ -531,11 +534,34 @@
             groupBox4.TabStop = false;
             groupBox4.Text = "Registro de usuarios";
             // 
+            // groupBox5
+            // 
+            groupBox5.Controls.Add(btnAccion);
+            groupBox5.Location = new Point(893, 358);
+            groupBox5.Name = "groupBox5";
+            groupBox5.Size = new Size(178, 100);
+            groupBox5.TabIndex = 43;
+            groupBox5.TabStop = false;
+            groupBox5.Text = "Realizar accion";
+            // 
+            // btnAccion
+            // 
+            btnAccion.Font = new Font("Sylfaen", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnAccion.ForeColor = SystemColors.ActiveCaptionText;
+            btnAccion.Location = new Point(14, 22);
+            btnAccion.Name = "btnAccion";
+            btnAccion.Size = new Size(152, 58);
+            btnAccion.TabIndex = 34;
+            btnAccion.Text = "Accion";
+            btnAccion.UseVisualStyleBackColor = true;
+            btnAccion.Click += btnAccion_Click;
+            // 
             // FormPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1083, 615);
+            Controls.Add(groupBox5);
             Controls.Add(groupBox4);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
@@ -581,6 +607,7 @@
             groupBox2.PerformLayout();
             groupBox3.ResumeLayout(false);
             groupBox4.ResumeLayout(false);
+            groupBox5.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -629,7 +656,9 @@
         private Label label9;
         private GroupBox groupBox2;
         private GroupBox groupBox3;
-        private Button button1;
+        private Button btnMostrar;
         private GroupBox groupBox4;
+        private GroupBox groupBox5;
+        private Button btnAccion;
     }
 }
