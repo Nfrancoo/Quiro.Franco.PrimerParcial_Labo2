@@ -71,15 +71,6 @@ namespace PrimerParcial
             return $"{base.nombre} {base.apellido} se está concentrando con el equipo.";
         }
 
-        ///// <summary>
-        ///// Método que describe la acción de viajar del entrenador con el equipo.
-        ///// </summary>
-        //public override string Viajar()
-        //{
-        //    return $"{base.nombre} {base.apellido} está viajando con el equipo.";
-        //}
-
-
         /// <summary>
         /// Método que describe la acción que realiza el entrenador.
         /// </summary>
@@ -96,11 +87,6 @@ namespace PrimerParcial
             StringBuilder sb = new StringBuilder();
             sb.Append($"Nombre: {this.nombre}, Apellido: {this.apellido}, Edad: {this.edad}, País: {this.paises}, Tactica a usar: {this.tactica}");
             return sb.ToString();
-        }
-
-        public void Method()
-        {
-            throw new System.NotImplementedException();
         }
 
         public override bool Equals(object? obj)

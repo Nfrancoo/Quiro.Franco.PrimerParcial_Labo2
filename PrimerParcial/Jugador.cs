@@ -120,10 +120,5 @@ namespace PrimerParcial
             return false;
         }
 
-
-        public void Method()
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

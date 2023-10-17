@@ -80,22 +80,12 @@ namespace PrimerParcial
             return $"{base.nombre} {base.apellido} se está concentrando con el equipo.";
         }
 
-        //public override string Viajar()
-        //{
-        //    return $"{base.nombre} {base.apellido} está viajando con el equipo.";
-        //}
-
         /// <summary>
         /// Método que devuelve una representación en cadena del masajista.
         /// </summary>
         public override string ToString()
         {
             return $"Nombre: {this.nombre}, Apellido: {this.apellido}, Edad: {this.edad}, País: {this.paises}, Facultadad donde estudio: {this.lugarDeTituloDeEstudio}";
-        }
-
-        public void Method()
-        {
-            throw new System.NotImplementedException();
         }
 
         public override bool Equals(object? obj)
