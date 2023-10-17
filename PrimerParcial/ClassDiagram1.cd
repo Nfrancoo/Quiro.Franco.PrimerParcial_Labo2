@@ -10,16 +10,6 @@
       <FileName>PersonalEquipoSeleccion.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="PrimerParcial.Jugador">
-    <Position X="7.75" Y="4.75" Width="1.5" />
-    <Members>
-      <Method Name="Method" Hidden="true" />
-    </Members>
-    <TypeIdentifier>
-      <HashCode>AACAAAAAgAQAAIAEAAAggAAAAAAAAgAQAAQAAAAEAAA=</HashCode>
-      <FileName>Jugador.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="PrimerParcial.Masajista">
     <Position X="10.5" Y="4.75" Width="1.5" />
     <Members>
@@ -44,6 +34,16 @@
     <TypeIdentifier>
       <HashCode>AACAAAAAAAQAAAAEAAAggAAAAAAAAgAQAAAACAAAAAg=</HashCode>
       <FileName>Entrenador.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="PrimerParcial.Jugador">
+    <Position X="8.25" Y="4.75" Width="1.5" />
+    <Members>
+      <Method Name="Method" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AACAAAAAgAQAAIAEAAAggAAAAAAAAgAQAAQAAAAEAAA=</HashCode>
+      <FileName>Jugador.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />
