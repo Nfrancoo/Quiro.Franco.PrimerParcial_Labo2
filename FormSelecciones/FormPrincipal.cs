@@ -41,10 +41,6 @@ namespace FormSelecciones
         private List<Masajista> masajeadoresAlemania = new List<Masajista>();
         private List<Masajista> masajeadoresFrancia = new List<Masajista>();
 
-
-        Equipo equipoArgentina = new Equipo();
-        Equipo equipoBrasil = new Equipo();
-
         private Usuario usuarioLog;
 
         /// <summary>
