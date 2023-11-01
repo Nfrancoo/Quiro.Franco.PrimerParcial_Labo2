@@ -574,8 +574,15 @@ namespace FormSelecciones
             }
         }
 
+        /// <summary>
+        /// metodo en el que el usuario puede guardar manualmente los archivos json, lo que si cuando se cierra el program
+        /// de igual manera se va a guardar manualmente
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="path"></param>
+        /// <param name="lista"></param>
         #region Serializacion Manual
-        public void SerializarManual(string path, List<Jugador> lista)
+        public void SerializarManual<T>(string path, List<T> lista)
         {
             try
             {
@@ -602,63 +609,6 @@ namespace FormSelecciones
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        public void SerializarManual(string path, List<Entrenador> lista)
-        {
-            try
-            {
-                string nombreArchivo = path;
-
-                SaveFileDialog guardar = new SaveFileDialog();
-
-                guardar.FileName = nombreArchivo;
-
-                if (guardar.ShowDialog() == DialogResult.OK)
-                {
-                    using (StreamWriter sw = new StreamWriter(guardar.FileName))
-                    {
-                        JsonSerializerOptions opciones = new JsonSerializerOptions();
-                        opciones.WriteIndented = true;
-
-                        string objJson = System.Text.Json.JsonSerializer.Serialize(lista, opciones);
-                        sw.WriteLine(objJson);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        public void SerializarManual(string path, List<Masajista> lista)
-        {
-            try
-            {
-                string nombreArchivo = path;
-
-                SaveFileDialog guardar = new SaveFileDialog();
-
-                guardar.FileName = nombreArchivo;
-
-                if (guardar.ShowDialog() == DialogResult.OK)
-                {
-                    using (StreamWriter sw = new StreamWriter(guardar.FileName))
-                    {
-                        JsonSerializerOptions opciones = new JsonSerializerOptions();
-                        opciones.WriteIndented = true;
-
-                        string objJson = System.Text.Json.JsonSerializer.Serialize(lista, opciones);
-                        sw.WriteLine(objJson);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         #endregion
 
         #region metodos
@@ -903,39 +853,12 @@ namespace FormSelecciones
         /// </summary>
         /// <param name="path">Ruta del archivo JSON</param>
         /// <param name="listJugador">Lista de jugadores a serializar</param>
-        public void Serializar(string path, List<Jugador> listJugador)
+        public void Serializar<T>(string path, List<T> lista)
         {
             JsonSerializerOptions serializador = new JsonSerializerOptions();
             serializador.WriteIndented = true;
 
-            string objJson = System.Text.Json.JsonSerializer.Serialize(listJugador, serializador);
-
-            using (StreamWriter sw = new StreamWriter(path))
-            {
-                sw.WriteLine(objJson);
-            }
-        }
-
-
-        public void Serializar(string path, List<Entrenador> listEntrenador)
-        {
-            JsonSerializerOptions serializador = new JsonSerializerOptions();
-            serializador.WriteIndented = true;
-
-            string objJson = System.Text.Json.JsonSerializer.Serialize(listEntrenador, serializador);
-
-            using (StreamWriter sw = new StreamWriter(path))
-            {
-                sw.WriteLine(objJson);
-            }
-        }
-
-        public void Serializar(string path, List<Masajista> listMasajista)
-        {
-            JsonSerializerOptions serializador = new JsonSerializerOptions();
-            serializador.WriteIndented = true;
-
-            string objJson = System.Text.Json.JsonSerializer.Serialize(listMasajista, serializador);
+            string objJson = System.Text.Json.JsonSerializer.Serialize(lista, serializador);
 
             using (StreamWriter sw = new StreamWriter(path))
             {
@@ -949,7 +872,7 @@ namespace FormSelecciones
         /// </summary>
         /// <param name="path">Ruta del archivo JSON</param>
         /// <param name="listJugadores">Referencia a la lista de jugadores donde se almacenarán los datos deserializados</param>
-        public void Deserializar(string path, ref List<Jugador> listJugadores)
+        public void Deserializar<T>(string path, ref List<T> lista)
         {
             if (File.Exists(path))
             {
@@ -957,33 +880,7 @@ namespace FormSelecciones
                 {
                     string jsonString = sr.ReadToEnd();
 
-                    // Deserializa en una lista de objetos Jugador
-                    listJugadores = System.Text.Json.JsonSerializer.Deserialize<List<Jugador>>(jsonString);
-                }
-            }
-        }
-        public void Deserializar(string path, ref List<Entrenador> listEntrenador)
-        {
-            if (File.Exists(path))
-            {
-                using (StreamReader sr = new StreamReader(path))
-                {
-                    string jsonString = sr.ReadToEnd();
-
-                    listEntrenador = System.Text.Json.JsonSerializer.Deserialize<List<Entrenador>>(jsonString);
-                }
-            }
-        }
-
-        public void Deserializar(string path, ref List<Masajista> listMasajista)
-        {
-            if (File.Exists(path))
-            {
-                using (StreamReader sr = new StreamReader(path))
-                {
-                    string jsonString = sr.ReadToEnd();
-
-                    listMasajista = System.Text.Json.JsonSerializer.Deserialize<List<Masajista>>(jsonString);
+                    lista = System.Text.Json.JsonSerializer.Deserialize<List<T>>(jsonString);
                 }
             }
         }
@@ -993,31 +890,14 @@ namespace FormSelecciones
         /// </summary>
         /// <param name="listJugador">Lista de jugadores</param>
         /// <param name="lst">ListBox que se actualizará</param>
-        private void ActualizarVisor(List<Jugador> listJugador, ListBox lst)
+        private void ActualizarVisor<T>(List<T> lista, ListBox lst)
         {
             lst.Items.Clear();
-            foreach (Jugador jugadores in listJugador)
+            foreach (T item in lista)
             {
-                lst.Items.Add(jugadores);
+                lst.Items.Add(item);
             }
         }
-        private void ActualizarVisor(List<Entrenador> listEntrenador, ListBox lst)
-        {
-            lst.Items.Clear();
-            foreach (Entrenador entrenador in listEntrenador)
-            {
-                lst.Items.Add(entrenador);
-            }
-        }
-        private void ActualizarVisor(List<Masajista> listMasajista, ListBox lst)
-        {
-            lst.Items.Clear();
-            foreach (Masajista masajista in listMasajista)
-            {
-                lst.Items.Add(masajista);
-            }
-        }
-
         #endregion
 
         #region Metodos para Ordenar
@@ -1030,48 +910,18 @@ namespace FormSelecciones
         /// </summary>
         /// <param name="lst">ListBox que se actualizará con la lista ordenada</param>
         /// <param name="lista">Lista de jugadores que se ordenará</param>
-        public void OrdenarEdadAs(ListBox lst, List<Jugador> lista)
+        public void OrdenarEdadAs<T>(ListBox lst, List<T> lista) where T : IComparable
         {
-
             if (rdoAscendenteEdad.Checked)
             {
-                lista.Sort((j1, j2) => j1.Edad.CompareTo(j2.Edad));
-            }
-            lst.Items.Clear();
-
-            foreach (var jugador in lista)
-            {
-                lst.Items.Add(jugador);
-            }
-        }
-        public void OrdenarEdadAs(ListBox lst, List<Entrenador> lista)
-        {
-
-            if (rdoAscendenteEdad.Checked)
-            {
-                lista.Sort((j1, j2) => j1.Edad.CompareTo(j2.Edad));
+                lista.Sort((obj1, obj2) => obj1.Edad.CompareTo(obj2.Edad));
             }
 
             lst.Items.Clear();
 
-            foreach (var jugador in lista)
+            foreach (var item in lista)
             {
-                lst.Items.Add(jugador);
-            }
-        }
-        public void OrdenarEdadAs(ListBox lst, List<Masajista> lista)
-        {
-
-            if (rdoAscendenteEdad.Checked)
-            {
-                lista.Sort((j1, j2) => j1.Edad.CompareTo(j2.Edad));
-            }
-
-            lst.Items.Clear();
-
-            foreach (var jugador in lista)
-            {
-                lst.Items.Add(jugador);
+                lst.Items.Add(item);
             }
         }
 
@@ -1162,49 +1012,18 @@ namespace FormSelecciones
         #endregion
 
         #region Añadir
-        public void Añadir(List<Jugador> lista, Jugador personal, ListBox lst)
+        public void Añadir<T>(List<T> lista, T personal, ListBox lst) where T : IComparable
         {
-            bool jugadorRepetido = lista.Any(j => j.Equals(personal));
-            if (jugadorRepetido)
-            {
-                // Aquí puedes mostrar un mensaje de error o tomar alguna otra acción.
-                MessageBox.Show("El jugador ya existe en la lista.");
-            }
-            else
-            {
-                // Si el jugador no existe en la lista, agrégalo.
-                lista.Add(personal);
-                lst.Items.Add(personal);
-            }
-        }
+            bool elementoRepetido = lista.Contains(personal);
 
-        public void Añadir(List<Entrenador> lista, Entrenador personal, ListBox lst)
-        {
-            bool jugadorRepetido = lista.Any(j => j.Equals(personal));
-            if (jugadorRepetido)
+            if (elementoRepetido)
             {
                 // Aquí puedes mostrar un mensaje de error o tomar alguna otra acción.
-                MessageBox.Show("El jugador ya existe en la lista.");
+                MessageBox.Show("El elemento ya existe en la lista.");
             }
             else
             {
-                // Si el jugador no existe en la lista, agrégalo.
-                lista.Add(personal);
-                lst.Items.Add(personal);
-            }
-        }
-
-        public void Añadir(List<Masajista> lista, Masajista personal, ListBox lst)
-        {
-            bool jugadorRepetido = lista.Any(j => j.Equals(personal));
-            if (jugadorRepetido)
-            {
-                // Aquí puedes mostrar un mensaje de error o tomar alguna otra acción.
-                MessageBox.Show("El jugador ya existe en la lista.");
-            }
-            else
-            {
-                // Si el jugador no existe en la lista, agrégalo.
+                // Si el elemento no existe en la lista, agrégalo.
                 lista.Add(personal);
                 lst.Items.Add(personal);
             }
@@ -1238,7 +1057,7 @@ namespace FormSelecciones
                     string accion = entrenador.RealizarAccion();
 
                     // Puedes mostrar la acción en un MessageBox o en otro lugar según tus necesidades.
-                    MessageBox.Show(accion, "Acción del Jugador", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(accion, "Acción del Entrenador", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -1253,7 +1072,7 @@ namespace FormSelecciones
                     string accion = masajista.RealizarAccion();
 
                     // Puedes mostrar la acción en un MessageBox o en otro lugar según tus necesidades.
-                    MessageBox.Show(accion, "Acción del Jugador", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(accion, "Acción del Msajeador", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }

@@ -97,5 +97,15 @@ namespace PrimerParcial
             }
             return false;
         }
+
+
+        public static List<Masajista> operator +(List<Masajista> lista, Masajista entrenador)
+        {
+            if (!lista.Contains(entrenador))
+            {
+                lista.Add(entrenador);
+            }
+            return lista;
+        }
     }
 }

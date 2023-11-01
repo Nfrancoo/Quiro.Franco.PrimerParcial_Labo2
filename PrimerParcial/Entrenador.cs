@@ -98,5 +98,15 @@ namespace PrimerParcial
             }
             return false;
         }
+
+
+        public static List<Entrenador> operator +(List<Entrenador> lista, Entrenador entrenador)
+        {
+            if (!lista.Contains(entrenador))
+            {
+                lista.Add(entrenador);
+            }
+            return lista;
+        }
     }
 }
