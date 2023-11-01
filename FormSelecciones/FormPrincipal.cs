@@ -910,18 +910,48 @@ namespace FormSelecciones
         /// </summary>
         /// <param name="lst">ListBox que se actualizará con la lista ordenada</param>
         /// <param name="lista">Lista de jugadores que se ordenará</param>
-        public void OrdenarEdadAs<T>(ListBox lst, List<T> lista) where T : IComparable
+        public void OrdenarEdadAs(ListBox lst, List<Jugador> lista)
         {
+
             if (rdoAscendenteEdad.Checked)
             {
-                lista.Sort((obj1, obj2) => obj1.Edad.CompareTo(obj2.Edad));
+                lista.Sort((j1, j2) => j1.Edad.CompareTo(j2.Edad));
+            }
+            lst.Items.Clear();
+
+            foreach (var jugador in lista)
+            {
+                lst.Items.Add(jugador);
+            }
+        }
+        public void OrdenarEdadAs(ListBox lst, List<Entrenador> lista)
+        {
+
+            if (rdoAscendenteEdad.Checked)
+            {
+                lista.Sort((j1, j2) => j1.Edad.CompareTo(j2.Edad));
             }
 
             lst.Items.Clear();
 
-            foreach (var item in lista)
+            foreach (var jugador in lista)
             {
-                lst.Items.Add(item);
+                lst.Items.Add(jugador);
+            }
+        }
+        public void OrdenarEdadAs(ListBox lst, List<Masajista> lista)
+        {
+
+            if (rdoAscendenteEdad.Checked)
+            {
+                lista.Sort((j1, j2) => j1.Edad.CompareTo(j2.Edad));
+            }
+
+            lst.Items.Clear();
+
+            foreach (var jugador in lista)
+            {
+                lst.Items.Add(jugador);
             }
         }
 
@@ -1012,19 +1042,51 @@ namespace FormSelecciones
         #endregion
 
         #region Añadir
-        public void Añadir<T>(List<T> lista, T personal, ListBox lst) where T : IComparable
+        public void Añadir(List<Jugador> lista, Jugador personal, ListBox lst)
         {
-            bool elementoRepetido = lista.Contains(personal);
-
-            if (elementoRepetido)
+            bool jugadorRepetido = lista.Any(j => j.Equals(personal));
+            if (jugadorRepetido)
             {
                 // Aquí puedes mostrar un mensaje de error o tomar alguna otra acción.
-                MessageBox.Show("El elemento ya existe en la lista.");
+                MessageBox.Show("El jugador ya existe en la lista.");
             }
             else
             {
-                // Si el elemento no existe en la lista, agrégalo.
-                lista.Add(personal);
+                // Si el jugador no existe en la lista, agrégalo.
+                lista = lista + personal;
+                lst.Items.Add(personal);
+            }
+        }
+
+        public void Añadir(List<Entrenador> lista, Entrenador personal, ListBox lst)
+        {
+            //metodo para añadir jugador a la lista y a la listaBox
+            bool jugadorRepetido = lista.Any(j => j.Equals(personal));
+            if (jugadorRepetido)
+            {
+                // Aquí puedes mostrar un mensaje de error o tomar alguna otra acción.
+                MessageBox.Show("El jugador ya existe en la lista.");
+            }
+            else
+            {
+                // Si el jugador no existe en la lista, agrégalo.
+                lista = lista + personal;
+                lst.Items.Add(personal);
+            }
+        }
+
+        public void Añadir(List<Masajista> lista, Masajista personal, ListBox lst)
+        {
+            bool jugadorRepetido = lista.Any(j => j.Equals(personal));
+            if (jugadorRepetido)
+            {
+                // Aquí puedes mostrar un mensaje de error o tomar alguna otra acción.
+                MessageBox.Show("El jugador ya existe en la lista.");
+            }
+            else
+            {
+                // Si el jugador no existe en la lista, agrégalo.
+                lista = lista + personal;
                 lst.Items.Add(personal);
             }
         }
@@ -1072,7 +1134,7 @@ namespace FormSelecciones
                     string accion = masajista.RealizarAccion();
 
                     // Puedes mostrar la acción en un MessageBox o en otro lugar según tus necesidades.
-                    MessageBox.Show(accion, "Acción del Msajeador", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(accion, "Acción del Masajeador", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
