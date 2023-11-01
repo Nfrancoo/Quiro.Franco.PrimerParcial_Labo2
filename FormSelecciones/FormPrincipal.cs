@@ -274,7 +274,7 @@ namespace FormSelecciones
             Serializar("MasajistaFrancia.json", masajeadoresFrancia);
             Serializar("MasajistaAlemania.json", masajeadoresAlemania);
 
-
+            MessageBox.Show("Se acaban de guardar todos los datos automaticamente", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         /// <summary>
