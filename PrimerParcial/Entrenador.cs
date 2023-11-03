@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,31 +23,6 @@ namespace PrimerParcial
             this.tactica = tactica;
         }
 
-        
-        //public PersonalEquipoSeleccion Equipo { get; set; }
-
-        
-        public string Nombre
-        {
-            get { return this.nombre; }
-            set { this.nombre = value; }
-        }
-
-
-        
-        public string Apellido
-        {
-            get { return this.apellido; }
-            set { this.apellido = value; }
-        }
-
-        
-        public int Edad
-        {
-            get { return this.edad; }
-            set { this.edad = value; }
-        }
-
         /// <summary>
         /// Propiedad para obtener o establecer la táctica del entrenador.
         /// </summary>
@@ -54,13 +30,6 @@ namespace PrimerParcial
         {
             get { return this.tactica; }
             set { this.tactica = value; }
-        }
-
-        [JsonConverter(typeof(JsonStringEnumConverter))]
-        public EPaises Pais
-        {
-            get { return this.paises; }
-            set { this.paises = value; }
         }
 
         /// <summary>
@@ -84,8 +53,12 @@ namespace PrimerParcial
         /// </summary>
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
-            sb.Append($"Nombre: {this.nombre}, Apellido: {this.apellido}, Edad: {this.edad}, País: {this.paises}, Tactica a usar: {this.tactica}");
+            string baseInfo = base.ToString(); // Obtén la representación en cadena de la clase base
+            StringBuilder sb = new StringBuilder(baseInfo);
+
+            // Agrega la información específica del Entrenador
+            sb.Append($", Tactica a usar: {this.tactica}");
+
             return sb.ToString();
         }
 

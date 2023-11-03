@@ -274,7 +274,16 @@ namespace FormSelecciones
             Serializar("MasajistaFrancia.json", masajeadoresFrancia);
             Serializar("MasajistaAlemania.json", masajeadoresAlemania);
 
-            MessageBox.Show("Se acaban de guardar todos los datos automaticamente", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            DialogResult result = MessageBox.Show("¿Estás seguro que quieras salir de la aplicación?", "Confirmar cierre", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            if (result == DialogResult.Yes)
+            {
+                MessageBox.Show("Se acaban de guardar todos los datos automáticamente", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
 
         /// <summary>
@@ -283,41 +292,73 @@ namespace FormSelecciones
         /// </summary>
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-
             if (cmbPaises.SelectedItem != null)
             {
                 EPaises paisSeleccionado = (EPaises)cmbPaises.SelectedItem;
 
+                // Verifica si se ha seleccionado un elemento en el ListBox correspondiente al país seleccionado
+                bool elementoSeleccionado = false;
+
                 switch (paisSeleccionado)
                 {
                     case EPaises.Argentina:
-                        EliminarElemento(lstArgentina, jugadoresArgentina);
-                        EliminarElemento(lstArgentinaEntrenador, entrenadorArgentina);
-                        EliminarElemento(lstArgentinaMasajeador, masajeadoresArgentina);
+                        elementoSeleccionado = lstArgentina.SelectedIndex != -1 || lstArgentinaEntrenador.SelectedIndex != -1 || lstArgentinaMasajeador.SelectedIndex != -1;
                         break;
                     case EPaises.Brasil:
-                        EliminarElemento(lstBrasil, jugadoresBrasil);
-                        EliminarElemento(lstBrasilEntrenador, entrenadorBrasil);
-                        EliminarElemento(lstBrasilMasajeador, masajeadoresBrasil);
+                        elementoSeleccionado = lstBrasil.SelectedIndex != -1 || lstBrasilEntrenador.SelectedIndex != -1 || lstBrasilMasajeador.SelectedIndex != -1;
                         break;
                     case EPaises.Italia:
-                        EliminarElemento(lstItalia, jugadoresItalia);
-                        EliminarElemento(lstItaliaEntrenador, entrenadorItalia);
-                        EliminarElemento(lstItaliaMasajeador, masajeadoresItalia);
+                        elementoSeleccionado = lstItalia.SelectedIndex != -1 || lstItaliaEntrenador.SelectedIndex != -1 || lstItaliaMasajeador.SelectedIndex != -1;
                         break;
                     case EPaises.Francia:
-                        EliminarElemento(lstFrancia, jugadoresFrancia);
-                        EliminarElemento(lstFranciaEntrenador, entrenadorFrancia);
-                        EliminarElemento(lstFranciaMasajeador, masajeadoresFrancia);
+                        elementoSeleccionado = lstFrancia.SelectedIndex != -1 || lstFranciaEntrenador.SelectedIndex != -1 || lstFranciaMasajeador.SelectedIndex != -1;
                         break;
                     case EPaises.Alemania:
-                        EliminarElemento(lstAlemania, jugadoresAlemania);
-                        EliminarElemento(lstAlemaniaEntrenador, entrenadorAlemania);
-                        EliminarElemento(lstAlemaniaMasajeador, masajeadoresAlemania);
+                        elementoSeleccionado = lstAlemania.SelectedIndex != -1 || lstAlemaniaEntrenador.SelectedIndex != -1 || lstAlemaniaMasajeador.SelectedIndex != -1;
                         break;
                 }
-            }
 
+                if (!elementoSeleccionado)
+                {
+                    MessageBox.Show("Por favor, selecciona un elemento en la lista antes de intentar eliminarlo.", "Selección requerida", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return; // No se hace nada si no se selecciona ningún elemento
+                }
+
+                // Muestra un cuadro de diálogo de confirmación
+                DialogResult result = MessageBox.Show("¿Estás seguro de que deseas eliminar estos elementos?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    switch (paisSeleccionado)
+                    {
+                        case EPaises.Argentina:
+                            EliminarElemento(lstArgentina, jugadoresArgentina);
+                            EliminarElemento(lstArgentinaEntrenador, entrenadorArgentina);
+                            EliminarElemento(lstArgentinaMasajeador, masajeadoresArgentina);
+                            break;
+                        case EPaises.Brasil:
+                            EliminarElemento(lstBrasil, jugadoresBrasil);
+                            EliminarElemento(lstBrasilEntrenador, entrenadorBrasil);
+                            EliminarElemento(lstBrasilMasajeador, masajeadoresBrasil);
+                            break;
+                        case EPaises.Italia:
+                            EliminarElemento(lstItalia, jugadoresItalia);
+                            EliminarElemento(lstItaliaEntrenador, entrenadorItalia);
+                            EliminarElemento(lstItaliaMasajeador, masajeadoresItalia);
+                            break;
+                        case EPaises.Francia:
+                            EliminarElemento(lstFrancia, jugadoresFrancia);
+                            EliminarElemento(lstFranciaEntrenador, entrenadorFrancia);
+                            EliminarElemento(lstFranciaMasajeador, masajeadoresFrancia);
+                            break;
+                        case EPaises.Alemania:
+                            EliminarElemento(lstAlemania, jugadoresAlemania);
+                            EliminarElemento(lstAlemaniaEntrenador, entrenadorAlemania);
+                            EliminarElemento(lstAlemaniaMasajeador, masajeadoresAlemania);
+                            break;
+                    }
+                }
+            }
         }
 
         /// <summary>
