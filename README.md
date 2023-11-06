@@ -14,7 +14,7 @@ Esta aplicación sirve como una herramienta para gestionar la información del p
 
 ## Digrama de clases:
 
-![Alt text](<Captura de pantalla 2023-10-16 222544.png>)
+![Alt text](<Captura de pantalla 2023-11-06 201420.png>)
 
 ## Diseño principal de mi Form:
 

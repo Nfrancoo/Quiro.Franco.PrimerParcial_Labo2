@@ -71,22 +71,32 @@ namespace PrimerParcial
 
         public override bool Equals(object? obj)
         {
-            if (obj is Masajista masajista)
+            bool retorno = false;
+            if (obj is Masajista)
             {
-                // Compara los nombres y apellidos de los jugadores.
-                return this.Nombre == masajista.Nombre && this.Apellido == masajista.Apellido;
+                retorno = this == (Masajista)obj;
             }
-            return false;
+            return retorno;
         }
 
 
-        public static List<Masajista> operator +(List<Masajista> lista, Masajista entrenador)
+        public static List<Masajista> operator +(List<Masajista> lista, Masajista masajista)
         {
-            if (!lista.Contains(entrenador))
+            if (!lista.Contains(masajista))
             {
-                lista.Add(entrenador);
+                lista.Add(masajista);
             }
             return lista;
+        }
+
+        public static bool operator ==(Masajista uno, Masajista dos)
+        {
+            return uno.Nombre == dos.Nombre && uno.Apellido == dos.Apellido;
+        }
+
+        public static bool operator !=(Masajista uno, Masajista dos)
+        {
+            return !(uno == dos);
         }
     }
 }

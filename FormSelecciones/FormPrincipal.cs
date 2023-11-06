@@ -754,7 +754,7 @@ namespace FormSelecciones
             {
                 int selectedIndex = listBox.SelectedIndex;
                 listBox.Items.RemoveAt(selectedIndex);
-                lista.RemoveAt(selectedIndex);
+                
             }
         }
         private void EliminarElemento(ListBox listBox, List<Entrenador> lista)

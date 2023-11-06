@@ -76,12 +76,12 @@ namespace PrimerParcial
 
         public override bool Equals(object? obj)
         {
-            if (obj is Jugador jugador)
+            bool retorno = false;
+            if (obj is Jugador)
             {
-                // Compara los nombres y apellidos de los jugadores.
-                return this.Nombre == jugador.Nombre && this.Apellido == jugador.Apellido;
+                retorno = this == (Jugador)obj;
             }
-            return false;
+            return retorno;
         }
 
         public static List<Jugador> operator +(List<Jugador> lista,  Jugador entrenador)
@@ -91,6 +91,16 @@ namespace PrimerParcial
                 lista.Add(entrenador);
             }
             return lista;
+        }
+
+        public static bool operator ==(Jugador uno, Jugador dos)
+        {
+            return uno.Nombre == dos.Nombre && uno.Apellido == dos.Apellido;
+        }
+
+        public static bool operator !=(Jugador uno, Jugador dos)
+        {
+            return !(uno == dos);
         }
     }
 }
