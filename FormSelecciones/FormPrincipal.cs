@@ -274,7 +274,16 @@ namespace FormSelecciones
             Serializar("MasajistaFrancia.json", masajeadoresFrancia);
             Serializar("MasajistaAlemania.json", masajeadoresAlemania);
 
+            DialogResult result = MessageBox.Show("¿Estás seguro que quieras salir de la aplicación?", "Confirmar cierre", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
+            if (result == DialogResult.Yes)
+            {
+                MessageBox.Show("Se acaban de guardar todos los datos automáticamente", "Advertencia", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                e.Cancel = true;
+            }
         }
 
         /// <summary>
@@ -283,41 +292,73 @@ namespace FormSelecciones
         /// </summary>
         private void btnEliminar_Click(object sender, EventArgs e)
         {
-
             if (cmbPaises.SelectedItem != null)
             {
                 EPaises paisSeleccionado = (EPaises)cmbPaises.SelectedItem;
 
+                // Verifica si se ha seleccionado un elemento en el ListBox correspondiente al país seleccionado
+                bool elementoSeleccionado = false;
+
                 switch (paisSeleccionado)
                 {
                     case EPaises.Argentina:
-                        EliminarElemento(lstArgentina, jugadoresArgentina);
-                        EliminarElemento(lstArgentinaEntrenador, entrenadorArgentina);
-                        EliminarElemento(lstArgentinaMasajeador, masajeadoresArgentina);
+                        elementoSeleccionado = lstArgentina.SelectedIndex != -1 || lstArgentinaEntrenador.SelectedIndex != -1 || lstArgentinaMasajeador.SelectedIndex != -1;
                         break;
                     case EPaises.Brasil:
-                        EliminarElemento(lstBrasil, jugadoresBrasil);
-                        EliminarElemento(lstBrasilEntrenador, entrenadorBrasil);
-                        EliminarElemento(lstBrasilMasajeador, masajeadoresBrasil);
+                        elementoSeleccionado = lstBrasil.SelectedIndex != -1 || lstBrasilEntrenador.SelectedIndex != -1 || lstBrasilMasajeador.SelectedIndex != -1;
                         break;
                     case EPaises.Italia:
-                        EliminarElemento(lstItalia, jugadoresItalia);
-                        EliminarElemento(lstItaliaEntrenador, entrenadorItalia);
-                        EliminarElemento(lstItaliaMasajeador, masajeadoresItalia);
+                        elementoSeleccionado = lstItalia.SelectedIndex != -1 || lstItaliaEntrenador.SelectedIndex != -1 || lstItaliaMasajeador.SelectedIndex != -1;
                         break;
                     case EPaises.Francia:
-                        EliminarElemento(lstFrancia, jugadoresFrancia);
-                        EliminarElemento(lstFranciaEntrenador, entrenadorFrancia);
-                        EliminarElemento(lstFranciaMasajeador, masajeadoresFrancia);
+                        elementoSeleccionado = lstFrancia.SelectedIndex != -1 || lstFranciaEntrenador.SelectedIndex != -1 || lstFranciaMasajeador.SelectedIndex != -1;
                         break;
                     case EPaises.Alemania:
-                        EliminarElemento(lstAlemania, jugadoresAlemania);
-                        EliminarElemento(lstAlemaniaEntrenador, entrenadorAlemania);
-                        EliminarElemento(lstAlemaniaMasajeador, masajeadoresAlemania);
+                        elementoSeleccionado = lstAlemania.SelectedIndex != -1 || lstAlemaniaEntrenador.SelectedIndex != -1 || lstAlemaniaMasajeador.SelectedIndex != -1;
                         break;
                 }
-            }
 
+                if (!elementoSeleccionado)
+                {
+                    MessageBox.Show("Por favor, selecciona un elemento en la lista antes de intentar eliminarlo.", "Selección requerida", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return; // No se hace nada si no se selecciona ningún elemento
+                }
+
+                // Muestra un cuadro de diálogo de confirmación
+                DialogResult result = MessageBox.Show("¿Estás seguro de que deseas eliminar estos elementos?", "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+                if (result == DialogResult.Yes)
+                {
+                    switch (paisSeleccionado)
+                    {
+                        case EPaises.Argentina:
+                            EliminarElemento(lstArgentina, jugadoresArgentina);
+                            EliminarElemento(lstArgentinaEntrenador, entrenadorArgentina);
+                            EliminarElemento(lstArgentinaMasajeador, masajeadoresArgentina);
+                            break;
+                        case EPaises.Brasil:
+                            EliminarElemento(lstBrasil, jugadoresBrasil);
+                            EliminarElemento(lstBrasilEntrenador, entrenadorBrasil);
+                            EliminarElemento(lstBrasilMasajeador, masajeadoresBrasil);
+                            break;
+                        case EPaises.Italia:
+                            EliminarElemento(lstItalia, jugadoresItalia);
+                            EliminarElemento(lstItaliaEntrenador, entrenadorItalia);
+                            EliminarElemento(lstItaliaMasajeador, masajeadoresItalia);
+                            break;
+                        case EPaises.Francia:
+                            EliminarElemento(lstFrancia, jugadoresFrancia);
+                            EliminarElemento(lstFranciaEntrenador, entrenadorFrancia);
+                            EliminarElemento(lstFranciaMasajeador, masajeadoresFrancia);
+                            break;
+                        case EPaises.Alemania:
+                            EliminarElemento(lstAlemania, jugadoresAlemania);
+                            EliminarElemento(lstAlemaniaEntrenador, entrenadorAlemania);
+                            EliminarElemento(lstAlemaniaMasajeador, masajeadoresAlemania);
+                            break;
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -574,8 +615,15 @@ namespace FormSelecciones
             }
         }
 
+        /// <summary>
+        /// metodo en el que el usuario puede guardar manualmente los archivos json, lo que si cuando se cierra el program
+        /// de igual manera se va a guardar manualmente
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="path"></param>
+        /// <param name="lista"></param>
         #region Serializacion Manual
-        public void SerializarManual(string path, List<Jugador> lista)
+        public void SerializarManual<T>(string path, List<T> lista)
         {
             try
             {
@@ -602,63 +650,6 @@ namespace FormSelecciones
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        public void SerializarManual(string path, List<Entrenador> lista)
-        {
-            try
-            {
-                string nombreArchivo = path;
-
-                SaveFileDialog guardar = new SaveFileDialog();
-
-                guardar.FileName = nombreArchivo;
-
-                if (guardar.ShowDialog() == DialogResult.OK)
-                {
-                    using (StreamWriter sw = new StreamWriter(guardar.FileName))
-                    {
-                        JsonSerializerOptions opciones = new JsonSerializerOptions();
-                        opciones.WriteIndented = true;
-
-                        string objJson = System.Text.Json.JsonSerializer.Serialize(lista, opciones);
-                        sw.WriteLine(objJson);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        public void SerializarManual(string path, List<Masajista> lista)
-        {
-            try
-            {
-                string nombreArchivo = path;
-
-                SaveFileDialog guardar = new SaveFileDialog();
-
-                guardar.FileName = nombreArchivo;
-
-                if (guardar.ShowDialog() == DialogResult.OK)
-                {
-                    using (StreamWriter sw = new StreamWriter(guardar.FileName))
-                    {
-                        JsonSerializerOptions opciones = new JsonSerializerOptions();
-                        opciones.WriteIndented = true;
-
-                        string objJson = System.Text.Json.JsonSerializer.Serialize(lista, opciones);
-                        sw.WriteLine(objJson);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
         #endregion
 
         #region metodos
@@ -903,39 +894,12 @@ namespace FormSelecciones
         /// </summary>
         /// <param name="path">Ruta del archivo JSON</param>
         /// <param name="listJugador">Lista de jugadores a serializar</param>
-        public void Serializar(string path, List<Jugador> listJugador)
+        public void Serializar<T>(string path, List<T> lista)
         {
             JsonSerializerOptions serializador = new JsonSerializerOptions();
             serializador.WriteIndented = true;
 
-            string objJson = System.Text.Json.JsonSerializer.Serialize(listJugador, serializador);
-
-            using (StreamWriter sw = new StreamWriter(path))
-            {
-                sw.WriteLine(objJson);
-            }
-        }
-
-
-        public void Serializar(string path, List<Entrenador> listEntrenador)
-        {
-            JsonSerializerOptions serializador = new JsonSerializerOptions();
-            serializador.WriteIndented = true;
-
-            string objJson = System.Text.Json.JsonSerializer.Serialize(listEntrenador, serializador);
-
-            using (StreamWriter sw = new StreamWriter(path))
-            {
-                sw.WriteLine(objJson);
-            }
-        }
-
-        public void Serializar(string path, List<Masajista> listMasajista)
-        {
-            JsonSerializerOptions serializador = new JsonSerializerOptions();
-            serializador.WriteIndented = true;
-
-            string objJson = System.Text.Json.JsonSerializer.Serialize(listMasajista, serializador);
+            string objJson = System.Text.Json.JsonSerializer.Serialize(lista, serializador);
 
             using (StreamWriter sw = new StreamWriter(path))
             {
@@ -949,7 +913,7 @@ namespace FormSelecciones
         /// </summary>
         /// <param name="path">Ruta del archivo JSON</param>
         /// <param name="listJugadores">Referencia a la lista de jugadores donde se almacenarán los datos deserializados</param>
-        public void Deserializar(string path, ref List<Jugador> listJugadores)
+        public void Deserializar<T>(string path, ref List<T> lista)
         {
             if (File.Exists(path))
             {
@@ -957,33 +921,7 @@ namespace FormSelecciones
                 {
                     string jsonString = sr.ReadToEnd();
 
-                    // Deserializa en una lista de objetos Jugador
-                    listJugadores = System.Text.Json.JsonSerializer.Deserialize<List<Jugador>>(jsonString);
-                }
-            }
-        }
-        public void Deserializar(string path, ref List<Entrenador> listEntrenador)
-        {
-            if (File.Exists(path))
-            {
-                using (StreamReader sr = new StreamReader(path))
-                {
-                    string jsonString = sr.ReadToEnd();
-
-                    listEntrenador = System.Text.Json.JsonSerializer.Deserialize<List<Entrenador>>(jsonString);
-                }
-            }
-        }
-
-        public void Deserializar(string path, ref List<Masajista> listMasajista)
-        {
-            if (File.Exists(path))
-            {
-                using (StreamReader sr = new StreamReader(path))
-                {
-                    string jsonString = sr.ReadToEnd();
-
-                    listMasajista = System.Text.Json.JsonSerializer.Deserialize<List<Masajista>>(jsonString);
+                    lista = System.Text.Json.JsonSerializer.Deserialize<List<T>>(jsonString);
                 }
             }
         }
@@ -993,31 +931,14 @@ namespace FormSelecciones
         /// </summary>
         /// <param name="listJugador">Lista de jugadores</param>
         /// <param name="lst">ListBox que se actualizará</param>
-        private void ActualizarVisor(List<Jugador> listJugador, ListBox lst)
+        private void ActualizarVisor<T>(List<T> lista, ListBox lst)
         {
             lst.Items.Clear();
-            foreach (Jugador jugadores in listJugador)
+            foreach (T item in lista)
             {
-                lst.Items.Add(jugadores);
+                lst.Items.Add(item);
             }
         }
-        private void ActualizarVisor(List<Entrenador> listEntrenador, ListBox lst)
-        {
-            lst.Items.Clear();
-            foreach (Entrenador entrenador in listEntrenador)
-            {
-                lst.Items.Add(entrenador);
-            }
-        }
-        private void ActualizarVisor(List<Masajista> listMasajista, ListBox lst)
-        {
-            lst.Items.Clear();
-            foreach (Masajista masajista in listMasajista)
-            {
-                lst.Items.Add(masajista);
-            }
-        }
-
         #endregion
 
         #region Metodos para Ordenar
@@ -1173,13 +1094,14 @@ namespace FormSelecciones
             else
             {
                 // Si el jugador no existe en la lista, agrégalo.
-                lista.Add(personal);
+                lista = lista + personal;
                 lst.Items.Add(personal);
             }
         }
 
         public void Añadir(List<Entrenador> lista, Entrenador personal, ListBox lst)
         {
+            //metodo para añadir jugador a la lista y a la listaBox
             bool jugadorRepetido = lista.Any(j => j.Equals(personal));
             if (jugadorRepetido)
             {
@@ -1189,7 +1111,7 @@ namespace FormSelecciones
             else
             {
                 // Si el jugador no existe en la lista, agrégalo.
-                lista.Add(personal);
+                lista = lista + personal;
                 lst.Items.Add(personal);
             }
         }
@@ -1205,7 +1127,7 @@ namespace FormSelecciones
             else
             {
                 // Si el jugador no existe en la lista, agrégalo.
-                lista.Add(personal);
+                lista = lista + personal;
                 lst.Items.Add(personal);
             }
         }
@@ -1238,7 +1160,7 @@ namespace FormSelecciones
                     string accion = entrenador.RealizarAccion();
 
                     // Puedes mostrar la acción en un MessageBox o en otro lugar según tus necesidades.
-                    MessageBox.Show(accion, "Acción del Jugador", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(accion, "Acción del Entrenador", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
@@ -1253,7 +1175,7 @@ namespace FormSelecciones
                     string accion = masajista.RealizarAccion();
 
                     // Puedes mostrar la acción en un MessageBox o en otro lugar según tus necesidades.
-                    MessageBox.Show(accion, "Acción del Jugador", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show(accion, "Acción del Masajeador", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
         }
