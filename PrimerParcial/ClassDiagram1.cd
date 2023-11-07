@@ -1,21 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="PrimerParcial.PersonalEquipoSeleccion">
-    <Position X="10.5" Y="0.5" Width="1.75" />
+    <Position X="9.75" Y="0.5" Width="3" />
     <TypeIdentifier>
       <HashCode>AACAAAAAAAQAAACEgAAAgAAAAAAAAgAQAAIAAAAAIAQ=</HashCode>
       <FileName>PersonalEquipoSeleccion.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PrimerParcial.Masajista">
-    <Position X="10.5" Y="5" Width="1.5" />
+    <Position X="10.25" Y="5.25" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AACAAIAAAAAAAAAEwAAAAAAAAAAAAAAQACAAAAAAAAA=</HashCode>
+      <HashCode>AACAAIAAAAAAAAAEwAAAAAAAAAAAAAAQACAAAAAAAiA=</HashCode>
       <FileName>Masajista.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PrimerParcial.Entrenador">
-    <Position X="12.75" Y="5" Width="1.5" />
+    <Position X="13.25" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AACAAAAAAAAAAAAEwAAAAAAAAAAAAAAQAAAACAAAAig=</HashCode>
       <FileName>Entrenador.cs</FileName>
@@ -24,7 +24,7 @@
   <Class Name="PrimerParcial.Jugador">
     <Position X="8.25" Y="5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AACAAAAAgAAAAIAEwAAAAAAAAAAAAAAQAAQAAAAEAAA=</HashCode>
+      <HashCode>AACAAAAAgAAAAIAEwAAAAAAAAAAAAAAQAAQAAAAEAiA=</HashCode>
       <FileName>Jugador.cs</FileName>
     </TypeIdentifier>
   </Class>
