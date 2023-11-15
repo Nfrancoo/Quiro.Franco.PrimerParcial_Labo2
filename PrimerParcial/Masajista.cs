@@ -15,7 +15,6 @@ namespace PrimerParcial
         /// <summary>
         /// Constructor predeterminado que inicializa un masajista con un título de estudio en blanco.
         /// </summary>
-        [JsonConstructor]
         public Masajista()
         {
             this.lugarDeTituloDeEstudio = "";

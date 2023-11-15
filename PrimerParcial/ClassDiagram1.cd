@@ -1,28 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram MajorVersion="1" MinorVersion="1">
+<ClassDiagram MajorVersion="1" MinorVersion="1" MembersFormat="NameAndType">
   <Class Name="PrimerParcial.PersonalEquipoSeleccion">
-    <Position X="9.75" Y="0.5" Width="3" />
+    <Position X="10" Y="0.5" Width="3.25" />
     <TypeIdentifier>
       <HashCode>AACAAAAAAAQAAACEgAAAgAAAAAAAAgAQAAIAAAAAIAQ=</HashCode>
       <FileName>PersonalEquipoSeleccion.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PrimerParcial.Masajista">
-    <Position X="10.25" Y="5.25" Width="2.25" />
+    <Position X="10.25" Y="5.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AACAAIAAAAAAAAAEwAAAAAAAAAAAAAAQACAAAAAAAiA=</HashCode>
       <FileName>Masajista.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PrimerParcial.Entrenador">
-    <Position X="13.25" Y="5" Width="1.5" />
+    <Position X="13.5" Y="5.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>AACAAAAAAAAAAAAEwAAAAAAAAAAAAAAQAAAACAAAAig=</HashCode>
       <FileName>Entrenador.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PrimerParcial.Jugador">
-    <Position X="8.25" Y="5" Width="1.5" />
+    <Position X="7.5" Y="5.25" Width="2.25" />
     <TypeIdentifier>
       <HashCode>AACAAAAAgAAAAIAEwAAAAAAAAAAAAAAQAAQAAAAEAiA=</HashCode>
       <FileName>Jugador.cs</FileName>

@@ -1,8 +1,13 @@
 ﻿using System.Text;
-using System.Text.Json.Serialization;
+using System.Xml.Serialization;
+
 
 namespace PrimerParcial
 {
+
+    [XmlInclude(typeof(Jugador))]
+    [XmlInclude(typeof(Entrenador))]
+    [XmlInclude(typeof(Masajista))]
     public abstract class PersonalEquipoSeleccion
     {
         /// <summary>
@@ -13,7 +18,7 @@ namespace PrimerParcial
         public string apellido;
         public EPaises paises;
 
-        
+
         public PersonalEquipoSeleccion()
         {
             this.edad = 0;
@@ -27,7 +32,7 @@ namespace PrimerParcial
         /// </summary>
         public PersonalEquipoSeleccion(int edad) : this()
         {
-            this.edad= edad;
+            this.edad = edad;
         }
 
         /// <summary>
@@ -128,26 +133,10 @@ namespace PrimerParcial
         /// <summary>
         /// Propiedad para obtener o establecer el país del personal con conversión JSON.
         /// </summary>
-        [JsonConverter(typeof(JsonStringEnumConverter))]
         public EPaises Pais
         {
             get { return this.paises; }
             set { this.paises = value; }
         }
-
-        //public static bool operator ==(GenteEquipoSeleccion a, GenteEquipoSeleccion b)
-        //{
-        //    if (ReferenceEquals(a, b))
-        //        return true;
-        //    if (a is null || b is null)
-        //        return false;
-
-        //    return a.Equals(b);
-        //}
-
-        //public static bool operator !=(GenteEquipoSeleccion a, GenteEquipoSeleccion b)
-        //{
-        //    return !(a == b);
-        //}
     }
 }

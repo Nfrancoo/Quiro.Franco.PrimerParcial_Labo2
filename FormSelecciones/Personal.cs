@@ -20,9 +20,11 @@ namespace FormSelecciones
         /// <summary>
         /// Obtiene o establece un nuevo personal(juugador,entrenador,masajista) creado o editado.
         /// </summary>
-        public Jugador nuevoJugador;
-        public Entrenador nuevoEntrenador;
-        public Masajista nuevoMasajista;
+        //public Jugador nuevoJugador;
+        //public Entrenador nuevoEntrenador;
+        //public Masajista nuevoMasajista;
+        public PersonalEquipoSeleccion NuevoPersonal { get; private set; }
+
 
         /// <summary>
         /// Inicializa una nueva instancia de la clase <see cref="Personal"/>.
@@ -45,7 +47,7 @@ namespace FormSelecciones
 
             if (jugador.DialogResult == DialogResult.OK)
             {
-                nuevoJugador = jugador.NuevoJugador;
+                NuevoPersonal = jugador.NuevoJugador;
                 this.DialogResult = DialogResult.OK;
             }
 
@@ -63,12 +65,12 @@ namespace FormSelecciones
 
             if (entrenador.DialogResult == DialogResult.OK)
             {
-                nuevoEntrenador = entrenador.NuevoEntrenador;
-                this.DialogResult = DialogResult.OK; // Establece DialogResult en OK
+                NuevoPersonal = entrenador.NuevoEntrenador;
+                this.DialogResult = DialogResult.OK;
             }
             else
             {
-                this.DialogResult = DialogResult.Cancel; // Establece DialogResult en Cancel si se presiona el botón Cancelar
+                this.DialogResult = DialogResult.Cancel;
             }
 
             this.Close();
@@ -85,7 +87,7 @@ namespace FormSelecciones
 
             if (masajista.DialogResult == DialogResult.OK)
             {
-                nuevoMasajista = masajista.NuevoMasajista;
+                NuevoPersonal = masajista.NuevoMasajista;
                 this.DialogResult = DialogResult.OK;
             }
             else

@@ -18,7 +18,12 @@ namespace PrimerParcial
         /// <summary>
         /// Constructor que inicializa un entrenador con su información básica y la táctica a utilizar.
         /// </summary>
-        public Entrenador(int edad, string nombre,string apellido,EPaises pais ,string tactica):base(edad, nombre, apellido, pais)
+
+        public Entrenador() : base()
+        {
+        }
+
+        public Entrenador(int edad, string nombre, string apellido, EPaises pais, string tactica) : base(edad, nombre, apellido, pais)
         {
             this.tactica = tactica;
         }

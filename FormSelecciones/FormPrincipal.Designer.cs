@@ -75,6 +75,8 @@
             groupBox4 = new GroupBox();
             groupBox5 = new GroupBox();
             btnAccion = new Button();
+            groupBox6 = new GroupBox();
+            btnCargarDatos = new Button();
             ((System.ComponentModel.ISupportInitialize)pctArgentina).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pctItalia).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pctBrasil).BeginInit();
@@ -85,6 +87,7 @@
             groupBox3.SuspendLayout();
             groupBox4.SuspendLayout();
             groupBox5.SuspendLayout();
+            groupBox6.SuspendLayout();
             SuspendLayout();
             // 
             // label1
@@ -556,11 +559,33 @@
             btnAccion.UseVisualStyleBackColor = true;
             btnAccion.Click += btnAccion_Click;
             // 
+            // groupBox6
+            // 
+            groupBox6.Controls.Add(btnCargarDatos);
+            groupBox6.Location = new Point(450, 482);
+            groupBox6.Name = "groupBox6";
+            groupBox6.Size = new Size(298, 121);
+            groupBox6.TabIndex = 44;
+            groupBox6.TabStop = false;
+            groupBox6.Text = "Cargar Datos";
+            // 
+            // btnCargarDatos
+            // 
+            btnCargarDatos.Font = new Font("Sylfaen", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            btnCargarDatos.ForeColor = SystemColors.ActiveCaptionText;
+            btnCargarDatos.Location = new Point(75, 31);
+            btnCargarDatos.Name = "btnCargarDatos";
+            btnCargarDatos.Size = new Size(152, 58);
+            btnCargarDatos.TabIndex = 33;
+            btnCargarDatos.Text = "Cargar Datos";
+            btnCargarDatos.UseVisualStyleBackColor = true;
+            // 
             // FormPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(1083, 615);
+            Controls.Add(groupBox6);
             Controls.Add(groupBox5);
             Controls.Add(groupBox4);
             Controls.Add(groupBox3);
@@ -608,6 +633,7 @@
             groupBox3.ResumeLayout(false);
             groupBox4.ResumeLayout(false);
             groupBox5.ResumeLayout(false);
+            groupBox6.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -660,5 +686,7 @@
         private GroupBox groupBox4;
         private GroupBox groupBox5;
         private Button btnAccion;
+        private GroupBox groupBox6;
+        private Button btnCargarDatos;
     }
 }

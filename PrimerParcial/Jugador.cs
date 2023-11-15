@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Text;
-using System.Text.Json.Serialization;
+
 
 namespace PrimerParcial
 {
@@ -15,6 +15,12 @@ namespace PrimerParcial
         /// <summary>
         /// Constructor que inicializa un jugador con su información básica.
         /// </summary>
+
+        public Jugador() : base()
+        {
+
+        }
+
         public Jugador(int edad, string nombre, string apellido, EPaises pais, int dorsal, EPosicion posicion)
             : base(edad, nombre, apellido, pais)
         {
@@ -34,7 +40,6 @@ namespace PrimerParcial
         /// <summary>
         /// Propiedad para obtener o establecer la posición del jugador con conversión JSON.
         /// </summary>
-        [JsonConverter(typeof(JsonStringEnumConverter))]
         public EPosicion Posicion
         {
             get { return this.posicion; }
@@ -84,7 +89,7 @@ namespace PrimerParcial
             return retorno;
         }
 
-        public static List<Jugador> operator +(List<Jugador> lista,  Jugador entrenador)
+        public static List<Jugador> operator +(List<Jugador> lista, Jugador entrenador)
         {
             if (!lista.Contains(entrenador))
             {
