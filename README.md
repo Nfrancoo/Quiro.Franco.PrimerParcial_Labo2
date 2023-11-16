@@ -10,12 +10,12 @@ me llamo Franco Quiró entre a la facultad en el primer cuatrimestro del 2023, p
 Terminando, todavia soy una persona muy pobre en esto de la programacion pero con ganas de aprender cada dia mas y mas.
 
 ## Resumen - Como funciona la app
-Esta aplicación sirve como una herramienta para gestionar la información del personal de las distintas selecciones de fútbol. Permite agregar, eliminar y modificar jugadores, entrenadores y masajistas, organizándolos por país a través de un Enum de países. En resumen, esta aplicación actúa como una base de datos centralizada para el personal de las selecciones nacionales, simplificando el proceso de convocatoria y gestión de equipos.
+Esta aplicación sirve como una herramienta para gestionar la información del personal de las distintas selecciones de fútbol. Permite agregar, eliminar y modificar jugadores, entrenadores y masajistas. En resumen, esta aplicación actúa como una base de datos centralizada para el personal de la FIFA teniendo los datos de las selecciones, simplificando el proceso de convocados y la gestión de equipos.
 
 ## Digrama de clases:
 
-![Alt text](<Captura de pantalla 2023-11-07 184409.png>)
+![Alt text](<Captura de pantalla 2023-11-16 005245.png>)
 
 ## Diseño principal de mi Form:
 
-![Alt text](<Captura de pantalla 2023-10-16 222841.png>)
+![Alt text](<Captura de pantalla 2023-11-16 004750.png>)
