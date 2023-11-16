@@ -328,6 +328,7 @@ namespace FormSelecciones
             btnGuardarManualmente.BackColor = colorin;
             btnMostrar.BackColor = colorin;
             btnAccion.BackColor = colorin;
+            btnCargarDatos.BackColor = colorin;
         }
 
         /// <summary>
@@ -366,6 +367,9 @@ namespace FormSelecciones
             FrmCRUD7.FlatStyle = flat;
             FrmCRUD7.FlatAppearance.BorderColor = colorin;
             FrmCRUD7.FlatAppearance.BorderSize = tamaño;
+            btnCargarDatos.FlatStyle = flat;
+            btnCargarDatos.FlatAppearance.BorderColor = colorin;
+            btnCargarDatos.FlatAppearance.BorderSize = tamaño;
         }
 
         /// <summary>
