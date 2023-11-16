@@ -91,7 +91,7 @@ namespace FormSelecciones
             Personal personalForm = new Personal();
             personalForm.ShowDialog();
 
-            if (personalForm.DialogResult == DialogResult.OK)
+            if (personalForm.esJugador)
             {
                 if (personalForm.DialogResult == DialogResult.OK)
                 {

@@ -94,7 +94,7 @@
             // 
             lblMostrar.AutoSize = true;
             lblMostrar.BackColor = SystemColors.ButtonHighlight;
-            lblMostrar.Location = new Point(253, 137);
+            lblMostrar.Location = new Point(253, 139);
             lblMostrar.Name = "lblMostrar";
             lblMostrar.Size = new Size(48, 15);
             lblMostrar.TabIndex = 9;
