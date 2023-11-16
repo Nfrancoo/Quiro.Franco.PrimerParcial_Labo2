@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Net;
+using System.Text;
 using System.Xml.Serialization;
 
 
@@ -138,5 +139,14 @@ namespace PrimerParcial
             get { return this.paises; }
             set { this.paises = value; }
         }
-    }
+        public static bool operator ==(PersonalEquipoSeleccion p1, PersonalEquipoSeleccion p2)
+        {
+            return p1.Nombre == p2.Nombre && p1.Apellido == p2.Apellido;
+        }
+
+        public static bool operator !=(PersonalEquipoSeleccion p1, PersonalEquipoSeleccion p2)
+        {
+            return !(p1 == p2);
+        }
+    }  
 }

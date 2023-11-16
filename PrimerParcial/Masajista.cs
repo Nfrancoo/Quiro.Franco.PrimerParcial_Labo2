@@ -63,7 +63,7 @@ namespace PrimerParcial
             StringBuilder sb = new StringBuilder(baseInfo);
 
             // Agrega la información específica del Masajista
-            sb.Append($", Facultad donde estudió: {this.lugarDeTituloDeEstudio}");
+            sb.Append($", Facultad donde estudió: {this.lugarDeTituloDeEstudio}, Personal: Masajista");
 
             return sb.ToString();
         }
@@ -78,24 +78,5 @@ namespace PrimerParcial
             return retorno;
         }
 
-
-        public static List<Masajista> operator +(List<Masajista> lista, Masajista masajista)
-        {
-            if (!lista.Contains(masajista))
-            {
-                lista.Add(masajista);
-            }
-            return lista;
-        }
-
-        public static bool operator ==(Masajista uno, Masajista dos)
-        {
-            return uno.Nombre == dos.Nombre && uno.Apellido == dos.Apellido;
-        }
-
-        public static bool operator !=(Masajista uno, Masajista dos)
-        {
-            return !(uno == dos);
-        }
     }
 }

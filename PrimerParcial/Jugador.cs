@@ -55,7 +55,7 @@ namespace PrimerParcial
             StringBuilder sb = new StringBuilder(baseInfo);
 
             // Agrega la información específica del Jugador
-            sb.Append($", Posicion: {this.posicion}, Dorsal: {this.dorsal}");
+            sb.Append($", Posicion: {this.posicion}, Dorsal: {this.dorsal}, Personal: Jugador");
 
             return sb.ToString();
         }
@@ -85,27 +85,14 @@ namespace PrimerParcial
             if (obj is Jugador)
             {
                 retorno = this == (Jugador)obj;
+            }else if(obj is Entrenador)
+                {
+                    retorno = this == (Entrenador) obj;
+            }else if(obj is Masajista)
+                    {
+                        retorno = this == (Masajista) obj;
             }
             return retorno;
-        }
-
-        public static List<Jugador> operator +(List<Jugador> lista, Jugador entrenador)
-        {
-            if (!lista.Contains(entrenador))
-            {
-                lista.Add(entrenador);
-            }
-            return lista;
-        }
-
-        public static bool operator ==(Jugador uno, Jugador dos)
-        {
-            return uno.Nombre == dos.Nombre && uno.Apellido == dos.Apellido;
-        }
-
-        public static bool operator !=(Jugador uno, Jugador dos)
-        {
-            return !(uno == dos);
         }
     }
 }

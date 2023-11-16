@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,7 +32,7 @@ namespace PrimerParcial
             bool agregado = true;
             if (r.listaPersonal.Count > 0)
             {
-                foreach (PersonalEquipoSeleccion personal in r.listaPersonal)
+                foreach (PersonalEquipoSeleccion personal in r.ListaPesonal)
                 {
                     if (personal.Equals(j))
                     {
@@ -42,26 +43,13 @@ namespace PrimerParcial
                 }
             }
 
-            if (agregado || r.listaPersonal.Count == 0)
+            if (agregado || r.ListaPesonal.Count == 0)
             {
-                r.listaPersonal.Add(j);
+                r.ListaPesonal.Add(j);
 
             }
             return agregado;
         }
-
-        /// <summary>
-        /// Sobrecarga del operador '+' para agregar un miembro al equipo.
-        /// </summary>
-        //public static Equipo operator +(Equipo equipo, PersonalEquipoSeleccion miembro)
-        //{
-        //    equipo.miembros.Add(miembro);
-        //    return equipo;
-        //}
-
-        /// <summary>
-        /// Sobrecarga del operador '-' para eliminar un miembro del equipo.
-        /// </summary>
         public static bool operator -(Equipo r, PersonalEquipoSeleccion j)
         {
             bool eliminado = false;
@@ -81,32 +69,47 @@ namespace PrimerParcial
             return eliminado;
         }
 
-        ///// <summary>
-        ///// Sobrecarga del operador '==' para verificar si un miembro está en el equipo.
-        ///// </summary>
-        //public static bool operator ==(Equipo equipo, PersonalEquipoSeleccion miembro)
-        //{
-        //    return equipo.miembros.Contains(miembro);
-        //}
 
-        ///// <summary>
-        ///// Sobrecarga del operador '!=' para verificar si un miembro no está en el equipo.
-        ///// </summary>
-        //public static bool operator !=(Equipo equipo, PersonalEquipoSeleccion miembro)
-        //{
-        //    return !equipo.miembros.Contains(miembro);
-        //}
+        public static int OrdenarPorEdadAS(PersonalEquipoSeleccion j1, PersonalEquipoSeleccion j2) // forma ascendente
+        {
+            if (j1.Edad < j2.Edad)
+            {
+                return -1;
+            }
+            else if (j1.Edad > j2.Edad)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
 
-        ///// <summary>
-        ///// Muestra en la consola los miembros del equipo con sus respectivas representaciones en cadena.
-        ///// </summary>
-        //public void MostrarMiembros()
-        //{
-        //    Console.WriteLine("Miembros del equipo:");
-        //    foreach (var miembro in miembros)
-        //    {
-        //        Console.WriteLine(miembro.ToString());
-        //    }
-        //}
+        public static int OrdenarPorEdadDes(PersonalEquipoSeleccion j1, PersonalEquipoSeleccion j2) // forma descendente
+        {
+            if (j1.Edad > j2.Edad)
+            {
+                return -1;
+            }
+            else if (j1.Edad < j2.Edad)
+            {
+                return 1;
+            }
+            else
+            {
+                return 0;
+            }
+        }
+
+        public static int OrdenarPorPaisAs(PersonalEquipoSeleccion j1, PersonalEquipoSeleccion j2)
+        {
+            return j1.Pais.CompareTo(j2.Pais);
+        }
+
+        public static int OrdenarPorPaisDes(PersonalEquipoSeleccion j1, PersonalEquipoSeleccion j2)
+        {
+            return j2.Pais.CompareTo(j1.Pais);
+        }
     }
 }

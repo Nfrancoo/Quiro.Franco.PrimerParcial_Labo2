@@ -62,7 +62,7 @@ namespace PrimerParcial
             StringBuilder sb = new StringBuilder(baseInfo);
 
             // Agrega la información específica del Entrenador
-            sb.Append($", Tactica a usar: {this.tactica}");
+            sb.Append($", Tactica a usar: {this.tactica}, Personal: Entrenador");
 
             return sb.ToString();
         }
@@ -76,26 +76,5 @@ namespace PrimerParcial
             }
             return retorno;
         }
-
-
-        public static List<Entrenador> operator +(List<Entrenador> lista, Entrenador entrenador)
-        {
-            if (!lista.Contains(entrenador))
-            {
-                lista.Add(entrenador);
-            }
-            return lista;
-        }
-
-        public static bool operator ==(Entrenador uno, Entrenador dos)
-        {
-            return uno.Nombre == dos.Nombre && uno.Apellido == dos.Apellido;
-        }
-
-        public static bool operator !=(Entrenador uno, Entrenador dos)
-        {
-            return !(uno == dos);
-        }
-
     }
 }

@@ -20,10 +20,12 @@ namespace FormSelecciones
         /// <summary>
         /// Obtiene o establece un nuevo personal(juugador,entrenador,masajista) creado o editado.
         /// </summary>
-        //public Jugador nuevoJugador;
-        //public Entrenador nuevoEntrenador;
-        //public Masajista nuevoMasajista;
-        public PersonalEquipoSeleccion NuevoPersonal { get; private set; }
+        public Jugador nuevoJugador;
+        public Entrenador nuevoEntrenador;
+        public Masajista nuevoMasajista;
+        public bool esJugador;
+        public bool esEntrenador;
+        public bool esMasajista;
 
 
         /// <summary>
@@ -31,6 +33,9 @@ namespace FormSelecciones
         /// </summary>
         public Personal()
         {
+            this.esJugador = false;
+            this.esEntrenador = false;
+            this.esMasajista = false;
             InitializeComponent();
             this.StartPosition = FormStartPosition.CenterScreen;
 
@@ -45,9 +50,10 @@ namespace FormSelecciones
             ConvocarJugador jugador = new ConvocarJugador();
             jugador.ShowDialog();
 
+            this.esJugador = true;
             if (jugador.DialogResult == DialogResult.OK)
             {
-                NuevoPersonal = jugador.NuevoJugador;
+                nuevoJugador = jugador.NuevoJugador;
                 this.DialogResult = DialogResult.OK;
             }
 
@@ -63,9 +69,11 @@ namespace FormSelecciones
             ConvocarEntrenador entrenador = new ConvocarEntrenador();
             entrenador.ShowDialog();
 
+
+            this.esMasajista = true;
             if (entrenador.DialogResult == DialogResult.OK)
             {
-                NuevoPersonal = entrenador.NuevoEntrenador;
+                nuevoEntrenador = entrenador.NuevoEntrenador;
                 this.DialogResult = DialogResult.OK;
             }
             else
@@ -85,9 +93,10 @@ namespace FormSelecciones
             ConvocarMasajista masajista = new ConvocarMasajista();
             masajista.ShowDialog();
 
+            this.esMasajista = true;
             if (masajista.DialogResult == DialogResult.OK)
             {
-                NuevoPersonal = masajista.NuevoMasajista;
+                nuevoMasajista = masajista.NuevoMasajista;
                 this.DialogResult = DialogResult.OK;
             }
             else
