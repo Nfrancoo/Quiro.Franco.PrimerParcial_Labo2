@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Text.Json.Serialization;
 
 namespace PrimerParcial
@@ -27,32 +28,6 @@ namespace PrimerParcial
         public Masajista(int edad, string nombre, string apellido, EPaises pais, string lugarDeTituloDeEstudio) : base(edad, nombre, apellido, pais)
         {
             this.lugarDeTituloDeEstudio = lugarDeTituloDeEstudio;
-        }
-
-        public string Nombre
-        {
-            get { return this.nombre; }
-            set { this.nombre = value; }
-        }
-
-
-        public string Apellido
-        {
-            get { return this.apellido; }
-            set { this.apellido = value; }
-        }
-
-        public int Edad
-        {
-            get { return this.edad; }
-            set { this.edad = value; }
-        }
-
-        [JsonConverter(typeof(JsonStringEnumConverter))]
-        public EPaises Pais
-        {
-            get { return this.paises; }
-            set { this.paises = value; }
         }
 
         /// <summary>
@@ -85,17 +60,43 @@ namespace PrimerParcial
         /// </summary>
         public override string ToString()
         {
-            return $"Nombre: {this.nombre}, Apellido: {this.apellido}, Edad: {this.edad}, País: {this.paises}, Facultadad donde estudio: {this.lugarDeTituloDeEstudio}";
+            string baseInfo = base.ToString(); // Obtén la representación en cadena de la clase base
+            StringBuilder sb = new StringBuilder(baseInfo);
+
+            // Agrega la información específica del Masajista
+            sb.Append($", Facultad donde estudió: {this.lugarDeTituloDeEstudio}");
+
+            return sb.ToString();
         }
 
         public override bool Equals(object? obj)
         {
-            if (obj is Masajista masajista)
+            bool retorno = false;
+            if (obj is Masajista)
             {
-                // Compara los nombres y apellidos de los jugadores.
-                return this.Nombre == masajista.Nombre && this.Apellido == masajista.Apellido;
+                retorno = this == (Masajista)obj;
             }
-            return false;
+            return retorno;
+        }
+
+
+        public static List<Masajista> operator +(List<Masajista> lista, Masajista masajista)
+        {
+            if (!lista.Contains(masajista))
+            {
+                lista.Add(masajista);
+            }
+            return lista;
+        }
+
+        public static bool operator ==(Masajista uno, Masajista dos)
+        {
+            return uno.Nombre == dos.Nombre && uno.Apellido == dos.Apellido;
+        }
+
+        public static bool operator !=(Masajista uno, Masajista dos)
+        {
+            return !(uno == dos);
         }
     }
 }
